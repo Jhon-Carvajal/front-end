@@ -1,0 +1,34 @@
+[
+    {
+        "nombre": "INICIO",
+        "redirect": "/dashboard"
+    },
+    {
+        "nombre": "FINCA",
+        "redirect": "/dashboard/finca"
+    },
+    {
+        "nombre": "LOTE",
+        "redirect": "/dashboard/postularse"
+    },
+    {
+        "nombre": "ML",
+        "redirect": "/dashboard/postularse"
+    },
+    {
+        "nombre": "GRAFICOS",
+        "redirect": "/dashboard/postularse"
+    },
+    {
+        "nombre": "T.FUMIGACION",
+        "redirect": "/dashboard/postularse"
+    },{
+        "nombre": "T.FERTILIZACION",
+        "redirect": "/dashboard/postularse"
+    }
+    
+    
+    
+    
+    
+]

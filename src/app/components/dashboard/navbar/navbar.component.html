@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <span>PROYECTO NPK</span>
+    
+    <span class="example-spacer"></span>
+    <button mat-button routerLink="/dashboard" >INICIO</button>
+    <button mat-button routerLink="/dashboard/finca" >FINCA</button>
+
+    <span class="example-spacer"></span>
+
+    <button (click)="onLogout()" routerLink="/logout" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>logout</mat-icon>
+      </button>
+    
+  </mat-toolbar>

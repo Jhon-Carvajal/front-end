@@ -1,0 +1,57 @@
+mat-grid-tile {
+    background: rgb(230, 230, 230);
+  }
+.general{
+    margin: auto;
+    margin-top: 2%;
+    width: 90%;
+    height: 700px;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.fondo{
+    width: 35%;
+    height: 700px;
+    float:right;
+}
+.doc{
+    flex: auto;
+    text-align: center;
+}
+.add{
+   width: 80%;
+   height: 20%;
+}
+.img{
+    width: 100%;
+    height: 100%;
+}
+.hoja{
+    width: 20%;
+    height: 60px;
+}
+.cent{
+    text-align: center;
+}
+.da{
+    float: right;
+    width: 35%;
+    height: 700px;
+}
+.ancho{
+    width: 50%;
+}
+.ex{
+    text-align: center;
+}
+.buton{
+    width: 100%;
+    border-radius: 10%;
+    float: left;
+    text-align: center;
+}
+.env {
+    background-color: rgb(222, 112, 2);
+    color: white;
+}
