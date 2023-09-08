@@ -3,8 +3,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Finca } from 'src/app/interfaces/finca';
-import { Caras, Persona } from 'src/app/interfaces/persona';
-import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({
   selector: 'app-crear-finca',
@@ -12,12 +10,7 @@ import { PersonaService } from 'src/app/services/persona.service';
   styleUrls: ['./crear-finca.component.css']
 })
 export class CrearFincaComponent  {
-  modelo: Caras = {
-    Nombre_finca: '',
-    Departamento: '',
-    Municipio: '',
-    Descripcion:''
-  }
+  
 
   loginData = {
     nombre: '',
@@ -35,7 +28,7 @@ export class CrearFincaComponent  {
   form!: FormGroup;
   archivos: File[] = [];
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private miServicio: PersonaService) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
@@ -57,20 +50,7 @@ export class CrearFincaComponent  {
     };
   };
 
-  guardar() {
-    this.miServicio.usuario(this.form.value).subscribe({
-      next: (data: any) => {
-        this.mensaje();
-        this.router.navigate(['/dashboard/finca'])
-      },
-      error: err => {
-        this.error();
-      },
-      complete() {
-
-      },
-    })
-  };
+  
 
   mensaje() {
     setTimeout(() => {

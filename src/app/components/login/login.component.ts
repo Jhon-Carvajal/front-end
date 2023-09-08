@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
       this.error();
       this.form.reset();
     }
-    )
+    )*/
     
     console.log(this.form);
     const correo = this.form.value.correo;
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
       //Mostramos un mensaje de error
       this.error();
       this.form.reset();
-    } */
+    } 
   }
   
   error() {
