@@ -3,12 +3,11 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    background-color: #f5f5f5;
-    background-image: url('../../../assets/img/intro.jpg');
+    background-color: transparent;
+    background-image: url("https://img.freepik.com/fotos-premium/cereza-cafe-finca-cafe_173387-1828.jpg?w=826");
     background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    
+  background-repeat:no-repeat;
+  background-position: center center;
 }
 .login {
     width: 100%;
@@ -17,7 +16,7 @@
 }
 .ancho{
     width: 80%;
-    background-color: #f5f5f5;
+    background-color: transparent;
     
 }
 .button{
@@ -26,6 +25,10 @@
 .spinner{
     margin: 0 auto;
 }
-.color-c{
-    color: red;
+
+.ti{
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }

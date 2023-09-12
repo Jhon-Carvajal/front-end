@@ -4,7 +4,7 @@
         <mat-spinner *ngIf="loading" class="spinner" diameter="80"></mat-spinner>
 
         <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
-            <h1>Proyecto NPK</h1>
+            <br><br><br><br><br>            
             <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Correo</mat-label>
                 <input type="text" matInput autocomplete="on" [(ngModel)]="correo" formControlName="correo">
@@ -13,12 +13,15 @@
                 <mat-label>Contraseña</mat-label>
                 <input type="password" matInput autocomplete="off" [(ngModel)]="contrasena" formControlName="contrasena" class="color-c">
             </mat-form-field>
-            
+            <br>
             <button type="submit" class="ancho button" mat-raised-button color="primary"
                 [disabled]="form.invalid"  >Ingresar</button>
             
             <button class="ancho button" mat-raised-button color="primary"
                 routerLink="/register">Registrarse</button>
+            <br>
+            <br>
+            <img src="../../../assets/img/logo.png" width="50%" height="40%" >
         </form>
     </div>
 </div>
