@@ -4,7 +4,8 @@
         <mat-spinner *ngIf="loading" class="spinner" diameter="80"></mat-spinner>
 
         <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
-            <br><br><br><br><br>            
+            <br><br><br><br><br>         
+            <h1 class="ti">PROYECTO NPK</h1>   
             <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Correo</mat-label>
                 <input type="text" matInput autocomplete="on" [(ngModel)]="correo" formControlName="correo">
@@ -21,7 +22,7 @@
                 routerLink="/register">Registrarse</button>
             <br>
             <br>
-            <img src="../../../assets/img/logo.png" width="50%" height="40%" >
+            
         </form>
     </div>
 </div>
