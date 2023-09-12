@@ -4,6 +4,11 @@
     height: 100%;
     align-items: center;
     background-color: #f5f5f5;
+    background-image: url('../../../assets/img/intro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    
 }
 .login {
     width: 100%;
@@ -20,4 +25,7 @@
 }
 .spinner{
     margin: 0 auto;
+}
+.color-c{
+    color: red;
 }
