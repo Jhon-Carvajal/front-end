@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user';
 import { AuthStatus } from '../interfaces/authenticacion';
+import { __param } from 'tslib';
 
 
 
@@ -27,12 +28,11 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) {
     this.verificarSesionActual();
   }
-
+/* obtencion de la info del ususrio la cual se usara para la informacion del token */
 
   public get usuarioSesionActiva(): User {
     return this.elUsuario.value;
   }
-
 
   setUsuario(user: User) {
     this.elUsuario.next(user);

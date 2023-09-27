@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 import { AuthStatus } from './interfaces/authenticacion';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

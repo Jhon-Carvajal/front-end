@@ -1,0 +1,51 @@
+<div class="containerf">
+    <mat-toolbar>
+      <span>Nueva Finca</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 10px ;"> 
+
+      <form [formGroup]="form" (ngSubmit)="guardar()">
+        <mat-grid-list cols="4" rowHeight="70px">
+
+            <mat-grid-tile [colspan]="1" [rowspan]="5" >
+             <img src="assets/img/campo.png" class="centrarl">
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field class="anchof">
+                <mat-label>Nombre de la finca</mat-label>
+                <input  matInput placeholder="Los sueños" matInput autocomplete="off" formControlName="Nombre_finca">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1" >
+                <mat-form-field class="anchof">
+                    <mat-label>Departamento</mat-label>
+                    <input  matInput placeholder="Cauca" matInput autocomplete="off" formControlName="Departamento">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field class="anchof">
+                    <mat-label>Municipio</mat-label>
+                    <input  matInput placeholder="Timbio" matInput autocomplete="off" formControlName="Municipio">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field class="anchof">
+                    <mat-label>Descripcion de la ubicacion</mat-label>
+                    <input  matInput placeholder="km4 vereda altillo" matInput autocomplete="off" formControlName="Descripcion">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Regresar</button>
+                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Insertar</button >
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+      </form>
+    
+    </mat-card>
+</div>  

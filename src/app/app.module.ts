@@ -13,7 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
-import { CrearFincaComponent } from './components/dashboard/finca/crear-finca/crear-finca.component';
+import { MatCard, MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -29,6 +29,7 @@ import { CrearFincaComponent } from './components/dashboard/finca/crear-finca/cr
     SharedModule,
     HttpClientModule,
     MatTableModule,
+    MatCardModule,
   ],
   providers: [
     {

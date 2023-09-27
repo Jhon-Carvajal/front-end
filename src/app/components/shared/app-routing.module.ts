@@ -20,6 +20,13 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -41,8 +48,13 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatCardModule,
     MatGridListModule,
-    MatSelectModule   
-    
+    MatSelectModule,
+    MatMenuModule,
+    MatListModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule 
   ],
   exports: [
     MatSlideToggleModule,
@@ -60,7 +72,14 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatSortModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule 
   ]
 })
 export class SharedModule { }

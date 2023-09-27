@@ -1,0 +1,12 @@
+.btn-edit{
+    border-radius: 50%;
+}
+
+.btn-edit:hover{
+    background-color: rgb(15, 204, 204);
+}
+
+.scroll {
+    overflow-y: auto;
+    max-height: 325px;
+}

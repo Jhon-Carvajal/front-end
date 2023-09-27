@@ -14,7 +14,7 @@ export class RegisterComponent {
   loginData = {
     seudonimo:'',
     correo:'',
-    contrasena:''
+    contrasena:'',
   }
   form: FormGroup;
 
@@ -24,7 +24,7 @@ export class RegisterComponent {
     this.form = this.fb.group({
       seudonimo: ['',Validators.required],
       correo: ['',Validators.required],
-      contrasena: ['',Validators.required]
+      contrasena: ['',Validators.required],
     })
   }
   ngOnInit(): void {
@@ -42,24 +42,11 @@ export class RegisterComponent {
       })
 
       this.Loading();
-      // this.router.navigate(['dashboard'])
     },err => {
       this.error();
       this.form.reset();
     }
     ) 
-
-    /*
-    console.log(this.form);
-    const seudonimo = this.form.value.seudonimo;
-    const correo = this.form.value.correo;
-    const contrasena = this.form.value.contrasena;
-
-    if(seudonimo == 'carlos319822' &&correo == 'carlos319822@gmail.com' && contrasena == 'carvajal'){
-      //Redirecciona,os al dashboard
-      this.Loading();
-    }*/
-
   }
 
   Loading(){

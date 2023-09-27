@@ -17,17 +17,13 @@ import { AuthStatus } from 'src/app/interfaces/authenticacion';
 })
 export class LoginComponent implements OnInit {
 
-
-  /*loginData = {
-    correo:'',
-    contrasena:''
-  }*/
   correo:string="";
   contrasena:string="";
 
   form: FormGroup;
 
   loading = false;
+  hide=true;
 
   constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
     this.form = this.fb.group({
@@ -40,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
   login():void{
 
-    console.log("aqui "+this.correo+" contraseña "+this.contrasena)
+    console.log("correo "+this.correo+" contraseña "+this.contrasena)
     let elUsuario:User={
       correo:this.correo,
       contrasena:this.contrasena
@@ -50,56 +46,20 @@ export class LoginComponent implements OnInit {
       this.miServicioUser.guardarDatosSesion(data);
       this.miServicioUser._authStatus.set( AuthStatus.authenticated );
     },err => {
-      this.error();
       this.form.reset();
     }
-    )
-/**
-    this.miServicioUser.login(this.loginData).subscribe((data:any) => {
-      console.log(data);
-
-      this.Loading();
-      this.router.navigate(['dashboard'])
-    },err => {
-      this.error();
-      this.form.reset();
-    }
-    )
-
-
-    this.miServicioUser.login(this.loginData).subscribe((data:any) => {
-
-      this.Loading();
-      this.router.navigate(['dashboard'])
-    },err => {
-      this.error();
-      this.form.reset();
-    }
-    )*/
-    
-    console.log(this.form);
-    const correo = this.form.value.correo;
-    const contrasena = this.form.value.contrasena;
-
-    if(correo == 'carvajal' && contrasena == 'carvajal'){
-      //Redirecciona,os al dashboard
-      this.Loading();
-    }else {
-      //Mostramos un mensaje de error
-      this.error();
-      this.form.reset();
-    } 
+   )
   }
   
   error() {
-    this._snackBar.open('Usuario o Contraseña Incorrecta', '', {
-      duration: 5000,
+    this._snackBar.open('Usuario o Contraseña Incorrecta', 'Intenta de nuevo', {
+      duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     })
   }
 
-  Loading(){
+  Loading (){
     this.loading = true
     setTimeout(() => {
       this.router.navigate(['dashboard']);

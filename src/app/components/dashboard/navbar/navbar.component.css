@@ -1,3 +1,85 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+
+  .containerq {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+}
+
+h1.example-app-name {
+    margin-left: 8px;
+}
+
+.example-sidenav-container {
+    flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.img {
+    width: 300px;
+    height: 50px;
+}
+
+mat-sidenav {
+    background-color: #4249bd;
+    color: rgb(250, 250, 250);
+}
+
+.icon {
+    margin-right: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.usu {
+    margin: auto;
+    display: block;
+    width: 80px;
+    height: 70px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 99% auto;
+}
+
+.des {
+    text-align: center;
+    background-color: #381E72;
+}
+
+.enc {
+    color: rgb(250, 250, 250);
+}
+
+.log {
+    text-align: right;
+    width: 269px;
+    height: 41.26px;
+    margin-top: 380px;
+    background-color: #381E72;
+    color: rgb(250, 250, 250);
+}
+.contenido{
+  margin-top: 25px;
+}
+.pointer1{
+    cursor: pointer;
+}

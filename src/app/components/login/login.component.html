@@ -1,28 +1,45 @@
 
-   <div class="body"> 
-    <div class="login">
-        <mat-spinner *ngIf="loading" class="spinner" diameter="80"></mat-spinner>
 
-        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
-            <br><br><br><br><br>         
-            <h1 class="ti">PROYECTO NPK</h1>   
-            <mat-form-field class="ancho" appearance="fill">
+
+<div class="body">
+    <div class="login">
+      <mat-spinner *ngIf="loading; else elseBlock" class="spinner" diameter="50"></mat-spinner>
+      <ng-template #elseBlock>
+        <mat-card class="custom-shadow">
+          <mat-card-content>
+            <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
+              <h1>PROYECTO IOT NPK</h1>
+              <img src="../../../assets/img/logo.png" width="50%">
+              <br>
+              <br>
+              <h2>Inicio de sesión</h2>
+              <mat-form-field appearance="outline" class="width-100">
                 <mat-label>Correo</mat-label>
-                <input type="text" matInput autocomplete="on" [(ngModel)]="correo" formControlName="correo">
-            </mat-form-field>
-            <mat-form-field class="ancho" appearance="fill">
+                <input  matInput placeholder="jperez@hotmail.com" matInput autocomplete="On" [(ngModel)]="correo" formControlName="correo">
+                <mat-icon matSuffix>mail_outline</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="width-100">
                 <mat-label>Contraseña</mat-label>
-                <input type="password" matInput autocomplete="off" [(ngModel)]="contrasena" formControlName="contrasena" class="color-c">
-            </mat-form-field>
-            <br>
-            <button type="submit" class="ancho button" mat-raised-button color="primary"
-                [disabled]="form.invalid"  >Ingresar</button>
-            
-            <button class="ancho button" mat-raised-button color="primary"
-                routerLink="/register">Registrarse</button>
-            <br>
-            <br>
-            
-        </form>
+                <input matInput [type]="hide ? 'password' : 'text'" autocomplete="off" [(ngModel)]="contrasena"
+                  formControlName="contrasena">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+    
+              <br>
+              <button type="submit" class="ancho button width-100" mat-raised-button color="primary"
+                [disabled]="form.invalid">Ingresar</button>
+              <br>
+              <br>
+              <button class="ancho button width-100" mat-raised-button color="accent" routerLink="/register">Registrarse</button>
+    
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+      </ng-template>
+  
     </div>
-</div>
+  </div>
