@@ -37,8 +37,8 @@ export class CrearFComponent {
     this.form = this.fb.group({
       Nombre_finca: ['', [Validators.required]],
       Departamento: ['', [Validators.required]],
-      Municipio: ['',    [Validators.required]],
-      Descripcion: ['',  [Validators.required]],
+      Municipio:    ['', [Validators.required]],
+      Descripcion:  ['', [Validators.required]],
       id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
       
     });

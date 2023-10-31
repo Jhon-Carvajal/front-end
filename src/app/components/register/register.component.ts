@@ -12,9 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
 
   loginData = {
-    seudonimo:'',
     correo:'',
-    contrasena:'',
+    contrasena: '',
   }
   form: FormGroup;
 
@@ -22,23 +21,20 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
     this.form = this.fb.group({
-      seudonimo: ['',Validators.required],
       correo: ['',Validators.required],
-      contrasena: ['',Validators.required],
+      contrasena: ['', Validators.required],
     })
   }
   ngOnInit(): void {
     
   }
   register (){
-
     this.miServicioUser.register(this.loginData).subscribe((data:any) => {
       console.log(data);
-
-      this._snackBar.open('Usuario Creado', '', {
+      this._snackBar.open('Usuario Creado', 'con exito', {
         duration: 5000,
         horizontalPosition: 'center',
-        verticalPosition: 'bottom'
+        verticalPosition: 'bottom',
       })
 
       this.Loading();

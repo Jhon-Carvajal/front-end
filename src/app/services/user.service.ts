@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user';
 import { AuthStatus } from '../interfaces/authenticacion';
 import { __param } from 'tslib';
+import { mergeMap } from 'rxjs/operators';
 
 
 
@@ -21,7 +22,6 @@ export class UserService {
   // VARIABLES PUBLICAS
   public currentUser = computed( () => this._currentUser() );
   public authStatus = computed( () => this._authStatus() );
-
 
 
   elUsuario = new BehaviorSubject<User>(new User);
@@ -48,9 +48,17 @@ export class UserService {
 
 
   register(infoUsuario: User): Observable<User> {
-    return this.http.post<User>(`${environment.url_usuarios}/usuarios`,infoUsuario);
+    return this.http.post<User>(`${environment.url_usuarios}/usuarios`, infoUsuario)
+      .pipe(
+        mergeMap((registeredUser: User): Observable<User> => {
+            return this.asignar(registeredUser._id!);  
+        }));
   }
 
+  asignar(userid: String): Observable<User> {
+    return this.http.put<User>(`${environment.url_usuarios}/usuarios/${userid}/rol/64de703681d31d2218482503`,{});
+  }
+  
   guardarDatosSesion(datosSesion: any) {
     let sesionActual = localStorage.getItem('sesion');
 

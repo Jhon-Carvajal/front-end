@@ -8,11 +8,7 @@
             <img src="../../../assets/img/logo.png" width="50%">
             <br>
             <h1>Usuario Nuevo</h1>
-            <mat-form-field appearance="outline" class="width-100">
-              <mat-label>Usuario</mat-label>
-              <input type="text" matInput autocomplete="off" [(ngModel)]="loginData.seudonimo" formControlName="seudonimo">
-            </mat-form-field>
-      
+                  
             <mat-form-field appearance="outline" class="width-100">
               <mat-label>Correo</mat-label>
               <input type="email" matInput autocomplete="on" [(ngModel)]="loginData.correo" formControlName="correo">
@@ -25,8 +21,9 @@
             </mat-form-field>
             <br>
             <button type="submit" class="ancho button width-100" [disabled]="form.invalid" mat-raised-button color="primary" >Registrarse</button>
+            <br><br>
             <p>
-              ¿Ya tienes una cuenta? Inicia sesión <a class="redirect-login" routerLink="/login">aquí</a>
+              ¿Ya tienes una cuenta? Inicia sesión <a routerLink="/login">aquí</a>
             </p>
           </form>
         </mat-card-content>
