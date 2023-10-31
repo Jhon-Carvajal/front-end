@@ -1,20 +1,3 @@
-<!-- <mat-toolbar color="primary">
-    <span>PROYECTO NPK</span>
-    
-    <span class="example-spacer"></span>
-    <button mat-button routerLink="/dashboard" >INICIO</button>
-    <button mat-button routerLink="/dashboard/finca">FINCA</button>
-
-
-    <span class="example-spacer"></span>
-
-    <button (click)="onLogout()" routerLink="/logout" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" 
-    matTooltip="Salir">
-        <mat-icon>logout</mat-icon>
-      </button>    
-  </mat-toolbar>
--->
-
 <div class="containerq" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
     <mat-toolbar color="primary" class="example-toolbar">
 
@@ -52,7 +35,7 @@
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
             fixedTopGap="56">
 
-            <br><br>
+            <br>
 
             <mat-nav-list>
 
@@ -96,16 +79,12 @@
 
         </mat-sidenav>
 
-
-
     <mat-sidenav-content>
-            <div class="contenido">
+            <div class="contenido body">
                 <router-outlet></router-outlet>
             </div>
-
-        </mat-sidenav-content>
+        </mat-sidenav-content>   
     </mat-sidenav-container>
-
 </div>
 
 <div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>

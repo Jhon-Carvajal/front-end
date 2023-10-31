@@ -7,7 +7,6 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
 import { Subscription, timeout } from 'rxjs';
 import { Response } from '../../interfaces/response';
-//import Swal from 'sweetalert2';
 import { AuthStatus } from 'src/app/interfaces/authenticacion';
 
 @Component({
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
   login():void{
 
-    console.log("correo "+this.correo+" contraseña "+this.contrasena)
+    //console.log("correo "+this.correo+" contraseña "+this.contrasena)
     let elUsuario:User={
       correo:this.correo,
       contrasena:this.contrasena

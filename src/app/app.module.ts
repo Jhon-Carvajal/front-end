@@ -8,7 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 
 //Components
 import { LoginComponent } from './components/login/login.component';
-import { SharedModule } from './components/shared/app-routing.module';
+import { SharedModule } from './components/shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
@@ -20,7 +20,7 @@ import { MatCard, MatCardModule } from '@angular/material/card';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

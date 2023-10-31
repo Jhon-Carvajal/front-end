@@ -79,7 +79,21 @@ mat-sidenav {
 }
 .contenido{
   margin-top: 25px;
+
 }
 .pointer1{
     cursor: pointer;
 }
+
+.body {
+    margin-top: 0%;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+
+    background-color: transparent;
+    background-image: url("https://mundocafeto.com/wp-content/uploads/2018/06/recoleccion-frutos-cafe-cerezas-750x440.jpg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+  }

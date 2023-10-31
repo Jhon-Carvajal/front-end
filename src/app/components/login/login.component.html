@@ -3,7 +3,7 @@
 
 <div class="body">
     <div class="login">
-      <mat-spinner *ngIf="loading; else elseBlock" class="spinner" diameter="50"></mat-spinner>
+      <mat-spinner *ngIf="loading; else elseBlock" class="spinner text-danger" diameter="50"></mat-spinner>
       <ng-template #elseBlock>
         <mat-card class="custom-shadow">
           <mat-card-content>
@@ -15,7 +15,7 @@
               <h2>Inicio de sesión</h2>
               <mat-form-field appearance="outline" class="width-100">
                 <mat-label>Correo</mat-label>
-                <input  matInput placeholder="jperez@hotmail.com" matInput autocomplete="On" [(ngModel)]="correo" formControlName="correo">
+                <input  matInput placeholder="jperez@hotmail.com" autocomplete="On" [(ngModel)]="correo" formControlName="correo">
                 <mat-icon matSuffix>mail_outline</mat-icon>
               </mat-form-field>
               <mat-form-field appearance="outline" class="width-100">

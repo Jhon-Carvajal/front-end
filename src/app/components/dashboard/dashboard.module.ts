@@ -4,14 +4,16 @@ import { CommonModule } from '@angular/common';
 import {MatExpansionModule} from '@angular/material/expansion';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { SharedModule } from '../shared/app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TablafincaComponent } from './tablafinca/tablafinca.component';
-import { CrearFincaComponent } from './crear-finca/crear-finca.component';
-import { TLotesComponent } from './t-lotes/t-lotes.component';
-import { CrearLoteComponent } from './crear-lote/crear-lote.component';
+import { LotelComponent } from './lotel/lotel.component';
+import { FincalComponent } from './fincal/fincal.component';
+import { CrearlComponent } from './lotel/crearl/crearl.component';
+import { CrearFComponent } from './fincal/crearf/crearf.component';
+import { ActualizarlComponent } from './lotel/actualizarl/actualizarl.component';
+import { ActualizarfComponent } from './fincal/actualizarf/actualizarf.component';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { CrearLoteComponent } from './crear-lote/crear-lote.component';
     DashboardComponent,
     InicioComponent,
     NavbarComponent,
-    TablafincaComponent,
-    CrearFincaComponent,
-    TLotesComponent,
-    CrearLoteComponent,
+    LotelComponent,
+    FincalComponent,
+    CrearlComponent,
+    CrearFComponent,
+    ActualizarlComponent,
+    ActualizarfComponent,
   ],
   imports: [
     CommonModule,

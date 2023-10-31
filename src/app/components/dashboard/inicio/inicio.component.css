@@ -5,14 +5,9 @@
 .ima {
   text-align: center;
   display: block;
-}
-.body{
   background-color: transparent;
-    background-image: url("https://img.freepik.com/fotos-premium/cereza-cafe-finca-cafe_173387-1828.jpg?w=826");
-    background-size: cover;
-    background-repeat:no-repeat;
-    background-position: center center;
 }
 .letra{
   text-align: center;
+  color: rgb(0, 0, 0);
 }

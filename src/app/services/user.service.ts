@@ -48,8 +48,7 @@ export class UserService {
 
 
   register(infoUsuario: User): Observable<User> {
-    return this.http.post<User>(`${environment.url_usuarios}/usuarios`,
-      infoUsuario);
+    return this.http.post<User>(`${environment.url_usuarios}/usuarios`,infoUsuario);
   }
 
   guardarDatosSesion(datosSesion: any) {

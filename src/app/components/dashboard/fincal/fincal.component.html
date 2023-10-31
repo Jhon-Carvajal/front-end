@@ -1,0 +1,71 @@
+<div class="container">
+   <mat-toolbar style="background-color: transparent;">
+     <span>FINCAS</span>
+   </mat-toolbar>
+  
+    <mat-icon>search</mat-icon>
+
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Busqueda" #input autocomplete="off">
+    </mat-form-field>
+
+    
+    <div class="mat-elevation-z8">
+  
+      <table mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="Nombre_finca">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la finca </th>
+          <td mat-cell *matCellDef="let element"> {{element.Nombre_finca}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Departamento">
+          <th mat-header-cell *matHeaderCellDef> Departamento </th>
+          <td mat-cell *matCellDef="let element"> {{element.Departamento}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Municipio">
+          <th mat-header-cell *matHeaderCellDef> Municipio </th>
+          <td mat-cell *matCellDef="let element"> {{element.Municipio}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripcion_ubicacion </th>
+          <td mat-cell *matCellDef="let element"> {{element.Descripcion}} </td>
+        </ng-container>
+  
+        
+        <ng-container matColumnDef="Lotes">
+          <th mat-header-cell *matHeaderCellDef>Lotes</th>
+          <td mat-cell *matCellDef="let element">
+            <a class="pointer" style="color: cornflowerblue;" matTooltip="Acceder a Lotes">
+              <mat-icon routerLink="/dashboard/lote">input</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+        
+  
+        <ng-container matColumnDef="Acciones" >
+          <th mat-header-cell *matHeaderCellDef></th>
+          
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+           <a class="pointer" style="color: black;">
+            <mat-icon matTooltip="Editar Finca"  (click)="editarFinca(element._id)" routerLink="/dashboard/actualizarf" > edit </mat-icon>
+           </a>
+
+           <a class="pointer" matTooltip="Eliminar Finca">
+            <mat-icon class="mat-icon mat-warn" (click)="eliminarFinca(element._id)" > delete_outline </mat-icon>
+           </a>
+          </td>
+          
+        </ng-container>
+            
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      </table>
+     
+    </div>
+    <button mat-raised-button color="primary" routerLink="/dashboard/crear">AGREGAR_FINCA</button>
+  </div>

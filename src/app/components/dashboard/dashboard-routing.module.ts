@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { TablafincaComponent } from './tablafinca/tablafinca.component';
-import { CrearFincaComponent } from './crear-finca/crear-finca.component';
-import { TLotesComponent } from './t-lotes/t-lotes.component';
-import { CrearLoteComponent } from './crear-lote/crear-lote.component';
+import { FincalComponent } from './fincal/fincal.component';
+import { CrearFComponent } from './fincal/crearf/crearf.component';
+
+import { LotelComponent } from './lotel/lotel.component';
+import { CrearlComponent } from './lotel/crearl/crearl.component';
+import { ActualizarfComponent } from './fincal/actualizarf/actualizarf.component';
 
 
 const routes: Routes = [
@@ -13,10 +15,11 @@ const routes: Routes = [
     children:
   [ 
     { path: '', component : InicioComponent },
-    { path: 'finca',component: TablafincaComponent },
-    { path: 'crear',component:CrearFincaComponent},
-    { path: 'lote',component: TLotesComponent},
-    { path: 'crear-lote', component:CrearLoteComponent}
+    { path: 'finca',component: FincalComponent },
+    { path: 'crear',component:CrearFComponent},
+    { path: 'lote',component: LotelComponent},
+    { path: 'crear-lote', component:CrearlComponent},
+    { path: 'actualizarf/:id', component:ActualizarfComponent},
 
   ]
   }

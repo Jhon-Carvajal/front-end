@@ -13,17 +13,21 @@ export class FincaService{
   constructor(private http: HttpClient) { }
 
   listar(): Observable<Finca[]>{
-    return this.http.get<Finca[]>(`${environment.url_persona}/fincas`)
+    return this.http.get<Finca[]>(`${environment.url_gateway}/fincas`)
   }
 
   getfincas(id: string): Observable<Finca>{
-    return this.http.get<Finca>(`${environment.url_persona}/finca/${id}`)
+    return this.http.get<Finca>(`${environment.url_gateway}/finca/${id}`)
   }
   Finca(infoFinca: Finca): Observable<Finca> {
-    return this.http.post<Finca>(`${environment.url_persona}/finca`,infoFinca);
+    return this.http.post<Finca>(`${environment.url_gateway}/finca`,infoFinca);
     }
   
-  eliminar(id:string): Observable<Finca>{
-    return this.http.delete<Finca>(`${environment.url_persona}/finca/${id}`)
+  eliminarFinca(id:string): Observable<Finca>{
+    return this.http.delete<Finca>(`${environment.url_gateway}/finca/${id}`,)
+  }
+
+  actualizarFinca(id:string,infoFinca:Finca): Observable<Finca>{
+    return this.http.put<Finca>(`${environment.url_persona}/finca/${id}`,infoFinca)
   }
 }

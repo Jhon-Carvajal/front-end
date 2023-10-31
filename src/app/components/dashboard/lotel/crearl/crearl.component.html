@@ -1,0 +1,42 @@
+<div class="container">
+    <mat-toolbar>
+      <span>Nuevo lote</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 10px ;"> 
+
+      <form [formGroup]="form" (ngSubmit)="guardarl()">
+        <mat-grid-list cols="4" rowHeight="70px">
+
+            <mat-grid-tile [colspan]="1" [rowspan]="3" >
+                <img src='assets/img/lote.png' class="centrar">
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field class="ancho1">
+                  <mat-label>Area</mat-label>
+                  <input  matInput placeholder="m" matInput autocomplete="off" formControlName="Area">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1" >
+                <mat-form-field class="ancho1">
+                  
+                  <mat-label>Fecha de siembra</mat-label>
+                  <td mat-cell *matCellDef="let element"> {{element.fecha_siembra}} </td>
+                  <input matInput [matDatepicker]="picker" matInput placeholder="12/05/2023" formControlName="Fecha_siembra">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Regresar</button>
+                <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" >Insertar</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+      </form>
+    
+    </mat-card>
+</div>  
