@@ -20,7 +20,6 @@ const routes: Routes = [
     { path: 'lote',component: LotelComponent},
     { path: 'crear-lote', component:CrearlComponent},
     { path: 'actualizarf/:id', component:ActualizarfComponent},
-
   ]
   }
   ];

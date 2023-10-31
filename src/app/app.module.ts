@@ -9,18 +9,21 @@ import {MatTableModule} from '@angular/material/table';
 //Components
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/shared.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
-import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { RecuperarPComponent } from './components/login/recuperar-p/recuperar-p.component';
+import { VerificarCComponent } from './components/login/verificar-c/verificar-c.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecuperarPComponent,
+    VerificarCComponent
   ],
   imports: [
     BrowserModule,

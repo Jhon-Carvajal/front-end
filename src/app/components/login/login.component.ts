@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
-import { Subscription, timeout } from 'rxjs';
-import { Response } from '../../interfaces/response';
 import { AuthStatus } from 'src/app/interfaces/authenticacion';
 
 @Component({
