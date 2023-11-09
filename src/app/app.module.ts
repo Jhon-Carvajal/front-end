@@ -15,8 +15,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
-import { RecuperarPComponent } from './components/login/recuperar-p/recuperar-p.component';
-import { VerificarCComponent } from './components/login/verificar-c/verificar-c.component';
 import { environment } from 'src/environments/environment';
 
 
@@ -25,8 +23,6 @@ import { environment } from 'src/environments/environment';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    RecuperarPComponent,
-    VerificarCComponent
   ],
   imports: [
     BrowserModule,

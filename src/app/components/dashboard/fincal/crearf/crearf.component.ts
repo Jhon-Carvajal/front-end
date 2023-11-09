@@ -44,8 +44,7 @@ export class CrearFComponent {
       Departamento: ['', [Validators.required]],
       Municipio: ['', [Validators.required]],
       Descripcion: ['', [Validators.required]],
-      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
-      
+      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]', 
     });
   };
 

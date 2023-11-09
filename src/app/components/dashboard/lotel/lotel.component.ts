@@ -15,9 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 export class LotelComponent implements OnInit {
 
   listlotes: Lote[]=[];
-  lotes : Lote[]=[];
+  lotes: Lote[] = [];
 
-  displayedColumns: string[] = ['Area', 'Fecha_siembra','Variedad','Acciones'];
+  displayedColumns: string[] = ['Area', 'Fecha_siembra','Finca','Variedad','Acciones'];
   
   dataSource : any ;
 
