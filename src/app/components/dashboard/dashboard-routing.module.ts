@@ -7,7 +7,7 @@ import { CrearFComponent } from './fincal/crearf/crearf.component';
 
 import { LotelComponent } from './lotel/lotel.component';
 import { CrearlComponent } from './lotel/crearl/crearl.component';
-import { ActualizarfComponent } from './fincal/actualizarf/actualizarf.component';
+import { PerfilComponent } from './personas/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'crear',component:CrearFComponent},
     { path: 'lote',component: LotelComponent},
     { path: 'crear-lote', component:CrearlComponent},
-    { path: 'actualizarf/:id', component:ActualizarfComponent},
+    { path: 'perfil', component:PerfilComponent},
   ]
   }
   ];

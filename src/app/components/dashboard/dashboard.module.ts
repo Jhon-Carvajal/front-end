@@ -12,8 +12,6 @@ import { LotelComponent } from './lotel/lotel.component';
 import { FincalComponent } from './fincal/fincal.component';
 import { CrearlComponent } from './lotel/crearl/crearl.component';
 import { CrearFComponent } from './fincal/crearf/crearf.component';
-import { ActualizarlComponent } from './lotel/actualizarl/actualizarl.component';
-import { ActualizarfComponent } from './fincal/actualizarf/actualizarf.component';
 
 
 @NgModule({
@@ -25,8 +23,6 @@ import { ActualizarfComponent } from './fincal/actualizarf/actualizarf.component
     FincalComponent,
     CrearlComponent,
     CrearFComponent,
-    ActualizarlComponent,
-    ActualizarfComponent,
   ],
   imports: [
     CommonModule,

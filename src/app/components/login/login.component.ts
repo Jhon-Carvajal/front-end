@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
 import { AuthStatus } from 'src/app/interfaces/authenticacion';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,12 @@ export class LoginComponent implements OnInit {
   loading = false;
   hide=true;
 
-  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
+  constructor(private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private miServicioUser: UserService,
+    private toastr: ToastrService) {
+    
     this.form = this.fb.group({
       correo: ['',Validators.required],
       contrasena: ['',Validators.required]
@@ -48,11 +54,7 @@ export class LoginComponent implements OnInit {
   }
   
   error() {
-    this._snackBar.open('Usuario o Contraseña Incorrecta', 'Intenta de nuevo', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
+    this.toastr.error('Intenta de nuevo','Usuario o Contraseña Incorrecta')
   }
 
   Loading (){

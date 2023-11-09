@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FincaService } from 'src/app/services/finca.service';
 import { Finca } from 'src/app/interfaces/finca';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -30,7 +31,9 @@ export class FincalComponent implements OnInit {
     Descripcion:"",
   }
 
-  constructor(private fincaService: FincaService, private router:Router) {}
+  constructor(private fincaService: FincaService,
+    private router: Router,
+  private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.cargarFincas();
@@ -52,15 +55,21 @@ export class FincalComponent implements OnInit {
   }
  
   eliminarFinca(id: string): void {
-    const confirmarEliminar = confirm("¿Está seguro que quiere eliminar la finca?"); 
-    if (confirmarEliminar) {
-      this.fincaService.eliminarFinca(id)
-        .subscribe(data => {
-          alert("La finca ha sido eliminada correctamente");
-          this.ngOnInit(); //cargar la lista de fincas después de eliminar
-        });
-    }
-  }
+  this.toastr.warning('Esta seguro que quiere eliminar la Finca', 'Confirmar Eliminacion', {
+    closeButton: true,
+    timeOut: 6000, // tiempo de espera 
+    extendedTimeOut: 2000,
+    positionClass: 'toast-top-center', 
+  }).onTap.subscribe(() => {
+    this.fincaService.eliminarFinca(id)
+      .subscribe(data => {
+        this.toastr.success('La finca ha sido eliminada', 'con exito');
+        this.ngOnInit(); 
+      });
+  });
+}
+
+
  editarFinca(id:string): void {
   const confirmarEditar = confirm("¿Está seguro que quiere editar la finca?");
    if (confirmarEditar) {

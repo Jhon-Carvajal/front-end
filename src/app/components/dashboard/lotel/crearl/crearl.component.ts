@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service';
 import { Finca } from 'src/app/interfaces/finca';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crearl',
@@ -23,8 +24,13 @@ export class CrearlComponent{
   form!: FormGroup;
   archivos: File[] = [];
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private miServicio: LoteService,
-              private sharedDataService: SharedDataService) {
+  constructor( private fb: FormBuilder,
+               private _snackBar: MatSnackBar,
+               private router: Router,
+               private miServicio: LoteService,
+               private toastr: ToastrService,
+               private sharedDataService: SharedDataService) {
+    
     this.form = this.fb.group({
       Area : ['', [Validators.required]],
       Fecha_siembra : ['', [Validators.required]],
@@ -51,40 +57,14 @@ export class CrearlComponent{
 
   mensajel() {
     setTimeout(() => {
-      this._snackBar.open('Lote añadido', 'con exito', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom'
-      })
-
-    }, 1500);
-  }
-
-  mensajeli() {
-    setTimeout(() => {
-      this._snackBar.open('Lote eliminado', 'con exito', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom'
-      })
-    }, 1500);
+      this.toastr.success('Lote añadido', 'con exito')
+    })
   }
 
   errorl() {
-    this._snackBar.open('No se pudo añadir el lote', 'lo sentimos', {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
+    this.toastr.error('No se pudo añadir el lote', 'lo sentimos')
   }
 
-  errorli() {
-    this._snackBar.open('No se pudo eliminar el lote', 'lo sentimos', {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
-  }
 }
 
 export class DatepickerOverviewExample {}

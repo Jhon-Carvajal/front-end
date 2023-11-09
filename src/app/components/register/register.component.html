@@ -11,19 +11,29 @@
                   
             <mat-form-field appearance="outline" class="width-100">
               <mat-label>Correo</mat-label>
-              <input type="email" matInput autocomplete="on" [(ngModel)]="loginData.correo" formControlName="correo">
+              <input matInput placeholder="joseperez21@hotmail.com" type="email" matInput autocomplete="on" 
+                      [(ngModel)]="loginData.correo" formControlName="correo">
+              <mat-icon matSuffix>mail_outline</mat-icon>
             </mat-form-field>
       
             <mat-form-field appearance="outline" class="width-100">
               <mat-label>Contraseña</mat-label>
-              <input type="password" matInput autocomplete="off" [(ngModel)]="loginData.contrasena"
+              <input matInput [type]="hide1 ? 'password' : 'text'" autocomplete="off" [(ngModel)]="loginData.contrasena"
                 formControlName="contrasena">
+              <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide1">
+              </button>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="width-100">
-              <mat-label>Repetir Contraseña</mat-label>
-              <input type="password" matInput autocomplete="off" [(ngModel)]="loginData.rcontrasena" formControlName="rcontrasena">
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="width-100">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide1 ? 'password' : 'text'" autocomplete="off" [(ngModel)]="loginData.rcontrasena"
+              formControlName="rcontrasena">
+            <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide1">
+              <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
 
             <br>
             <button type="submit" class="ancho button width-100" [disabled]="form.invalid" mat-raised-button color="primary" >Registrarse</button>

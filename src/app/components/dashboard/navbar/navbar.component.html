@@ -7,23 +7,12 @@
 
         <span class="example-spacer"></span>
 
-        <button class="perfil" mat-icon-button class="example-icon" [matMenuTriggerFor]="persona"
-            aria-label="Example icon-button with a menu" class="pointer1" matTooltip="Ver Perfil">
+   <!--    <button class="perfil" mat-icon-button class="example-icon" [matMenuTriggerFor]="persona"
+            aria-label="Example icon-button with a menu" class="pointer1" routerLink="/perfil" matTooltip="Ver Perfil">
             <mat-icon>person</mat-icon>
         </button>
-
-        <mat-menu #persona="matMenu">
-            <button mat-menu-item routerLink="/dashboard/perfil">
-                <mat-icon>person</mat-icon>
-                <span>Perfil</span>
-            </button>
-
-        </mat-menu>
-
-        <button mat-icon-button class="example-icon" routerLink="/dashboard" class="alerta">
-            <mat-icon>contact_mail</mat-icon>
-        </button>
-
+ -->
+     
         <button (click)="onLogout()" routerLink="/logout" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon" class="pointer1" matTooltip="Salir">
             <mat-icon>logout</mat-icon>

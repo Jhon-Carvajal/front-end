@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lotel',
@@ -28,7 +29,10 @@ export class LotelComponent implements OnInit {
     Fecha_siembra : "",
   }
 
-  constructor(private loteService: LoteService, private router:Router) {}
+  constructor(private loteService: LoteService,
+              private router: Router,
+              private toastr: ToastrService,
+               ) { }
 
   ngOnInit(): void {
     this.cargarlotes();
@@ -45,7 +49,21 @@ export class LotelComponent implements OnInit {
     });
   } 
   
- 
+  eliminarLote(id: string): void {
+  this.toastr.warning('Esta seguro que quiere eliminar el lote', 'Confirmar Eliminacion', {
+    closeButton: true,
+    timeOut: 6000, // tiempo de espera 
+    extendedTimeOut: 2000,
+    positionClass: 'toast-top-center',
+  }).onTap.subscribe(() => {
+    this.loteService.eliminarl(id)
+      .subscribe(data => {
+        this.toastr.success('El lote ha sido eliminado', 'con exito');
+        this.ngOnInit();
+      });
+  });
+}
+
   cargarlotes(){
     this.dataSource = new MatTableDataSource(this.listlotes);
   }

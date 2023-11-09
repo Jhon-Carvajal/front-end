@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -19,4 +18,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-image: url("https://img.freepik.com/fotos-premium/cereza-cafe-finca-cafe_173387-1828.jpg?w=826");
     background-size: cover;
     background-position: center center;
+}
+
+.container {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 5px;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Finca } from 'src/app/interfaces/finca';
 import { FincaService } from 'src/app/services/finca.service';
 import { SharedDataService } from 'src/app/services/shared.data'
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,27 +19,31 @@ export class CrearFComponent {
     Nombre_finca: '',
     Departamento: '',
     Municipio: '',
-    Descripcion:'',
+    Descripcion: '',
   }
 
-  Municipios: any[] = ['Almaguer','Argelia','Balboa','Bolívar','Buenos Aires','Cajibío','Caldono','Caloto','Corinto',
-                       'El Tambo','Florencia','Guachené','Guapí','Inzá','Jambaló','La Sierra','La Vega','López de Micay',
-                       'Mercaderes','Miranda','Morales','Padilla','Páez','Patía','Piamonte','Piendamó','Popayán',
-                       'Puerto Tejada','Puracé','Rosas','San Sebastián','Santander de Quilichao','Santa Rosa','Silvia',
-                       'Sotará','Suárez','Sucre','Timbío','Timbiquí','Toribío','Totoró','Villa Rica']
+  Municipios: any[] = ['Almaguer', 'Argelia', 'Balboa', 'Bolívar', 'Buenos Aires', 'Cajibío', 'Caldono', 'Caloto', 'Corinto',
+    'El Tambo', 'Florencia', 'Guachené', 'Guapí', 'Inzá', 'Jambaló', 'La Sierra', 'La Vega', 'López de Micay',
+    'Mercaderes', 'Miranda', 'Morales', 'Padilla', 'Páez', 'Patía', 'Piamonte', 'Piendamó', 'Popayán',
+    'Puerto Tejada', 'Puracé', 'Rosas', 'San Sebastián', 'Santander de Quilichao', 'Santa Rosa', 'Silvia',
+    'Sotará', 'Suárez', 'Sucre', 'Timbío', 'Timbiquí', 'Toribío', 'Totoró', 'Villa Rica']
   Departamentos: any[] = ['Cauca']
 
  
   form!: FormGroup;
   archivos: File[] = [];
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private miServicio: FincaService,
-              private sharedDataService: SharedDataService) {
+  constructor(private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private miServicio: FincaService,
+    private toastr: ToastrService,
+    private sharedDataService: SharedDataService) {
     this.form = this.fb.group({
       Nombre_finca: ['', [Validators.required]],
       Departamento: ['', [Validators.required]],
-      Municipio:    ['', [Validators.required]],
-      Descripcion:  ['', [Validators.required]],
+      Municipio: ['', [Validators.required]],
+      Descripcion: ['', [Validators.required]],
       id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
       
     });
@@ -48,8 +53,8 @@ export class CrearFComponent {
 
   guardar() {
     this.miServicio.Finca(this.form.value).subscribe({
-     next: (data: any) => {
-       // const nuevoID = data._id;
+      next: (data: any) => {
+        // const nuevoID = data._id;
         //this.sharedDataService.setID(nuevoID);
         //console.log('id_creada:', nuevoID);
         this.mensaje();
@@ -58,7 +63,7 @@ export class CrearFComponent {
       error: err => {
         this.error();
       },
-     complete() { 
+      complete() {
       },
     })
   };
@@ -66,20 +71,11 @@ export class CrearFComponent {
   
   mensaje() {
     setTimeout(() => {
-      this._snackBar.open('Finca añadida', 'con exito', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom'
-      })
-
-    }, 1500);
+      this.toastr.success('Finca añadida', 'con exito')
+    })
   }
 
   error() {
-    this._snackBar.open('No se pudo añadir la finca', 'lo sentimos', {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
+    this.toastr.error('No se pudo añadir la finca', 'lo sentimos')
   }
 }

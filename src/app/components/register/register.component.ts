@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,14 @@ export class RegisterComponent {
     rcontrasena:'',
   }
   form: FormGroup;
-
-  loading = false;
-
-  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
+  hide1 = true;
+  
+  constructor(private fb: FormBuilder,
+              private _snackBar: MatSnackBar,
+              private router: Router,
+              private miServicioUser: UserService,
+              private toastr: ToastrService) {
+    
     this.form = this.fb.group({
       correo: ['',Validators.email],
       contrasena: ['', Validators.required],
@@ -31,35 +36,31 @@ export class RegisterComponent {
     
   }
   register() {
+    const contrasena = this.form.value.contrasena;
+    const rcontrasena = this.form.value.rcontrasena;
+
+    if (contrasena !== rcontrasena) {
+      this.toastr.error('Las contraseñas ingresadas no coinciden', 'Error');
+      this.toastr.error('Opcion no valida', '')
+      return;
+    }
+
     this.miServicioUser.register(this.loginData).subscribe((data:any) => {
       console.log(data);
-      this._snackBar.open('Usuario Creado', 'con exito', {
-        duration: 5000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      })
-
+      this.toastr.success('con exito','Usuario Creado')
       this.Loading();
+
     },err => {
-      this.error();
       this.form.reset();
     }
     ) 
   }
 
   Loading(){
-    this.loading = true
-    setTimeout(() => {
+      setTimeout(() => {
       this.router.navigate(['login']);
     }, 1500);
+   }
   }
 
-  error() {
-    this._snackBar.open('Opcion no valida', '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
-  }
 
-}
