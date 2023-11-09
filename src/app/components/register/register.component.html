@@ -19,6 +19,12 @@
               <input type="password" matInput autocomplete="off" [(ngModel)]="loginData.contrasena"
                 formControlName="contrasena">
             </mat-form-field>
+
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Repetir Contraseña</mat-label>
+              <input type="password" matInput autocomplete="off" [(ngModel)]="loginData.rcontrasena" formControlName="rcontrasena">
+            </mat-form-field>
+
             <br>
             <button type="submit" class="ancho button width-100" [disabled]="form.invalid" mat-raised-button color="primary" >Registrarse</button>
             <br><br>

@@ -14,6 +14,7 @@ export class RegisterComponent {
   loginData = {
     correo:'',
     contrasena: '',
+    rcontrasena:'',
   }
   form: FormGroup;
 
@@ -23,12 +24,13 @@ export class RegisterComponent {
     this.form = this.fb.group({
       correo: ['',Validators.email],
       contrasena: ['', Validators.required],
+      rcontrasena:['', Validators.required],
     })
   }
   ngOnInit(): void {
     
   }
-  register (){
+  register() {
     this.miServicioUser.register(this.loginData).subscribe((data:any) => {
       console.log(data);
       this._snackBar.open('Usuario Creado', 'con exito', {

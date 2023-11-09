@@ -1,61 +1,61 @@
 <div class="containerf">
-    <mat-toolbar style="background-color: transparent;">
-      <span>Nueva Finca</span>
-    </mat-toolbar>
-    <mat-card class="formulario" style="margin-top: 10px ; "> 
+  <mat-toolbar style="background-color: transparent;">
+    <span>Nueva Finca</span>
+  </mat-toolbar>
+  <mat-card class="formulario" style="margin-top: 10px ; background-color: transparent; ">
 
-      <form [formGroup]="form" (ngSubmit)="guardar()">
-        <mat-grid-list cols="4" rowHeight="70px">
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <mat-grid-list cols="4" rowHeight="70px">
 
-            <mat-grid-tile  [colspan]="1" [rowspan]="7">
-             <img src="assets/img/campo.png" class="centrarf">
-            </mat-grid-tile>
-
-            <mat-grid-tile  [colspan]="2" [rowspan]="1">
-                <mat-form-field class="anchof">
-                <mat-label>Nombre de la finca</mat-label>
-                <input  matInput placeholder="Los sueños" matInput autocomplete="off" formControlName="Nombre_finca">
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="2" [rowspan]="2">
-                <mat-form-field class="anchof" >
-                    <br>
-                  <mat-label> Departamento</mat-label>
-                  <mat-select class="form-control" formControlName="Departamento">
-                    <mat-option *ngFor="let item of Departamentos" [value]="item">
-                      {{item}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+        <mat-grid-tile [colspan]="1" [rowspan]="7">
+          <img src="assets/img/campo.png" class="centrarf">
         </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="2" [rowspan]="2">
-                    <mat-form-field class="anchof" >
-                        <br>
-                      <mat-label> Municipio </mat-label>
-                      <mat-select class="form-control" formControlName="Municipio">
-                        <mat-option *ngFor="let item of Municipios" [value]="item">
-                          {{item}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-            </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="anchof">
+            <mat-label>Nombre de la finca</mat-label>
+            <input matInput placeholder="Los sueños" matInput autocomplete="off" formControlName="Nombre_finca">
+          </mat-form-field>
+        </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                <mat-form-field class="anchof">
-                    <mat-label>Descripcion de la ubicacion</mat-label>
-                    <input  matInput placeholder="km4 vereda altillo" matInput autocomplete="off" formControlName="Descripcion">
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+          <mat-form-field class="anchof">
+            <br>
+            <mat-label> Departamento</mat-label>
+            <mat-select class="form-control" formControlName="Departamento">
+              <mat-option *ngFor="let item of Departamentos" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Regresar</button>
-                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Insertar</button >
-            </mat-grid-tile>
-        </mat-grid-list>
-        
-      </form>
-    
-    </mat-card>
-</div>  
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+          <mat-form-field class="anchof">
+            <br>
+            <mat-label> Municipio </mat-label>
+            <mat-select class="form-control" formControlName="Municipio">
+              <mat-option *ngFor="let item of Municipios" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="anchof">
+            <mat-label>Descripcion de la ubicacion</mat-label>
+            <input matInput placeholder="km4 vereda altillo" matInput autocomplete="off" formControlName="Descripcion">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Regresar</button>
+          <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Insertar</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </form>
+
+  </mat-card>
+</div>

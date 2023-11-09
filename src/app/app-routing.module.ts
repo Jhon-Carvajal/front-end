@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'dashboard', canActivate: [ autorizacionGuard ], loadChildren: () => import('./components/dashboard/dashboard.module').then(x => x.DashboardModule)},
   { path: 'register', component: RegisterComponent },
   { path: 'verificarc', component: VerificarCComponent},
-  { path: 'recuperar-password', component: RecuperarPComponent},
+  { path: 'recuperar-p', component: RecuperarPComponent},
   
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**', redirectTo: 'login', pathMatch: 'full'},

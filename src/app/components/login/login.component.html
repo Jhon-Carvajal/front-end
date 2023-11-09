@@ -1,49 +1,48 @@
-
-
-
 <div class="body">
-    <div class="login">
-      <mat-spinner *ngIf="loading; else elseBlock" class="spinner text-danger" diameter="50"></mat-spinner>
-      <ng-template #elseBlock>
-        <mat-card class="custom-shadow">
-          <mat-card-content>
-            <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
-              <h1>PROYECTO IOT NPK</h1>
-              <img src="../../../assets/img/logo.png" width="50%">
-              <br>
-              <br>
-              <h2>Inicio de sesión</h2>
-              <mat-form-field appearance="outline" class="width-100">
-                <mat-label>Correo</mat-label>
-                <input  matInput placeholder="jperez@hotmail.com" autocomplete="On" [(ngModel)]="correo" formControlName="correo">
-                <mat-icon matSuffix>mail_outline</mat-icon>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="width-100">
-                <mat-label>Contraseña</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" autocomplete="off" [(ngModel)]="contrasena"
-                  formControlName="contrasena">
-                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-    
-              <br>
-              <button type="submit" class="ancho button width-100" mat-raised-button color="primary"
-                [disabled]="form.invalid">Ingresar</button>
-              <br>
-              <br>
-              <p>
-                No tines cuenta? <a  routerLink="/register">Registrarse</a>
-              </p> <br><br>
-              <p>
-                Olvidaste tu contraseña?<a  routerLink="/recuperar-password">Recuperar</a>
-              </p>
-            </form>
-          </mat-card-content>
-        </mat-card>
+  <div class="login">
+    <mat-spinner *ngIf="loading; else elseBlock" class="spinner text-danger" diameter="50"></mat-spinner>
+    <ng-template #elseBlock>
+      <mat-card class="custom-shadow">
+        <mat-card-content>
+          <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
+            <h1>PROYECTO IOT NPK</h1>
+            <img src="../../../assets/img/logo.png" width="50%">
+            <br>
+            <br>
 
-      </ng-template>
-  
-    </div>
+            <h2>Inicio de sesión</h2>
+
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Correo</mat-label>
+              <input matInput placeholder="jperez@hotmail.com" autocomplete="On" [(ngModel)]="correo"
+                formControlName="correo">
+              <mat-icon matSuffix>mail_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" autocomplete="off" [(ngModel)]="contrasena"
+                formControlName="contrasena">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <br>
+            <button type="submit"  class="ancho button width-100 " mat-raised-button color="primary"
+              [disabled]="form.invalid">Ingresar</button>
+            <br><br><br>
+            <p>
+              No tines cuenta? <a routerLink="/register">Registrarse</a>
+            </p> <br>
+            <p>
+              Olvidaste tu contraseña?<a routerLink="/recuperar-password">Recuperar</a>
+            </p>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+    </ng-template>
+
   </div>
+</div>

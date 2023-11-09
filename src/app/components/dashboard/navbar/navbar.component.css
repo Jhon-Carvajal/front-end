@@ -79,14 +79,13 @@ mat-sidenav {
 }
 .contenido{
   margin-top: 25px;
-
 }
 .pointer1{
     cursor: pointer;
 }
 
-.body {
-    margin-top: 0%;
+.body1 {
+    margin-top: 0;
     justify-content: center;
     height: 100vh;
     align-items: center;

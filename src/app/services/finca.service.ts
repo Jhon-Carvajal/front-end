@@ -20,8 +20,8 @@ export class FincaService{
     return this.http.get<Finca>(`${environment.url_gateway}/finca/${id}`)
   }
   Finca(infoFinca: Finca): Observable<Finca> {
-    return this.http.post<Finca>(`${environment.url_gateway}/finca`,infoFinca);
-    }
+    return this.http.post<Finca>(`${environment.url_gateway}/finca`, infoFinca);
+  }
   
   eliminarFinca(id:string): Observable<Finca>{
     return this.http.delete<Finca>(`${environment.url_gateway}/finca/${id}`,)
