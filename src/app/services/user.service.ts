@@ -60,10 +60,11 @@ export class UserService {
   }
   
   guardarDatosSesion(datosSesion: any) {
+    
     let sesionActual = localStorage.getItem('sesion');
-
     let data: User = {
-      _id: datosSesion.user_id, token: datosSesion.token,
+      _id: datosSesion.user_id,
+      token: datosSesion.token,
     };
     localStorage.setItem('sesion', JSON.stringify(data));
     this.setUsuario(data);

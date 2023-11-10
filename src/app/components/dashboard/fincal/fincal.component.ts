@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FincaService } from 'src/app/services/finca.service';
 import { Finca } from 'src/app/interfaces/finca';
 import { ToastrService } from 'ngx-toastr';
-
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-fincal',
@@ -24,31 +24,46 @@ export class FincalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  model: Finca={
+  model: Finca = {
     Nombre_finca :" ",
     Departamento:"",
     Municipio:"",
-    Descripcion:"",
+    Descripcion: "",
+    id_usuario:"",
   }
 
-  constructor(private fincaService: FincaService,
-    private router: Router,
-  private toastr: ToastrService) { }
+  constructor( private fincaService: FincaService,
+               private router: Router,
+               private userService: UserService,
+               private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.cargarFincas();
     this.listar();
   }
 
-  listar():void{
-    this.fincaService.listar().subscribe((data:any) => {
+  listar(): void{
+    const userId = this.userService.usuarioSesionActiva._id;
+    console.log('ID del usuario en sesion:', userId);
+   /*
+    this.fincaService.listar().subscribe((data: any) => {
+      const fincasDelUsuario = data.filter((finca: Finca) => finca.id_usuario === userId);
+
+    console.log(fincasDelUsuario);
       console.log(data)
       this.dataSource=new MatTableDataSource<Finca>(data as Finca[]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      */
+    this.fincaService.listar().subscribe((data: Finca[]) => {
+    const fincasDelUsuario = data.filter((finca: Finca) =>finca.id_usuario === userId);
+    console.log(fincasDelUsuario);
+
+    this.dataSource = new MatTableDataSource<Finca>(fincasDelUsuario);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     });
   } 
-  
  
   cargarFincas(){
     this.dataSource = new MatTableDataSource(this.listFincas);

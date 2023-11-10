@@ -26,7 +26,9 @@ export class LotelComponent implements OnInit {
 
   model: Lote={
     Area : "",
-    Fecha_siembra : "",
+    Fecha_siembra: "",
+    id_usuario: "",
+    id_finca:"",
   }
 
   constructor(private loteService: LoteService,

@@ -20,6 +20,7 @@ export class CrearFComponent {
     Departamento: '',
     Municipio: '',
     Descripcion: '',
+    id_usuario:'',
   }
 
   Municipios: any[] = ['Almaguer', 'Argelia', 'Balboa', 'Bolívar', 'Buenos Aires', 'Cajibío', 'Caldono', 'Caloto', 'Corinto',
@@ -53,9 +54,6 @@ export class CrearFComponent {
   guardar() {
     this.miServicio.Finca(this.form.value).subscribe({
       next: (data: any) => {
-        // const nuevoID = data._id;
-        //this.sharedDataService.setID(nuevoID);
-        //console.log('id_creada:', nuevoID);
         this.mensaje();
         this.router.navigate(['/dashboard/finca'])
       },

@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service';
-import { Finca } from 'src/app/interfaces/finca';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,6 +18,8 @@ export class CrearlComponent{
   modeli: Lote = {
     Area: '',
     Fecha_siembra: '',
+    id_usuario: "",
+    id_finca:"",
   }
  
   form!: FormGroup;
@@ -35,7 +36,7 @@ export class CrearlComponent{
       Area : ['', [Validators.required]],
       Fecha_siembra : ['', [Validators.required]],
       id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
-      id_finca : this.sharedDataService.getID(),
+      id_finca : this.modeli.id_finca,
     });
   };
 
