@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service'
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-lotel',
@@ -34,6 +36,7 @@ export class LotelComponent implements OnInit {
   constructor(private loteService: LoteService,
               private router: Router,
               private toastr: ToastrService,
+              private User:UserService,
                ) { }
 
   ngOnInit(): void {
@@ -42,12 +45,23 @@ export class LotelComponent implements OnInit {
     console.log(this.listarl);
   }
 
-  listarl():void{
-    this.loteService.listarl().subscribe((data:any) => {
+  listarl(): void{
+    const userId = this.User.usuarioSesionActiva._id;
+    //console.log('ID del usuario', userId);
+
+   /* this.loteService.listarl().subscribe((data:any) => {
       console.log(data)
       this.dataSource=new MatTableDataSource<Lote>(data as Lote[]);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    */
+    this.loteService.listarl().subscribe((data: Lote[]) => {
+    const loteDelUsuario = data.filter((lote: Lote) =>lote.id_usuario === userId);
+    //console.log(loteDelUsuario);
+
+    this.dataSource = new MatTableDataSource<Lote>(loteDelUsuario);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     });
   } 
   

@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
       this.Loading();
       this.miServicioUser.guardarDatosSesion(data);
       this.miServicioUser._authStatus.set( AuthStatus.authenticated );
-    },err => {
+    }, err => {
+      this.error()
       this.form.reset();
     }
    )
