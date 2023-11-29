@@ -35,8 +35,7 @@ export class CrearlComponent{
     this.form = this.fb.group({
       Area : ['', [Validators.required]],
       Fecha_siembra : ['', [Validators.required]],
-      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
-      id_finca : this.modeli.id_finca,
+      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',     
     });
   };
 

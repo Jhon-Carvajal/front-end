@@ -2,7 +2,7 @@
   <div class="login">
     <mat-spinner *ngIf="loading; else elseBlock" class="spinner text-danger" diameter="50"></mat-spinner>
     <ng-template #elseBlock>
-      <mat-card class="custom-shadow">
+      <mat-card class="custom-shadow" style="background-color: white;">
         <mat-card-content>
           <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
             <h1>PROYECTO IOT NPK</h1>
@@ -14,7 +14,7 @@
 
             <mat-form-field appearance="outline" class="width-100">
               <mat-label>Correo</mat-label>
-              <input matInput placeholder="jperez@hotmail.com" autocomplete="On" [(ngModel)]="correo"
+              <input matInput placeholder="jperez@hotmail.com"  [(ngModel)]="correo"
                 formControlName="correo">
               <mat-icon matSuffix>mail_outline</mat-icon>
             </mat-form-field>

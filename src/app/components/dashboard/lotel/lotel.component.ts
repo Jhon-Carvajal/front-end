@@ -57,7 +57,7 @@ export class LotelComponent implements OnInit {
     */
     this.loteService.listarl().subscribe((data: Lote[]) => {
     const loteDelUsuario = data.filter((lote: Lote) =>lote.id_usuario === userId);
-    //console.log(loteDelUsuario);
+    console.log(loteDelUsuario);
 
     this.dataSource = new MatTableDataSource<Lote>(loteDelUsuario);
     this.dataSource.paginator = this.paginator;

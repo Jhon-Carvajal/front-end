@@ -54,6 +54,8 @@ export class CrearFComponent {
   guardar() {
     this.miServicio.Finca(this.form.value).subscribe({
       next: (data: any) => {
+        const id_finca = data._id;
+        console.log("finca creada",id_finca);
         this.mensaje();
         this.router.navigate(['/dashboard/finca'])
       },

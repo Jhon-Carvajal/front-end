@@ -16,8 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class FincalComponent implements OnInit {
   listFincas: Finca[]=[];
   fincas : Finca[]=[];
-
-  displayedColumns: string[] = ['Nombre_finca', 'Departamento', 'Municipio','Descripcion','Lotes','Acciones'];
+  displayedColumns: string[] = ['Nombre_finca', 'Departamento', 'Municipio', 'Descripcion', 'Lotes', 'Acciones'];
   
   dataSource : any ;
 
@@ -35,16 +34,20 @@ export class FincalComponent implements OnInit {
   constructor( private fincaService: FincaService,
                private router: Router,
                private userService: UserService,
-               private toastr: ToastrService) { }
-
+               private toastr: ToastrService,
+             ) { }
+  
   ngOnInit(): void {
     this.cargarFincas();
     this.listar();
-  }
+    }
 
   listar(): void{
     const userId = this.userService.usuarioSesionActiva._id;
     console.log('ID del usuario en sesion:', userId);
+
+//    const loteId = this.router.navigate.get('id');
+  //  console.log('ID del lote de la URL:', loteId);
    /*
     this.fincaService.listar().subscribe((data: any) => {
       const fincasDelUsuario = data.filter((finca: Finca) => finca.id_usuario === userId);
@@ -90,7 +93,7 @@ export class FincalComponent implements OnInit {
    if (confirmarEditar) {
     this.router.navigate(['/dashboard/actualizarf',id]);
   }
-}
+ }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

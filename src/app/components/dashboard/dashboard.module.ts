@@ -12,6 +12,8 @@ import { LotelComponent } from './lotel/lotel.component';
 import { FincalComponent } from './fincal/fincal.component';
 import { CrearlComponent } from './lotel/crearl/crearl.component';
 import { CrearFComponent } from './fincal/crearf/crearf.component';
+import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumigacion.component';
+import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricion.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { CrearFComponent } from './fincal/crearf/crearf.component';
     FincalComponent,
     CrearlComponent,
     CrearFComponent,
+    PlanFumigacionComponent,
+    PlanNutricionComponent,
   ],
   imports: [
     CommonModule,

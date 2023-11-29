@@ -3,7 +3,8 @@
     width: 100%;
     max-width: 330px;
     text-align: center;
-    border: 3px solid #331cff;
+    /*border: 3px solid #e9e8f4;
+    */
 }
 .ancho{
     width: 80%;  
@@ -34,7 +35,7 @@ button{
         line-height: 14px;
         letter-spacing: 1.2px;
         transition: .2s .1s;
-        background-image: linear-gradient(90deg, #f9f2f2, #202efb);
+        background-image: linear-gradient(90deg, #f9f2f2, #020eb6);
         border: 0 solid;
         overflow: hidden;
     }
