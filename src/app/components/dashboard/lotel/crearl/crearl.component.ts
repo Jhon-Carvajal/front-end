@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './crearl.component.html',
   styleUrls: ['./crearl.component.css']
 })
-export class CrearlComponent{
+export class CrearlComponent implements OnInit{
   
   modeli: Lote = {
     Area: '',
@@ -30,14 +30,18 @@ export class CrearlComponent{
                private router: Router,
                private miServicio: LoteService,
                private toastr: ToastrService,
-               private sharedDataService: SharedDataService) {
-    
-    this.form = this.fb.group({
-      Area : ['', [Validators.required]],
-      Fecha_siembra : ['', [Validators.required]],
-      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',     
+               private sharedDataService: SharedDataService) { }
+
+ngOnInit(): void {
+     this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
+      this.form = this.fb.group({
+        Area: ['', [Validators.required]],
+        Fecha_siembra: ['', [Validators.required]],
+        id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',   
+        id_finca: idFinca,
+      });
     });
-  };
+  }
 
   dataSource: any;
 

@@ -7,6 +7,7 @@ import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service'
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { SharedDataService } from 'src/app/services/shared.data';
 import { User } from '../../../interfaces/user';
 
 @Component({
@@ -36,34 +37,49 @@ export class LotelComponent implements OnInit {
   constructor(private loteService: LoteService,
               private router: Router,
               private toastr: ToastrService,
-              private User:UserService,
+              private User: UserService,
+              private shareddataservice: SharedDataService,
                ) { }
 
   ngOnInit(): void {
     this.cargarlotes();
     this.listarl();
-    console.log(this.listarl);
   }
 
-  listarl(): void{
+  listarl(): void {
     const userId = this.User.usuarioSesionActiva._id;
-    //console.log('ID del usuario', userId);
+    console.log('ID del usuario', userId);
 
-   /* this.loteService.listarl().subscribe((data:any) => {
-      console.log(data)
-      this.dataSource=new MatTableDataSource<Lote>(data as Lote[]);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    */
-    this.loteService.listarl().subscribe((data: Lote[]) => {
-    const loteDelUsuario = data.filter((lote: Lote) =>lote.id_usuario === userId);
-    console.log(loteDelUsuario);
+    /* this.loteService.listarl().subscribe((data:any) => {
+       console.log(data)
+       this.dataSource=new MatTableDataSource<Lote>(data as Lote[]);
+       this.dataSource.paginator = this.paginator;
+       this.dataSource.sort = this.sort;
+     */
+    /* this.loteService.listarl().subscribe((data: Lote[]) => {
+     const loteDelUsuario = data.filter((lote: Lote) =>lote.id_usuario === userId);
+     console.log(loteDelUsuario);
+ 
+     this.dataSource = new MatTableDataSource<Lote>(loteDelUsuario);
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+      */
+    // Obtener el ID de la finca
+    this.shareddataservice.currentIdFinca.subscribe((idFinca) => {
+      const userId = this.User.usuarioSesionActiva._id;
 
-    this.dataSource = new MatTableDataSource<Lote>(loteDelUsuario);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    });
-  } 
+      this.loteService.listarl().subscribe((data: Lote[]) => {
+        // lotes por ID de usuario y finca
+        const lotesDelUsuarioYFinca = data.filter((lote: Lote) => lote.id_usuario === userId && lote.id_finca === idFinca);
+
+        //console.log(lotesDelUsuarioYFinca);
+        this.dataSource = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      
+      });
+    })
+  }
   
   eliminarLote(id: string): void {
   this.toastr.warning('Esta seguro que quiere eliminar el lote', 'Confirmar Eliminacion', {

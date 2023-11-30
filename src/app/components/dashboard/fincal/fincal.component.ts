@@ -7,6 +7,7 @@ import { FincaService } from 'src/app/services/finca.service';
 import { Finca } from 'src/app/interfaces/finca';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { SharedDataService } from 'src/app/services/shared.data';
 
 @Component({
   selector: 'app-fincal',
@@ -17,6 +18,7 @@ export class FincalComponent implements OnInit {
   listFincas: Finca[]=[];
   fincas : Finca[]=[];
   displayedColumns: string[] = ['Nombre_finca', 'Departamento', 'Municipio', 'Descripcion', 'Lotes', 'Acciones'];
+  idFinca: string = '';
   
   dataSource : any ;
 
@@ -28,13 +30,14 @@ export class FincalComponent implements OnInit {
     Departamento:"",
     Municipio:"",
     Descripcion: "",
-    id_usuario:"",
+    id_usuario: "",
   }
 
   constructor( private fincaService: FincaService,
                private router: Router,
                private userService: UserService,
                private toastr: ToastrService,
+               private dataservice: SharedDataService,
              ) { }
   
   ngOnInit(): void {
@@ -44,11 +47,10 @@ export class FincalComponent implements OnInit {
 
   listar(): void{
     const userId = this.userService.usuarioSesionActiva._id;
-    console.log('ID del usuario en sesion:', userId);
-
-//    const loteId = this.router.navigate.get('id');
-  //  console.log('ID del lote de la URL:', loteId);
-   /*
+    //console.log('ID del usuario en sesion:', userId);
+    const fincaa = this.idFinca;
+    //console.log("id de la finca",fincaa)
+     /*
     this.fincaService.listar().subscribe((data: any) => {
       const fincasDelUsuario = data.filter((finca: Finca) => finca.id_usuario === userId);
 
@@ -60,7 +62,7 @@ export class FincalComponent implements OnInit {
       */
     this.fincaService.listar().subscribe((data: Finca[]) => {
     const fincasDelUsuario = data.filter((finca: Finca) =>finca.id_usuario === userId);
-    console.log(fincasDelUsuario);
+    //console.log(fincasDelUsuario);
 
     this.dataSource = new MatTableDataSource<Finca>(fincasDelUsuario);
     this.dataSource.paginator = this.paginator;
@@ -88,12 +90,19 @@ export class FincalComponent implements OnInit {
 }
 
 
- editarFinca(id:string): void {
+/* editarFinca(id:string): void {
   const confirmarEditar = confirm("¿Está seguro que quiere editar la finca?");
    if (confirmarEditar) {
     this.router.navigate(['/dashboard/actualizarf',id]);
   }
- }
+ }*/
+  Obtener(id: string): void{
+    const fincaid = id;
+    console.log("id de la finca", fincaid);
+    this.dataservice.changeIdFinca(fincaid);
+    this.idFinca = fincaid;
+    this.listar();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

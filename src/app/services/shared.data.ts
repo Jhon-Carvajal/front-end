@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedDataService {
-  private nuevoID!: string;
+  private idFincaSource = new BehaviorSubject<string>('');
+  currentIdFinca = this.idFincaSource.asObservable();
 
-  setID(id: string) {
-    this.nuevoID = id;
-  }
-
-  getID(): string {
-    return this.nuevoID;
+  changeIdFinca(idFinca: string) {
+    this.idFincaSource.next(idFinca);
   }
 }
