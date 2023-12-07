@@ -4,11 +4,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
+import { Cafe } from 'src/app/interfaces/cafe';
+import { CafeService } from 'src/app/services/cafe.service';
 import { LoteService } from 'src/app/services/lote.service'
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { SharedDataService } from 'src/app/services/shared.data';
-import { User } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-lotel',
@@ -19,9 +20,10 @@ export class LotelComponent implements OnInit {
 
   listlotes: Lote[]=[];
   lotes: Lote[] = [];
+  listcafe: Cafe[] = [];
+  cafes: Cafe[] = [];
 
-  displayedColumns: string[] = ['Area', 'Fecha_siembra','Finca','Variedad','Acciones'];
-  
+  displayedColumns: string[] = ['Area', 'Fecha_siembra','Variedad','Caracteristica','Acciones'];
   dataSource : any ;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,15 +32,21 @@ export class LotelComponent implements OnInit {
   model: Lote={
     Area : "",
     Fecha_siembra: "",
+    Variedad : "",
+    Caracteristica : "",
     id_usuario: "",
     id_finca:"",
   }
-
+  modelc: Cafe = {
+    Variedad: "",
+    Caracteristica:"",
+ }
   constructor(private loteService: LoteService,
               private router: Router,
               private toastr: ToastrService,
               private User: UserService,
               private shareddataservice: SharedDataService,
+              private cafeservice: CafeService,
                ) { }
 
   ngOnInit(): void {
@@ -98,6 +106,7 @@ export class LotelComponent implements OnInit {
 
   cargarlotes(){
     this.dataSource = new MatTableDataSource(this.listlotes);
+    this.dataSource = new MatTableDataSource(this.listcafe);
   }
   
   ngAfterViewInit() {
@@ -109,6 +118,8 @@ export class LotelComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  
+    
 }
+
+
+

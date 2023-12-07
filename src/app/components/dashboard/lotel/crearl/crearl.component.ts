@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service';
+import { Cafe } from 'src/app/interfaces/cafe';
+import { CafeService } from 'src/app/services/cafe.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,10 +20,12 @@ export class CrearlComponent implements OnInit{
   modeli: Lote = {
     Area: '',
     Fecha_siembra: '',
+    Variedad : '',
+    Caracteristica : '',
     id_usuario: "",
     id_finca:"",
   }
- 
+  
   form!: FormGroup;
   archivos: File[] = [];
 
@@ -30,13 +34,16 @@ export class CrearlComponent implements OnInit{
                private router: Router,
                private miServicio: LoteService,
                private toastr: ToastrService,
-               private sharedDataService: SharedDataService) { }
+               private sharedDataService: SharedDataService,
+               private serviciocafe: CafeService) { }
 
 ngOnInit(): void {
      this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
       this.form = this.fb.group({
         Area: ['', [Validators.required]],
         Fecha_siembra: ['', [Validators.required]],
+        Variedad: ['', [Validators.required]],
+        Caracteristica: ['',[Validators.required]],
         id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',   
         id_finca: idFinca,
       });

@@ -4,6 +4,7 @@ import { Route, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MenuService } from 'src/app/services/menu.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
