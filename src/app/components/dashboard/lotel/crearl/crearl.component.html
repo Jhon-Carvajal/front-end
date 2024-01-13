@@ -7,9 +7,21 @@
       <form [formGroup]="form" (ngSubmit)="guardarl()">
         <mat-grid-list cols="4"  rowHeight="70px">
 
-            <mat-grid-tile [colspan]="1" [rowspan]="5" >
+            <mat-grid-tile [colspan]="1" [rowspan]="7" >
                 <img src='assets/img/lote.png' class="centrar">
             </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+          <mat-form-field class="ancho1">
+            <br>
+            <mat-label> No. Lote </mat-label>
+            <mat-select class="form-control" formControlName="Nombre">
+              <mat-option *ngFor="let item of Numeros" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
             <mat-grid-tile [colspan]="2" [rowspan]="1">
                 <mat-form-field class="ancho1">

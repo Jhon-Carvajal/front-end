@@ -12,6 +12,11 @@
     <div class="mat-elevation-z8">
   
       <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef>No. Lote</th>
+          <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+        </ng-container>
               
         <ng-container matColumnDef="Area">
           <th mat-header-cell *matHeaderCellDef> Area </th>

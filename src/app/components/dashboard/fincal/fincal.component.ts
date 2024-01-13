@@ -5,8 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FincaService } from 'src/app/services/finca.service';
 import { Finca } from 'src/app/interfaces/finca';
+import { Lote }  from 'src/app/interfaces/lote'
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { LoteService } from 'src/app/services/lote.service'
 import { SharedDataService } from 'src/app/services/shared.data';
 
 @Component({
@@ -38,6 +40,7 @@ export class FincalComponent implements OnInit {
                private userService: UserService,
                private toastr: ToastrService,
                private dataservice: SharedDataService,
+               private loteservice: LoteService,
              ) { }
   
   ngOnInit(): void {
@@ -48,7 +51,7 @@ export class FincalComponent implements OnInit {
   listar(): void{
     const userId = this.userService.usuarioSesionActiva._id;
     //console.log('ID del usuario en sesion:', userId);
-    const fincaa = this.idFinca;
+    const finca = this.idFinca;
     //console.log("id de la finca",fincaa)
      /*
     this.fincaService.listar().subscribe((data: any) => {
@@ -74,7 +77,7 @@ export class FincalComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.listFincas);
   }
  
-  eliminarFinca(id: string): void {
+ eliminarFinca(id: string): void {
   this.toastr.warning('Esta seguro que quiere eliminar la Finca', 'Confirmar Eliminacion', {
     closeButton: true,
     timeOut: 6000, // tiempo de espera 
@@ -88,7 +91,6 @@ export class FincalComponent implements OnInit {
       });
   });
 }
-
 
 /* editarFinca(id:string): void {
   const confirmarEditar = confirm("¿Está seguro que quiere editar la finca?");

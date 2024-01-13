@@ -23,13 +23,14 @@ export class LotelComponent implements OnInit {
   listcafe: Cafe[] = [];
   cafes: Cafe[] = [];
 
-  displayedColumns: string[] = ['Area', 'Fecha_siembra','Variedad','Caracteristica','Acciones'];
+  displayedColumns: string[] = ['Nombre','Area', 'Fecha_siembra','Variedad','Caracteristica','Acciones'];
   dataSource : any ;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  model: Lote={
+  model: Lote = {
+    Nombre: "",
     Area : "",
     Fecha_siembra: "",
     Variedad : "",

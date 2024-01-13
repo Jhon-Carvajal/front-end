@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { AngularFireModule } from '@angular/fire/compat'
+import { NgChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 
 //Components
@@ -28,6 +29,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgChartsModule,
     SharedModule,
     HttpClientModule,
     MatTableModule,
@@ -39,7 +41,7 @@ import { environment } from 'src/environments/environment';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
-      multi : true
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

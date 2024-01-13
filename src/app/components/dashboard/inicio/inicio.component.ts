@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Chart } from "chart.js";
 
 @Component({
   selector: 'app-inicio',
@@ -8,3 +9,5 @@ import { Component } from '@angular/core';
 export class InicioComponent {
 
 }
+
+

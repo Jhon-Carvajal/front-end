@@ -6,8 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Lote } from 'src/app/interfaces/lote';
 import { LoteService } from 'src/app/services/lote.service';
-import { Cafe } from 'src/app/interfaces/cafe';
-import { CafeService } from 'src/app/services/cafe.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearlComponent implements OnInit{
   
   modeli: Lote = {
+    Nombre: '',
     Area: '',
     Fecha_siembra: '',
     Variedad : '',
@@ -25,6 +24,8 @@ export class CrearlComponent implements OnInit{
     id_usuario: "",
     id_finca:"",
   }
+
+  Numeros: any[] = ['1','2','3','4','5','6','7','8','9']
   
   form!: FormGroup;
   archivos: File[] = [];
@@ -34,12 +35,12 @@ export class CrearlComponent implements OnInit{
                private router: Router,
                private miServicio: LoteService,
                private toastr: ToastrService,
-               private sharedDataService: SharedDataService,
-               private serviciocafe: CafeService) { }
+               private sharedDataService: SharedDataService,) { }
 
 ngOnInit(): void {
      this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
-      this.form = this.fb.group({
+       this.form = this.fb.group({
+        Nombre:  ['', [Validators.required, Validators.pattern(/^\d+$/)]],
         Area: ['', [Validators.required]],
         Fecha_siembra: ['', [Validators.required]],
         Variedad: ['', [Validators.required]],

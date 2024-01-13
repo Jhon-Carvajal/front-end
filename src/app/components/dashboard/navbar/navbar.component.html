@@ -2,23 +2,24 @@
     <mat-toolbar color="primary" class="example-toolbar">
 
        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
- <!--      <span class="example-spacer"></span>
+<!--
+       <span class="example-spacer"></span>
        <h1 class="example-app-name">Proyecto iot</h1>
-
+-->
        <span class="example-spacer"></span> 
 
-       <button class="perfil" mat-icon-button class="example-icon" [matMenuTriggerFor]="persona"
-            aria-label="Example icon-button with a menu" class="pointer1" routerLink="/perfil" matTooltip="Ver Perfil">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Perfil de Usuario">
             <mat-icon>person</mat-icon>
         </button>
+        
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/perfil">
+                <mat-icon>person</mat-icon>Perfil</button>
+            <button (click)="onLogout()" mat-button routerLink="/logout" >
+                <mat-icon  matTooltip="Salir">logout</mat-icon>Cerrar Sesion</button>
+        </mat-menu>
 
-        <button (click)="onLogout()" routerLink="/logout" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon" class="pointer1" matTooltip="Salir">
-            <mat-icon class="icon" matTooltip="Salir">logout</mat-icon>
-        </button>
-     
-    -->   
-
+        
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
@@ -39,13 +40,13 @@
                     <mat-icon class="icon" matTooltip="ver fincas">image_search</mat-icon>Fincas</button>
                 </a>
                 <br>
-<!--
+
                 <a mat-list-item class="pointer1" matTooltip="Ver lotes">
                     <button mat-button routerLink="/dashboard/lote" class="enc">
                     <mat-icon class="icon" matTooltip="ver fincas">assignment</mat-icon>Lotes</button>
                 </a>
                 <br>
-        -->
+        
                 <a mat-list-item class="pointer1" matTooltip="Ver plan de fumigacion">
                     <button mat-button routerLink="/dashboard/plan-fumigacion" class="enc">
                     <mat-icon class="icon" matTooltip="plan-fumigacion">note_add</mat-icon>Fumigacion</button>
@@ -53,7 +54,7 @@
                 <br>
 
                 <a mat-list-item class="pointer1" matTooltip="Ver plan de nutricion">
-                    <button mat-button routerLink="/dashboard/finca" class="enc">
+                    <button mat-button routerLink="/dashboard/plan-nutricion" class="enc">
                     <mat-icon class="icon" matTooltip="Plan_Nutricion">view_headline</mat-icon>Fertilizacion</button>
                 </a>
                 <br>
@@ -61,12 +62,6 @@
                 <a mat-list-item class="pointer1" matTooltip="Sugerencia de fertilizante">
                     <button mat-button routerLink="/dashboard/finca" class="enc">
                     <mat-icon class="icon" matTooltip="Machine Learning">timeline</mat-icon>ML_IOT</button>
-                </a>
-                <br>
-
-                <a mat-list-item class="pointer1" matTooltip="Cerrar Sesion">
-                    <button mat-button routerLink="/logout" class="enc">
-                    <mat-icon class="icon" matTooltip="Salir">logout</mat-icon>Salir</button>
                 </a>
 
             </mat-nav-list>
