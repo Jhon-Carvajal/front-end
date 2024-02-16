@@ -13,13 +13,4 @@ export const environment = {
     url_gateway:"http://127.0.0.1:7777",  //api  
     url_usuarios:"http://127.0.0.1:8081", //seguridad
     url_persona: "http://127.0.0.1:9999", //back
-    
-  firebaseConfig : {
-  apiKey: "AIzaSyD_0EzU-t4zZ1kRPhLOKOlgsURmkwzsUPo",
-  authDomain: "proyecto-coffe.firebaseapp.com",
-  projectId: "proyecto-coffe",
-  storageBucket: "proyecto-coffe.appspot.com",
-  messagingSenderId: "1037113996312",
-  appId: "1:1037113996312:web:7b313d22cf59a8ec26ff6d"
-  }
   };

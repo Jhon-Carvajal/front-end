@@ -5,7 +5,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { NgChartsModule } from 'ng2-charts';
+//import { NgChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,7 +34,6 @@ import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricio
     DashboardRoutingModule,
     SharedModule,
     MatExpansionModule,
-    NgChartsModule,
   ]
 })
 export class DashboardModule { }

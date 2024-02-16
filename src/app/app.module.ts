@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-import { AngularFireModule } from '@angular/fire/compat'
-import { NgChartsModule } from 'ng2-charts';
+//import { NgChartsModule } from 'ng2-charts';
+
 import { ToastrModule } from 'ngx-toastr';
 
 //Components
@@ -29,12 +29,11 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgChartsModule,
+    //NgChartsModule,
     SharedModule,
     HttpClientModule,
     MatTableModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     ToastrModule.forRoot(),
   ],
   providers: [
