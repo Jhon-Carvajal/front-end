@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-//import { NgChartsModule } from 'ng2-charts';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -17,6 +16,7 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
 import { environment } from 'src/environments/environment';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,12 +29,12 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    //NgChartsModule,
     SharedModule,
     HttpClientModule,
     MatTableModule,
     MatCardModule,
     ToastrModule.forRoot(),
+   // NgbModule,
   ],
   providers: [
     {

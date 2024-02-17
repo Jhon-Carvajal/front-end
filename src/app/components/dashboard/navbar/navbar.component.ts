@@ -47,29 +47,3 @@ export class NavbarComponent implements OnInit {
   }
 
 }
-
-
-
-
-/*
-export class NavbarComponent implements OnInit {
-
-  isLoggedIn = false;
-  constructor(private _menuService: MenuService, private miServiUser : UserService, private route : Router){}
-
-  ngOnInit(): void {
-    
-  }
-   
-  cargarMenu(){
-    this._menuService.getMenu().subscribe(data => {
-      console.log(data);
-    })
-  }
-  
-  onLogout() {
-    this.miServiUser.logout();
-    this.isLoggedIn = false;
-  }
-}
-*/
