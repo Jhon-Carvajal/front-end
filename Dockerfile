@@ -1,3 +1,4 @@
+# Primera etapa
 FROM node:20.9.0 as build-step
 
 RUN mkdir -p /app
@@ -12,7 +13,7 @@ COPY . /app
 
 RUN npm run build --prod
 
-
+# Segunda Etapa
 FROM nginx:1.25.4-alpine
 
-COPY --from=build-step /app/dist/front  usr/share/ngnix/html
+COPY --from=build-step /app/dist/front /usr/share/nginx/html
