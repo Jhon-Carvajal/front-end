@@ -1,17 +1,15 @@
 # Primera etapa
 FROM node:20.9.0 as build-step
 
-RUN mkdir -p /app
-
 WORKDIR /app
 
-COPY package.json /app
+COPY package.json package-lock.json ./
 
 RUN npm install
 
 COPY . /app
 
-RUN npm run build --prod
+RUN npm run build
 
 # Segunda Etapa
 FROM nginx:1.25.4-alpine
