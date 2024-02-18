@@ -17,6 +17,7 @@ import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumig
 import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricion.component';
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,

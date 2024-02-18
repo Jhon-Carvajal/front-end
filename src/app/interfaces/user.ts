@@ -3,5 +3,5 @@ export class User {
     seudonimo?:string;
     correo?:string;
     contrasena?:string;
-    token?:string;
+    token?: string;
 }

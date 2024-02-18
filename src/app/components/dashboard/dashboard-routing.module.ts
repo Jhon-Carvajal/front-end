@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { PerfilComponent } from './personas/perfil/perfil.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 import { FincalComponent } from './fincal/fincal.component';
 import { CrearFComponent } from './fincal/crearf/crearf.component';

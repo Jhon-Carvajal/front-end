@@ -2,21 +2,22 @@
     <mat-toolbar color="primary" class="example-toolbar">
 
        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-<!--
-       <span class="example-spacer"></span>
-       <h1 class="example-app-name">Proyecto iot</h1>
--->
+
+       
        <span class="example-spacer"></span> 
 
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Perfil de Usuario">
-            <mat-icon>person</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Perfil de Usuario" matTooltip="Cuenta">
+            
+          <img src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png" style="width:   40px; height:   40px;">
+
         </button>
         
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/perfil">
+             <button mat-menu-item routerLink="/dashboard/perfil" matTooltip="Ver Perfil">
                 <mat-icon>person</mat-icon>Perfil</button>
-            <button (click)="onLogout()" mat-button routerLink="/logout" >
-                <mat-icon  matTooltip="Salir">logout</mat-icon>Cerrar Sesion</button>
+
+            <button (click)="onLogout()" mat-button routerLink="/logout" matTooltip="Salir" >
+                <mat-icon>logout</mat-icon>Cerrar Sesion</button>
         </mat-menu>
 
         

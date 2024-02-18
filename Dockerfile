@@ -1,0 +1,18 @@
+FROM node:20.9.0 as build-step
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+COPY package.json /app
+
+RUN npm install
+
+COPY . /app
+
+RUN npm run build --prod
+
+
+FROM nginx:1.25.4-alpine
+
+COPY --from=build-step /app/dist/front  usr/share/ngnix/html

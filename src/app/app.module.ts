@@ -16,7 +16,8 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
 import { environment } from 'src/environments/environment';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PerfilComponent } from './components/dashboard/perfil/perfil.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { environment } from 'src/environments/environment';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { environment } from 'src/environments/environment';
     MatTableModule,
     MatCardModule,
     ToastrModule.forRoot(),
-   // NgbModule,
+    NgbModule,
   ],
   providers: [
     {

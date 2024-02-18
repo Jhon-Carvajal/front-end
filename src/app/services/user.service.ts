@@ -45,7 +45,7 @@ export class UserService {
   login(infoUsuario: User): Observable<User> {
     return this.http.post<User>(`${environment.url_gateway}/login`, infoUsuario);
   }
-
+//carga de imagen de perfil del ususario
 
   register(infoUsuario: User): Observable<User> {
     return this.http.post<User>(`${environment.url_usuarios}/usuarios`, infoUsuario)
@@ -54,6 +54,7 @@ export class UserService {
             return this.asignar(registeredUser._id!);  
         }));
   }
+
 
   asignar(userid: String): Observable<User> {
     return this.http.put<User>(`${environment.url_usuarios}/usuarios/${userid}/rol/64de703681d31d2218482503`,{});
