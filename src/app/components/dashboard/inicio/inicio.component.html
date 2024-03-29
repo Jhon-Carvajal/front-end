@@ -1,29 +1,34 @@
+<body class="container" style="background-color: transparent;">
 
+  <div class="fondo" style="background-color: white; opacity:0.9;">
+    <!--<img src="https://www.acofi.edu.co/wp-content/uploads/2022/09/Corporacion-Universitaria-Autonoma-del-Cauca.jpg"
+        class="centrar1">
+      -->
   
-  <body>
+    <mat-grid-list cols="4" rowHeight="70px">
   
-    <h1 class="letra">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRINTES PRIMARIOS NPK</h1>
-   <!-- <h2 class="letra">Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe, 
-                      como nitrógeno (N), fósforo (P) ypotasio (K), conocidos como nutrientes primarios.
-                      El monitoreo de estos nutrientes es crucial para el crecimiento y desarrollo saludable de
-                      las plantas. 
-                      El sistema utiliza tecnología para analizar la composición del suelo en el entorno de cultivo
-                      y proporciona sugerencias sobre qué tipo y cantidad de fertilizantes se aplicaria para
-                      optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de 
-                      los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva.</h2>
-   -->
+      <mat-grid-tile [colspan]="2" [rowspan]="5">
+        <canvas id="chart"></canvas>
+      </mat-grid-tile>
   
-    <div class="box">
-      <div class="imgBx">
-        <img src="https://yt3.googleusercontent.com/oTy2rmn3U53Y14x-p2DgFcWTYX19POpg4LPAsuOIPvf5qJpP6zfJY_cd6LZgn_b-eaFx6e2V=s900-c-k-c0x00ffffff-no-rj" alt="">
-      </div>
+      <mat-grid-tile [colspan]="2" [rowspan]="5">
+        <canvas id="chart1"></canvas>
+      </mat-grid-tile>
+  
+    </mat-grid-list>
+  
+    <h1 class="letra">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS
+      NPK</h1>
+    <h2 class="letra">Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe,
+      como nitrógeno (N), fósforo (P) y potasio (K), conocidos como nutrientes primarios.
+      El monitoreo de estos nutrientes es crucial para el crecimiento y desarrollo saludable de
+      las plantas.
+      El sistema utiliza tecnología para analizar la composición del suelo en el entorno del cultivo
+      y proporciona sugerencias sobre qué tipo de fertilizante se aplicaria para
+      optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de
+      los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva.</h2>
+  
+    <h1 class="letra"><a routerLink="/dashboard/finca">Continuar</a></h1>
+  </div>
 
-      <div class="content">
-        <h2>Fincas
-          <br><span></span> <a matTooltip="ver fincas" routerLink="/dashboard/finca">ver</a>
-        </h2>
-      </div>
-    </div>
-  
-  </body>
-
+</body>

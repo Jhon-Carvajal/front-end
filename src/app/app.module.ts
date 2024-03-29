@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { ToastrModule } from 'ngx-toastr';
 
 //Components
@@ -15,9 +17,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
-import { environment } from 'src/environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfilComponent } from './components/dashboard/perfil/perfil.component';
+
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { PerfilComponent } from './components/dashboard/perfil/perfil.component'
     MatCardModule,
     ToastrModule.forRoot(),
     NgbModule,
+    MatExpansionModule,
   ],
   providers: [
     {

@@ -5,5 +5,5 @@ export interface Lote {
     Variedad : string;
     Caracteristica : string;
     id_usuario: string;
-    id_finca : string;
+    id_finca: string;
   }

@@ -5,16 +5,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
-//import { NgChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LotelComponent } from './lotel/lotel.component';
 import { FincalComponent } from './fincal/fincal.component';
-import { CrearlComponent } from './lotel/crearl/crearl.component';
-import { CrearFComponent } from './fincal/crearf/crearf.component';
-import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumigacion.component';
 import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricion.component';
+import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumigacion.component';
+import { PlantulaComponent } from './plantula/plantula.component';
 
 
 
@@ -23,12 +20,10 @@ import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricio
     DashboardComponent,
     InicioComponent,
     NavbarComponent,
-    LotelComponent,
     FincalComponent,
-    CrearlComponent,
-    CrearFComponent,
-    PlanFumigacionComponent,
     PlanNutricionComponent,
+    PlanFumigacionComponent,
+    PlantulaComponent,
   ],
   imports: [
     CommonModule,
