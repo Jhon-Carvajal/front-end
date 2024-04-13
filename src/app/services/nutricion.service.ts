@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class FumigacionService{
+export class NutricionService{
   
 constructor(private http: HttpClient) { }
     

@@ -21,6 +21,7 @@ export class FincalComponent implements OnInit {
   fincas : Finca[]=[];
   displayedColumns: string[] = ['Nombre_finca', 'Departamento', 'Municipio', 'Descripcion', 'Lotes', 'Acciones'];
   idFinca: string = '';
+  idLote: string = '';
   
   listlotes: Lote[]=[];
   lotes: Lote[] = [];
@@ -39,7 +40,7 @@ export class FincalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-//formukario finca
+//formulario finca
   model: Finca = {
     Nombre_finca :" ",
     Departamento:"",
@@ -72,11 +73,10 @@ export class FincalComponent implements OnInit {
                private fb: FormBuilder,
                private userService: UserService,
                private toastr: ToastrService,
-               private dataservice: SharedDataService,
                private loteService: LoteService,
                private miServicio: FincaService,
                private sharedDataService: SharedDataService,) { 
-     this.form = this.fb.group({
+      this.form = this.fb.group({
       Nombre_finca: ['', [Validators.required]],
       Departamento: ['', [Validators.required]],
       Municipio: ['', [Validators.required]],
@@ -90,7 +90,7 @@ export class FincalComponent implements OnInit {
     this.listar();
     this.cargarlotes();
     this.listarl();
-     this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
+    this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
        this.forml = this.fb.group({
         Nombre:  ['', [Validators.required]],
         Area: ['', [Validators.required]],
@@ -106,22 +106,9 @@ export class FincalComponent implements OnInit {
   listar(): void{
     const userId = this.userService.usuarioSesionActiva._id;
     //console.log('ID del usuario en sesion:', userId);
-    //const finca = this.idFinca;
-   // console.log("id de la finca",finca)
-     /*
-    this.fincaService.listar().subscribe((data: any) => {
-      const fincasDelUsuario = data.filter((finca: Finca) => finca.id_usuario === userId);
-
-    console.log(fincasDelUsuario);
-      console.log(data)
-      this.dataSource=new MatTableDataSource<Finca>(data as Finca[]);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      */
     this.fincaService.listar().subscribe((data: Finca[]) => {
     const fincasDelUsuario = data.filter((finca: Finca) =>finca.id_usuario === userId);
     //console.log(fincasDelUsuario);
-
     this.dataSource = new MatTableDataSource<Finca>(fincasDelUsuario);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -131,105 +118,7 @@ export class FincalComponent implements OnInit {
   cargarFincas(){
     this.dataSource = new MatTableDataSource(this.listFincas);
   }
- 
-  eliminarFinca(id: string): void {
- // Verificar si hay lotes asignados a la finca
- this.loteService.listarl().subscribe((data: Lote[]) => {
-    const lotesAsignados = data.filter((lote: Lote) => lote.id_finca === id);
-    if (lotesAsignados.length > 0) {
-        this.toastr.error('No se puede eliminar la finca porque tiene lotes asignados.', 'Error al eliminar');
-    } else {
-        this.toastr.warning('Esta seguro que quiere eliminar la Finca', 'Confirmar Eliminacion', {
-        closeButton: true,
-        timeOut: 6000, 
-        extendedTimeOut: 2000,
-        positionClass: 'toast-top-center', 
-      }).onTap.subscribe(() => {
-        this.fincaService.eliminarFinca(id)
-          .subscribe(data => {
-            this.toastr.success('La finca ha sido eliminada', 'con exito');
-            this.ngOnInit(); 
-          });
-      });
-    }
- });
-}
 
-  Obtener(id: string ): void{
-    const fincaid = id;
-    //console.log("id de la finca", fincaid);
-    //console.log("id lote",loteid)
-    this.dataservice.changeIdFinca(fincaid);
-    this.idFinca = fincaid;
-    this.selectedFincaId = id;
-    this.listar();
-  }
-
-  ngAfterViewInit() {
-     this.dataSource.paginator = this.paginator;
-     this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  //tabla de lote
-
-  listarl(): void {
-    const userId = this.userService.usuarioSesionActiva._id;
-    const idFinca = this.idFinca;
-    //console.log('ID del usuario', userId); //ver en consola el id 
-    //console.log('ID de la finca', idFinca);
-    /* this.loteService.listarl().subscribe((data:any) => {
-       console.log(data)
-       this.dataSource=new MatTableDataSource<Lote>(data as Lote[]);
-       this.dataSource.paginator = this.paginator;
-       this.dataSource.sort = this.sort;
-     */
-    /* this.loteService.listarl().subscribe((data: Lote[]) => {
-     const loteDelUsuario = data.filter((lote: Lote) =>lote.id_usuario === userId);
-     console.log(loteDelUsuario);
- 
-      */
-    // Obtener el ID de la finca
-    this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
-      const userId = this.userService.usuarioSesionActiva._id;
-
-      this.loteService.listarl().subscribe((data: Lote[]) => {
-        // lotes por ID de usuario y finca
-        const lotesDelUsuarioYFinca = data.filter((lote: Lote) => lote.id_usuario === userId && lote.id_finca === idFinca);
-        //console.log(lotesDelUsuarioYFinca);
-      this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);      
-      });
-    })
-  }
-  
-  eliminarLote(id: string): void {
-  this.toastr.warning('Esta seguro que quiere eliminar el lote', 'Confirmar Eliminacion', {
-    closeButton: true,
-    timeOut: 6000, // tiempo de espera 
-    extendedTimeOut: 2000,
-    positionClass: 'toast-top-center',
-  }).onTap.subscribe(() => {
-    this.loteService.eliminarl(id)
-      .subscribe(data => {
-        this.toastr.success('El lote ha sido eliminado', 'con exito');
-        this.ngOnInit();
-      });
-  });
-  }
-  
-  cargarlotes(){
-    this.dataSource1 = new MatTableDataSource(this.listlotes);
-  }
-  //guardar fincas
-  toggleForm() {
-    this.showForm = !this.showForm;
- }
- 
- 
   guardar() {
     this.miServicio.Finca(this.form.value).subscribe({
       next: (data: any) => {
@@ -247,8 +136,33 @@ export class FincalComponent implements OnInit {
       },
     })
   };
-
+ 
+  eliminarFinca(id: string): void {
+  this.loteService.listarl().subscribe((data: Lote[]) => {
+    const lotesAsignados = data.filter((lote: Lote) => lote.id_finca === id);
+    if (lotesAsignados.length > 0) {
+        this.toastr.error('No se puede eliminar la finca porque tiene lotes asignados.', 'Error al eliminar');
+    } else {
+        this.toastr.warning('Esta seguro que quiere eliminar la Finca', 'Confirmar Eliminacion', {
+        closeButton: true,
+        timeOut: 6000, 
+        extendedTimeOut: 2000,
+        positionClass: 'toast-top-center', 
+      }).onTap.subscribe(() => {
+        this.fincaService.eliminarFinca(id)
+          .subscribe(data => {
+            this.toastr.success('La finca ha sido eliminada', 'con exito');
+            this.ngOnInit(); 
+          });
+      });
+     }
+   });
+  }
   
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+   
   mensaje() {
     setTimeout(() => {
       this.toastr.success('Finca añadida', 'con exito')
@@ -259,12 +173,64 @@ export class FincalComponent implements OnInit {
     this.toastr.error('No se pudo añadir la finca', 'lo sentimos')
   } 
   
+  Obtener(id: string): void{
+    const fincaid = id;
+    //console.log("id de la finca", fincaid);
+    this.sharedDataService.changeIdFinca(fincaid);
+    this.idFinca = fincaid;
+    this.selectedFincaId = id;
+    this.listar();
+  }
+
+  ngAfterViewInit() {
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  //tabla de lote
+  listarl(): void {
+    const userId = this.userService.usuarioSesionActiva._id;
+    const idFinca = this.idFinca; 
+    //console.log('ID de la fincaa', idFinca);
+    this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
+      const userId = this.userService.usuarioSesionActiva._id;
+      this.loteService.listarl().subscribe((data: Lote[]) => {         
+      const lotesDelUsuarioYFinca = data.filter((lote: Lote) => lote.id_usuario === userId && lote.id_finca === idFinca);
+        //console.log(lotesDelUsuarioYFinca);
+      this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);      
+      });
+    })
+  }
+  
+  eliminarLote(id: string): void {
+  this.toastr.warning('Esta seguro que quiere eliminar el lote', 'Confirmar Eliminacion', {
+    closeButton: true,
+    timeOut: 6000, // tiempo de espera 
+    extendedTimeOut: 2000,
+    positionClass: 'toast-top-center',
+   }).onTap.subscribe(() => {
+    this.loteService.eliminarl(id)
+      .subscribe(data => {
+        this.toastr.success('El lote ha sido eliminado', 'con exito');
+        this.ngOnInit();
+      });
+   });
+  }
+  
+  cargarlotes(){
+    this.dataSource1 = new MatTableDataSource(this.listlotes);
+  }
   //guardar lote
   guardarl() {
     this.loteService.lote(this.forml.value).subscribe({
       next: (data: any) => {
         const id_lote = data._id;
-        console.log("lote creado",id_lote);
+     //   console.log("lote creado",id_lote);
         this.mensajel();
         this.forml.clearValidators;
         this.showForml = false;
@@ -279,7 +245,9 @@ export class FincalComponent implements OnInit {
   };
   obtenerIdLote(id: string) {
     const loteid = id;
-    console.log("ID del lote:", loteid);
+    //console.log("ID del lote:", loteid);
+    this.sharedDataService.changeIdLote(loteid);
+    this.idLote = loteid;
     this.SelectedLoteid = id;
     this.listarl();
   }
@@ -294,5 +262,5 @@ export class FincalComponent implements OnInit {
   }
   toggleForml() {
     this.showForml = !this.showForml;
- }
+  }
 }

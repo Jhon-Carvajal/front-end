@@ -4,7 +4,6 @@ export interface Fumigacion {
     Costo_f : string;
     Observaciones_f: string;
     id_usuario: string;
-    id_finca: string;
     id_lote: string;
 }
  

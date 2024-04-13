@@ -16,20 +16,26 @@ export class InicioComponent {
         'Humedad',
         'Temperatura(°C)',
         'Conductividad',
+        'Nitrogeno(kg/ha)',
+        'Fosforo(kg/ha)',
+        'Potasio(mg/L)',
       ],
       datasets: [{
         label: '',
-        data: [30,60,20],
+        data: [30,60,20,50,10,40],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
+          'rgb(128,0,128)',
+          'rgb(0, 191,255)',
+          'rgb(255, 239, 0)',
+          'rgb(255, 0, 0)',
+          'rgb(0, 255, 0)',
+          'rgb(0, 0, 255)',
         ],
         hoverOffset: 4
       }]
     };
 
-    const data1 = {
+  /*  const data1 = {
       labels: [
         'Nitrogeno(kg/ha)',
         'Fosforo(kg/ha)',
@@ -39,24 +45,24 @@ export class InicioComponent {
         label: '',
         data: [50,10,40],
         backgroundColor: [
-          'rgb(0, 205, 125)',
-          'rgb(255, 205, 200)',
-          'rgb(255, 0, 255)',
+          'rgb(255, 0, 0)',
+          'rgb(0, 255, 0)',
+          'rgb(0, 0, 255)',
         ],
         hoverOffset: 4
       }]
     };
-    // Creamos la gráfica
+*/
     this.chart = new Chart("chart", {
-      type: 'bar' as ChartType,  
+      type: 'doughnut' as ChartType,  
       data : data
     })
-
+/*
     this.chart = new Chart("chart1", {
       type: 'doughnut' as ChartType,
       data : data1
     })
-    
+   */ 
   }
 }
 

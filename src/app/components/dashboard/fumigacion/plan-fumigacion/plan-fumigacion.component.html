@@ -1,1 +1,97 @@
  
+<div class="container">
+    <mat-toolbar style="background-color: transparent;">
+        <span>CRONOGRAMA DE FUMIGACION</span>
+    </mat-toolbar>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Columnas de la tabla -->
+        <ng-container matColumnDef="Tipo fumigacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo fumigacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.Tipo_f}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="Fecha aplicacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha aplicacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.Fecha_f}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Costo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo </th>
+            <td mat-cell *matCellDef="let element"> {{element.Costo_f}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Observaciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Observaciones </th>
+            <td mat-cell *matCellDef="let element"> {{element.Observaciones_f}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                <a class="pointer" matTooltip="Eliminar Fumigacion">
+                    <mat-icon class="mat-icon mat-warn" (click)="eliminarFum(element._id)"> delete_outline </mat-icon>
+                </a>
+            </td>
+        </ng-container>
+         
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>   
+    <mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
+   <button (click)="toggleFormf()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR PLAN DE FUMIGACION</button>
+
+<div *ngIf="showFormf">
+    <mat-card style="margin-top: 10px ; background-color: transparent; ">
+
+        <form [formGroup]="formulariof" (ngSubmit)="guardarf()">
+            <mat-grid-list cols="4" rowHeight="70px">
+
+                <mat-grid-tile [colspan]="1" [rowspan]="7">
+                    <img src="https://archivo.lapatria.com/sites/default/files/imagenprincipal/2014/Mayo/cafe_-_fumigacion_-_mm_j02.jpg"
+                        class="centrarf">
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Tipo_f</mat-label>
+                        <input matInput placeholder="Foliar" matInput autocomplete="off"
+                            formControlName="Tipo_f">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Fecha_f</mat-label>
+                        <input matInput placeholder="dddsdsa" matInput autocomplete="off"
+                            formControlName="Fecha_f">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Costo_f</mat-label>
+                        <input matInput placeholder="dddd" matInput autocomplete="off" 
+                            formControlName="Costo_f">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Observaciones_f</mat-label>
+                        <input matInput placeholder="clclcl" matInput autocomplete="off" 
+                             formControlName="Observaciones_f">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Cancelar</button>
+                    <button type="submit" [disabled]="formulariof.invalid" mat-raised-button color="primary">Insertar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </form>
+
+    </mat-card>
+</div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Fumigacion } from '../interfaces/plan_fumigacion';
+import { Fumigacion } from '../interfaces/fumigacion';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -11,20 +11,25 @@ import { environment } from 'src/environments/environment';
 export class FumigacionService{
   
   constructor(private http: HttpClient) { }
-
-  listarF(): Observable<Fumigacion[]>{
+  
+  listarf(): Observable<Fumigacion[]>{
     return this.http.get<Fumigacion[]>(`${environment.url_gateway}/fumigaciones`)
+  }
+
+  getfumigaciones(id: string): Observable<Fumigacion>{
+    return this.http.get<Fumigacion>(`${environment.url_gateway}/fumigacion/${id}`)
   }
 
   Fumigacion(infoFumigacion: Fumigacion): Observable<Fumigacion> {
     return this.http.post<Fumigacion>(`${environment.url_gateway}/fumigacion`, infoFumigacion);
   }
   
-  getfumigacion(id: string): Observable<Fumigacion>{
-    return this.http.get<Fumigacion>(`${environment.url_gateway}/fumigacion/${id}`)
-  }  
-    
-  eliminarFumigacion(id:string): Observable<Fumigacion>{
+  eliminarF(id:string): Observable<Fumigacion>{
     return this.http.delete<Fumigacion>(`${environment.url_gateway}/fumigacion/${id}`,)
   }
+
+  actualizarF(id:string,infoFumigacion:Fumigacion): Observable<Fumigacion>{
+    return this.http.put<Fumigacion>(`${environment.url_persona}/fumigacion/${id}`,infoFumigacion)
+  }
+
 }
