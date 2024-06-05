@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit {
   }
   
   error() {
-    this.toastr.error('Intenta de nuevo','Usuario o Contraseña Incorrecta')
+    this.toastr.error('Intenta de nuevo', 'Usuario o Contraseña Incorrecta')
+    this.router.navigate(['login']);
   }
 
   Loading (){

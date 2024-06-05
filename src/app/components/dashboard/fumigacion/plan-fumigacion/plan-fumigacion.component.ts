@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, numberAttribute } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -44,7 +44,7 @@ export class PlanFumigacionComponent implements OnInit {
    modelf: Fumigacion = {
     Tipo_f: '',
     Fecha_f: '',
-    Costo_f: '',
+    Costo_f :'',
     Observaciones_f : '',
     id_usuario: "",
     id_lote:"",
@@ -69,7 +69,7 @@ export class PlanFumigacionComponent implements OnInit {
                 this.formulariof = this.fb.group({
                  Tipo_f: ['', [Validators.required]],
                  Fecha_f: ['', [Validators.required]],
-                 Costo_f: ['', [Validators.required]],
+                 Costo_f: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
                  Observaciones_f: ['', [Validators.required]],
                  id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]', 
                  id_lote: idLote,       
@@ -89,7 +89,7 @@ ngOnInit(): void {
       const userId = this.userService.usuarioSesionActiva._id;
       this.fumigacionService.listarf().subscribe((data: Fumigacion[]) => {         
         const fumigaciones = data.filter((fum: Fumigacion) => fum.id_usuario === userId && fum.id_lote === loteid);
-        console.log(fumigaciones)
+       // console.log(fumigaciones)
       this.dataSource = new MatTableDataSource<Fumigacion>(fumigaciones);      
       });
     })
@@ -161,7 +161,7 @@ ngOnInit(): void {
   Obtener(id: string): void{
     const loteid = id;
     this.dataservice.changeIdLote(loteid);
-    console.log("id del lote", loteid);
+    //console.log("id del lote", loteid);
     this.idLote = loteid;
     this.SelectedLoteid = id;
     this.listarf();

@@ -13,7 +13,7 @@
         
         <ng-container matColumnDef="Fecha aplicacion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha aplicacion </th>
-            <td mat-cell *matCellDef="let element"> {{element.Fecha_f}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.Fecha_f| date}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Costo">
@@ -41,7 +41,7 @@
     <mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
    <button (click)="toggleFormf()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR PLAN DE FUMIGACION</button>
 
-<div *ngIf="showFormf">
+<div *ngIf="showFormf" class="imag">
     <mat-card style="margin-top: 10px ; background-color: transparent; ">
 
         <form [formGroup]="formulariof" (ngSubmit)="guardarf()">
@@ -54,7 +54,7 @@
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="anchof">
-                        <mat-label>Tipo_f</mat-label>
+                        <mat-label>Tipo de fumigacion</mat-label>
                         <input matInput placeholder="Foliar" matInput autocomplete="off"
                             formControlName="Tipo_f">
                     </mat-form-field>
@@ -62,24 +62,28 @@
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="anchof">
-                        <mat-label>Fecha_f</mat-label>
-                        <input matInput placeholder="dddsdsa" matInput autocomplete="off"
-                            formControlName="Fecha_f">
+                        <mat-label>Fecha de fumigado</mat-label>
+                        <td mat-cell *matCellDef="let element"> {{element.Fecha_f}} </td>
+                        <input matInput [matDatepicker]="picker" matInput placeholder="12/05/2023" formControlName="Fecha_f">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="anchof">
-                        <mat-label>Costo_f</mat-label>
-                        <input matInput placeholder="dddd" matInput autocomplete="off" 
-                            formControlName="Costo_f">
+                        <mat-label>Costo de la fumigacion</mat-label>
+                        <input matInput placeholder="Inserte valor numerico"
+                               matInput autocomplete="off" 
+                               formControlName="Costo_f" inputmode="numeric" pattern="[0-9]*">
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="anchof">
-                        <mat-label>Observaciones_f</mat-label>
-                        <input matInput placeholder="clclcl" matInput autocomplete="off" 
+                        <mat-label>Observaciones</mat-label>
+                        <input matInput autocomplete="off" 
                              formControlName="Observaciones_f">
                     </mat-form-field>
                 </mat-grid-tile>

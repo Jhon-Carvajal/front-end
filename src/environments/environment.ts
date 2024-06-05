@@ -19,5 +19,5 @@ export const environment = {
     production: true,
     url_gateway:"http://62.72.7.11:7777",  //api  
     url_usuarios:"http://62.72.7.11:8081", //seguridad
-    url_persona: "http://127.0.0.1:9999", //back
+    url_persona: "http://62.72.7.11:9999", //back
   };

@@ -71,18 +71,18 @@ mat-sidenav {
     cursor: pointer;
 }
 
-/*.body1 {
+.body1 {
     display: flex;
     flex-wrap: wrap;
     margin-top: 0;
     justify-content: center;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     align-items: center;
 
     background-color: transparent;
-    background-image: url("https://mundocafeto.com/wp-content/uploads/2018/06/recoleccion-frutos-cafe-cerezas-750x440.jpg");
+    background-image: url("https://img.lalr.co/cms/2023/03/28183810/Cultivos-de-Cafe-intercalado-Fedecafe.jpg?r=16_9");
     background-position: center;
     background-size: cover;
     background-attachment: scroll;
   }
-*/
