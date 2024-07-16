@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   correo:string="";
   contrasena:string="";
 
@@ -39,14 +38,14 @@ export class LoginComponent implements OnInit {
   login():void{
 
     //console.log("correo "+this.correo+" contraseña "+this.contrasena)
-    let elUsuario:User={
+    let elUsuario: User = {
       correo:this.correo,
       contrasena:this.contrasena
     }
     this.miServicioUser.login(elUsuario).subscribe(data =>{
       this.Loading();
       this.miServicioUser.guardarDatosSesion(data);
-      this.miServicioUser._authStatus.set( AuthStatus.authenticated );
+      this.miServicioUser._authStatus.set(AuthStatus.authenticated);
     }, err => {
       this.error()
       this.form.reset();

@@ -15,6 +15,6 @@ export class FincaService{
  subirImagen(imagen: File): Observable<any> {
     const formData = new FormData();
     formData.append('imagen', imagen, imagen.name);
-    return this.http.post(`${environment.url_gateway}/imagen`, formData);
+    return this.http.post(`${environment.url_gateway}/crearimagen`, formData);
   }
 }

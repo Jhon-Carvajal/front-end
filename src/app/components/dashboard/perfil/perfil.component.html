@@ -1,13 +1,42 @@
-<div class="container">
-    <div class="perfil">
-        <form action="/upload-profile-image" method="post" enctype="multipart/form-data" >
-            <img *ngIf="previewUrl" src="{{ previewUrl }}" alt="Imagen seleccionada" class="preview-image">
-            <br>
-            <label for="profileImage">Imagen de Perfil:</label>
-            <input type="file" id="profileImage" name="profileImage" accept="image/*" (change)="onFileSelected($event)"
-                required>
-            <br>
-            <button type="submit">Subir Imagen</button>
-        </form>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+   
+</head>
+
+<body>
+    <div class="header">
+        <img src="" >
+        <span class="username">Jhon Alirio Carvajal Anaya</span>
     </div>
-</div>
+    <div class="container">
+        <div class="profile-header">
+            <img src="profile.png" alt="Profile Image" width="80" height="80">
+            <h2>Jhon Alirio Carvajal Anaya</h2>
+            <button>Mensaje</button>
+        </div>
+        <div class="details">
+            <h3>Detalles de usuario</h3>
+            <p>Dirección de correo: carvajal9630@gmail.com</p>
+            <p>Fecha de Nacimiento: 30 de mayo de 2024</p>
+        </div>
+        <div class="privacy">
+            <h3>Privacidad y Políticas</h3>
+            <p>Resumen de retención de datos</p>
+        </div>
+        <div>
+            <button>Restablecer página a por defecto</button>
+            <button>Personalizar esta página</button>
+        </div>
+    </div>
+    <div class="footer">
+        Proyecto NPK 
+    </div>
+</body>
+
+</html>

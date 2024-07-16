@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent {
 
   loginData = {
+    nombre: '',
+    apellidos:'',
     correo:'',
     contrasena: '',
     rcontrasena:'',
@@ -27,6 +29,8 @@ export class RegisterComponent {
               private toastr: ToastrService) {
     
     this.form = this.fb.group({
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
       correo: ['',Validators.email],
       contrasena: ['', Validators.required],
       rcontrasena:['', Validators.required],

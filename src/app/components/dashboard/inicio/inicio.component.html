@@ -1,21 +1,5 @@
-<body class="container" style="background-color: transparent;">
 
-  <div class="fondo"style="background-color: transparent">
-    <!--<img src="https://www.acofi.edu.co/wp-content/uploads/2022/09/Corporacion-Universitaria-Autonoma-del-Cauca.jpg"
-        class="centrar1">
-      -->
-  
-    <mat-grid-list cols="4" rowHeight="65px">
-  
-      <mat-grid-tile [colspan]="4" [rowspan]="5">
-        <canvas id="chart"></canvas>
-      </mat-grid-tile>
-  
-     
-  
-    </mat-grid-list>
-  
-    <h1 class="letra">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS
+  <!--  <h1 class="letra">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS
       NPK</h1>
     <h2 class="letra">Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe,
       como nitrógeno (N), fósforo (P) y potasio (K), conocidos como nutrientes primarios.
@@ -26,7 +10,129 @@
       optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de
       los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva.</h2>
   
-    <h1 class="letra"><a routerLink="/dashboard/finca">Continuar</a></h1>
-  </div>
+-->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="inicio.component.css">
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="date-range"> 
+         <p>BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+    
+      <section class="schedule" style="background-color: transparent;"> <!--carrusel -->
+        <div class="wrapper">
+          <div class="slider" id="slider">
+            <ul class="slides">
+              <li class="slide" id="slide1">
+                <a >
+                  <img
+                    src="https://www.bancolombia.com/wcm/connect/bacde2b5-81fe-4a13-9c26-dbdb2992fa4f/paso-a-paso-morfologiaCafe-1.jpg?MOD=AJPERES"
+                    alt="photo 1">
+                </a>
+              </li>
+              <li class="slide" id="slide2">
+                <a >
+                  <img
+                    src="https://www.bancolombia.com/wcm/connect/c1080e3e-7188-4e0f-adfb-bb1046683a93/paso-a-paso-morfologiaCafe-2.jpg?MOD=AJPERES"
+                    alt="photo 2">
+                </a>
+              </li>
+              <li class="slide" id="slide3">
+                <a >
+                  <img
+                    src="https://www.bancolombia.com/wcm/connect/9a24c124-8aea-411d-8d9c-2cee1559e983/paso-a-paso-morfologiaCafe-3.jpg?MOD=AJPERES"
+                    alt="photo 3">
+                </a>
+              </li>
+              <li class="slide" id="slide4">
+                <a >
+                  <img
+                    src="https://www.bancolombia.com/wcm/connect/3a5b1465-7d68-44ea-bcce-a0b23abd8135/paso-a-paso-morfologiaCafe-4.jpg?MOD=AJPERES"
+                    alt="photo 4">
+                </a>
+              </li>
+              <li class="slide" id="slide5">
+                <a href="#slide5" >
+                  <img
+                    src="https://www.bancolombia.com/wcm/connect/06104dab-c725-45cd-b008-03c7c9cc3b42/paso-a-paso-morfologiaCafe-5.jpg?MOD=AJPERES"
+                    alt="photo 5">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main class="main-content">
+      
+      <section class="schedule">
+        <div class="schedule-header">
+          <h2>Hola</h2>
+        </div>
+        <div class="schedule-entries">
+          <div class="schedule-entry">
+            <p>08:30-09:12am</p>
+            <p>Math class</p>
+            <p>Cabinet: 45</p>
+             <!--ajustar para ver los nombre si los hay si no agregar -->
+          </div>
+        </div>
+        <button routerLink="/dashboard/finca" class="botonf">Continuar</button>
+      </section>
+
+      <section class="overview">
+        <div>
+          <canvas id="chart"></canvas>
+        </div> 
+      </section>
+
+      <section class="time">
+        <h2>Info</h2>
+          <p id="datetime"></p>
+      </section>
+
+    </main>
+
+    <main class="main-content">
+      <section class="reco">
+        <div>
+          <h2>Páginas de adquisición de fertilizantes</h2>
+          <ul>
+            <li><a href="https://www.acepalma.com" target="_blank">Acepalma</a></li>
+            <li><a href="https://disanlatinoamerica.com/es/" target="_blank">Disan</a> </li>
+            <li><a href="https://www.ciamsa.com/es/" target="_blank">C.I De Azucares y Mieles-CIAMSA</a></li>
+            <li><a href="https://nitrofert.com.co" target="_blank">Nitrofert</a></li>
+            <li><a href="https://www.monomeros.com.co" target="_blank">Monómeros Colombo Venezolanos</a></li>
+            <li><a href="https://nutriciondeplantas.com.co" target="_blank">Nutrición de Plantas</a></li>
+            <li><a href="https://www.yara.com.co" target="_blank">Yara Colombia</a></li>
+            <li></li>
+          </ul>
+        </div>
+      </section>
+      
+      <section class="reco">
+        <h2>Información</h2>
+        <ul>
+          <li> Atención </li>
+          <li> Contacto </li>
+          <li> </li>
+        </ul>
+      </section>
+    </main>
+  </div>
 </body>
+
+</html>
