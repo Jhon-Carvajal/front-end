@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { LoteService } from 'src/app/services/lote.service'
 import { SharedDataService } from 'src/app/services/shared.data';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-fincal',
@@ -22,6 +23,7 @@ export class FincalComponent implements OnInit {
   displayedColumns: string[] = ['Nombre_finca', 'Departamento', 'Municipio', 'Descripcion', 'Lotes', 'Acciones'];
   idFinca: string = '';
   idLote: string = '';
+  idNombre: string = '';
   
   listlotes: Lote[]=[];
   lotes: Lote[] = [];
@@ -102,7 +104,7 @@ export class FincalComponent implements OnInit {
       });
     });
     }
-
+ 
   listar(): void{
     const userId = this.userService.usuarioSesionActiva._id;
     //console.log('ID del usuario en sesion:', userId);
@@ -194,15 +196,13 @@ export class FincalComponent implements OnInit {
 
   //tabla de lote
   listarl(): void {
-    const userId = this.userService.usuarioSesionActiva._id;
-    const idFinca = this.idFinca; 
-    //console.log('ID de la fincaa', idFinca);
+          
     this.sharedDataService.currentIdFinca.subscribe((idFinca) => {
       const userId = this.userService.usuarioSesionActiva._id;
       this.loteService.listarl().subscribe((data: Lote[]) => {         
       const lotesDelUsuarioYFinca = data.filter((lote: Lote) => lote.id_usuario === userId && lote.id_finca === idFinca);
         //console.log(lotesDelUsuarioYFinca);
-      this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);      
+        this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);   
       });
     })
   }

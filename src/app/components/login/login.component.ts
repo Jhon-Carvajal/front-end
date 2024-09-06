@@ -35,23 +35,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  login():void{
-
-    //console.log("correo "+this.correo+" contraseña "+this.contrasena)
-    let elUsuario: User = {
-      correo:this.correo,
-      contrasena:this.contrasena
-    }
-    this.miServicioUser.login(elUsuario).subscribe(data =>{
-      this.Loading();
-      this.miServicioUser.guardarDatosSesion(data);
-      this.miServicioUser._authStatus.set(AuthStatus.authenticated);
+  login(): void {
+    const elUsuario: User = this.form.value; // Obtiene todos los campos del formulario
+    this.miServicioUser.login(elUsuario).subscribe(data => {
+        this.Loading();
+        this.miServicioUser.guardarDatosSesion(data);
+        this.miServicioUser._authStatus.set(AuthStatus.authenticated);
     }, err => {
-      this.error()
-      this.form.reset();
-    }
-   )
-  }
+        this.error();
+        this.form.reset();
+    });
+}
   
   error() {
     this.toastr.error('Intenta de nuevo', 'Usuario o Contraseña Incorrecta')
@@ -62,6 +56,7 @@ export class LoginComponent implements OnInit {
     this.loading = true
     setTimeout(() => {
       this.router.navigate(['dashboard']);
+      this.loading = false;
     }, 1500);
   }
 

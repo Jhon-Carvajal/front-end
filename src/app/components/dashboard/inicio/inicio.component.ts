@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart, { ChartType } from 'chart.js/auto';
+import { SharedDataService } from 'src/app/services/shared.data';
 import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
+import { AuthStatus } from '../../../interfaces/authenticacion';
 
 @Component({
   selector: 'app-inicio',
@@ -9,13 +12,40 @@ import { User } from 'src/app/interfaces/user';
 })
 export class InicioComponent implements OnInit {
   public chart!: Chart;
-  nombre: string = "";
-  apellidos: string = "";
+  
+  nombre1: string;
+  apellido1: string;
+
+constructor(
+  private userservice: UserService) { 
+  this.nombre1 = '';
+  this.apellido1 = '';
+  }
 
   ngOnInit(): void {
     this.initializeChart();
     this.updateDateTime();
+    this.obtenerDatosUsuario();
   }
+
+ obtenerDatosUsuario() {
+    const datosSesion = this.userservice.getDatosSesion();
+    
+    if (datosSesion) {
+        const usuario: User = JSON.parse(datosSesion);
+        
+        if (usuario.nombre && usuario.apellidos) {
+            this.nombre1 = usuario.nombre;
+            this.apellido1 = usuario.apellidos;
+            //console.log("Nombre:", this.nombre1, this.apellido1);
+        } else {
+            console.error("Los datos del usuario no contienen nombre o apellidos.");
+        }
+    } else {
+        console.error("No hay datos de sesión disponibles.");
+    }
+  }
+
 
   initializeChart(): void {
     const data = {

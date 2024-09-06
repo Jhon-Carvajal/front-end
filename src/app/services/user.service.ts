@@ -6,14 +6,15 @@ import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user';
 import { AuthStatus } from '../interfaces/authenticacion';
 import { __param } from 'tslib';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  Nombre: string = "";
+  Apellido: string = "";
   // VARIABLES PRIVADAS
   private _currentUser = signal<User|null>(null);
   public _authStatus = signal<AuthStatus>( AuthStatus.checking );
@@ -42,9 +43,9 @@ export class UserService {
   }
 
   login(infoUsuario: User): Observable<User> {
-    return this.http.post<User>(`${environment.url_gateway}/login`, infoUsuario);
+    return this.http.post<User>(`${environment.url_gateway}/login`, infoUsuario)
   }
-
+ 
   register(infoUsuario: User): Observable<User> {
     return this.http.post<User>(`${environment.url_usuarios}/usuarios`, infoUsuario)
       .pipe(
@@ -58,14 +59,15 @@ export class UserService {
   }
   
   guardarDatosSesion(datosSesion: any) {
-    
-    let sesionActual = localStorage.getItem('sesion');
     let data: User = {
       _id: datosSesion.user_id,
+      nombre: datosSesion.nombre,
+      apellidos: datosSesion.apellidos,
       token: datosSesion.token,
     };
     localStorage.setItem('sesion', JSON.stringify(data));
     this.setUsuario(data);
+    return localStorage.getItem('sesion');
   }
 
   logout() {

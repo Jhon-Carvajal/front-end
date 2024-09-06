@@ -50,7 +50,7 @@ export class RegisterComponent {
     }
 
     this.miServicioUser.register(this.loginData).subscribe((data:any) => {
-      console.log(data);
+     // console.log(data);
       this.toastr.success('con exito','Usuario Creado')
       this.Loading();
 
