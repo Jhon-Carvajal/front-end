@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, numberAttribute } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { LoteService } from 'src/app/services/lote.service'
 import { Fumigacion } from 'src/app/interfaces/fumigacion';
 import { FumigacionService } from 'src/app/services/fumigacion.service';
 import { Nutricion } from 'src/app/interfaces/plan_nutricion';
@@ -22,65 +21,84 @@ import { UserService } from 'src/app/services/user.service';
 export class PlanFumigacionComponent implements OnInit {
   
   
-  listFumigacion: Fumigacion[]=[];
-  fincas : Fumigacion[]=[];
+  listFumigacion: Fumigacion[] = [];
+  fincas: Fumigacion[] = [];
   idFinca: string = '';
   idLote: string = '';
 
-  displayedColumns: string[] = ['Tipo fumigacion', 'Fecha aplicacion', 'Costo', 'Observaciones','Acciones'];
+  displayedColumns: string[] = ['Tipo fumigacion', 'Fecha aplicacion', 'Costo', 'Observaciones', 'Acciones'];
   dataSource!: MatTableDataSource<Fumigacion>;
+  datasource1: any;
   formulariof!: FormGroup;
   
+  listNutricion: Nutricion[] = [];
+  nutricioni: Nutricion[] = [];
+
+  displayedColumns1: string[] = ['Tipo Fertilizante', 'Fecha aplicacion', 'Costo', 'Observaciones', 'Acciones'];
+
   selectedFincaId: string | null = null;
   SelectedLoteid: string | null = null;
-  form!: FormGroup
+
+  formn!: FormGroup;
   showFormf = false;
-  showForml = false;
+  showFormN = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-//formulario fumigacion
-   modelf: Fumigacion = {
+  //formulario fumigacion
+  modelf: Fumigacion = {
     Tipo_f: '',
     Fecha_f: '',
-    Costo_f :'',
-    Observaciones_f : '',
+    Costo_f: '',
+    Observaciones_f: '',
+    id_usuario: "",
+    id_lote: "",
+  }
+  //formulario Nutricion
+  modeln: Nutricion = {
+    Tipo_n: '',
+    Fecha_n: '',
+    Costo_n: '',
+    Observaciones_n: '',
     id_usuario: "",
     id_lote:"",
   }
-/*  //Formulario lote y café 
-  modeli: Lote = {
-    Nombre: '',
-    Area: '',
-    Fecha_siembra: '',
-    Variedad : '',
-    Caracteristica : '',
-    id_usuario: "",
-    id_finca: "",
-  }
-*/
-   constructor(private fumigacionService: FumigacionService,
-               private fb: FormBuilder,
-               private dataservice: SharedDataService,
-               private toastr: ToastrService,
-               private userService: UserService,) { 
-               this.dataservice.currentIdLote.subscribe((idLote) => {
-                this.formulariof = this.fb.group({
-                 Tipo_f: ['', [Validators.required]],
-                 Fecha_f: ['', [Validators.required]],
-                 Costo_f: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
-                 Observaciones_f: ['', [Validators.required]],
-                 id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]', 
-                 id_lote: idLote,       
+  
+  constructor(private fumigacionService: FumigacionService,
+    private nutricionservice: NutricionService,
+    private fb: FormBuilder,
+    private dataservice: SharedDataService,
+    private toastr: ToastrService,
+    private userService: UserService,) {
+    this.dataservice.currentIdLote.subscribe((idLote) => {
+      this.formulariof = this.fb.group({
+        Tipo_f: ['', [Validators.required]],
+        Fecha_f: ['', [Validators.required]],
+        Costo_f: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+        Observaciones_f: ['', [Validators.required]],
+        id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
+        id_lote: idLote,
       });
-    });   
-   }
+    });
+  }
   
 ngOnInit(): void {
   this.cargarFumigaciones();
   this.listarf();
-    }
+  this.cargarNutriciones();
+  this.listarN();
+  this.dataservice.currentIdLote.subscribe((idLote) => {
+      this.formn = this.fb.group({
+        Tipo_n: ['', [Validators.required]],
+        Fecha_n: ['', [Validators.required]],
+        Costo_n: ['', [Validators.required]],
+        Observaciones_n: ['', [Validators.required]],
+        id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
+        id_lote: idLote,
+      });
+    });
+   }
  
   listarf(): void{
     const userId = this.userService.usuarioSesionActiva._id;
@@ -94,6 +112,22 @@ ngOnInit(): void {
       });
     })
   } 
+
+  listarN(): void{
+    const userId = this.userService.usuarioSesionActiva._id;
+    const loteid = this.idLote;
+    this.dataservice.currentIdLote.subscribe((loteid) => {
+      const userId = this.userService.usuarioSesionActiva._id;
+      this.nutricionservice.listarN().subscribe((data: Nutricion[]) => {         
+        const nutriciones = data.filter((nut: Nutricion) => nut.id_usuario === userId && nut.id_lote === loteid);
+       // console.log(fumigaciones)
+      this.datasource1 = new MatTableDataSource<Nutricion>(nutriciones);      
+      });
+    })
+  }
+  cargarNutriciones() {
+    this.datasource1 = new MatTableDataSource(this.listNutricion);
+  }
  
   cargarFumigaciones() {
    this.dataSource = new MatTableDataSource(this.listFumigacion);
@@ -103,7 +137,7 @@ ngOnInit(): void {
     this.fumigacionService.Fumigacion(this.formulariof.value).subscribe({
       next: (data: any) => {
         const id_fumigacion = data._id;
-        console.log("fumigacion creada",id_fumigacion);
+        //console.log("fumigacion creada",id_fumigacion);
         this.mensaje();
         this.formulariof.clearValidators();
         this.showFormf = false;
@@ -111,6 +145,24 @@ ngOnInit(): void {
       },
       error: err => {
         this.error();
+      },
+      complete() {
+      },
+    })
+  };
+
+  guardarN() {
+    this.nutricionservice.Nutricion(this.formn.value).subscribe({
+      next: (data: any) => {
+        const id_nutricion = data._id;
+        console.log("Nutrición creada",id_nutricion);
+        this.mensajen();
+        this.formn.clearValidators();
+        this.showFormN = false;
+        this.ngOnInit();
+      },
+      error: err => {
+        this.errorn();
       },
       complete() {
       },
@@ -132,6 +184,31 @@ ngOnInit(): void {
    });
   }
  
+ eliminarN(id: string): void {
+  this.toastr.warning('Esta seguro que quiere eliminar el plan de nutricion', 'Confirmar', {
+    closeButton: true,
+    timeOut: 6000, // tiempo de espera 
+    extendedTimeOut: 2000,
+    positionClass: 'toast-top-center',
+   }).onTap.subscribe(() => {
+    this.nutricionservice.eliminarNutricion(id)
+      .subscribe(data => {
+        this.toastr.success('El Plan de nutricion ha sido eliminado', 'con exito');
+        this.ngOnInit();
+      });
+   });
+  }
+ 
+  mensajen() {
+    setTimeout(() => {
+      this.toastr.success('Nutricion añadida', 'con exito')
+    })
+  }
+
+  errorn() {
+    this.toastr.error('No se pudo añadir la Nutricion', 'lo sentimos')
+  } 
+
   mensaje() {
     setTimeout(() => {
       this.toastr.success('Fumigacion añadida', 'con exito')
@@ -157,6 +234,9 @@ ngOnInit(): void {
   toggleFormf() {
     this.showFormf = !this.showFormf;
   }
+  toggleFormn() {
+    this.showFormN = !this.showFormN;
+  }
 
   Obtener(id: string): void{
     const loteid = id;
@@ -166,6 +246,4 @@ ngOnInit(): void {
     this.SelectedLoteid = id;
     this.listarf();
   }
-  
-
 }

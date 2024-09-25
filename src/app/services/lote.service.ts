@@ -21,7 +21,7 @@ export class LoteService{
   }
 
   lote(infoLote: Lote) {
-    return this.http.post<Lote>(`${environment.url_gateway}/lote/`,infoLote);
+    return this.http.post<Lote>(`${environment.url_gateway}/lote`,infoLote);
     }
 
   actualizarl(id: string, infoLote: Lote ){

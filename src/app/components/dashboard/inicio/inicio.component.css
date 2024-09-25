@@ -29,7 +29,7 @@ body {
 }
 
 section {
-  background-color: #fff;
+  background-color: #bdbff0;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -188,7 +188,7 @@ body {
   margin: 0 auto; 
 }
 
-.slider{position: relative;}
+.slider{position: none;}
 .slides {
   position: relative;
   display: flex;
@@ -201,7 +201,7 @@ body {
   animation-name: slide;
   animation-duration: 20s;
   animation-iteration-count: infinite;
-  animation-timing-function:step-start;
+  animation-timing-function: ease;
 }
 
 .slides:hover .slide {

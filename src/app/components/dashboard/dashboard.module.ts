@@ -14,7 +14,6 @@ import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumig
 import { PlantulaComponent } from './plantula/plantula.component';
 
 
-
 @NgModule({
   declarations: [
     DashboardComponent,

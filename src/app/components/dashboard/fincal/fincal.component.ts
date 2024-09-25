@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { LoteService } from 'src/app/services/lote.service'
 import { SharedDataService } from 'src/app/services/shared.data';
-import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-fincal',
@@ -60,7 +59,7 @@ export class FincalComponent implements OnInit {
                           'Cauca','Cesar','Chocó','Córdoba','Cundinamarca','Guainía','Guaviare','Huila','La Guajira',
                           'Magdalena','Meta','Nariño','Norte de Santander','Putumayo','Quindío','Risaralda',
                           'San Andrés y Providencia','Santander','Sucre','Tolima','Valle del Cauca','Vaupés','Vichada']
-  //Formulario lote y café 
+//Formulario lote y café 
   modeli: Lote = {
     Nombre: '',
     Area: '',
