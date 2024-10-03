@@ -34,46 +34,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-header img {
-    border-radius: 50%;
-    margin-right: 20px;
-}
-
-.profile-header h2 {
-    margin: 0;
-}
-
-.profile-header button {
-    margin-left: auto;
-    padding: 10px 20px;
-    border: none;
-    background-color: #003366;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.details,
-.privacy {
-    margin-bottom: 20px;
-}
-
-.details h3,
-.privacy h3 {
-    margin-bottom: 10px;
-}
-
-.details p,
-.privacy p {
-    margin: 5px 0;
-}
-
 .footer {
     text-align: center;
     padding: 20px;
@@ -81,3 +41,15 @@ body {
     color: white;
     position: relative;
 }
+
+.botonf {
+    background-color: #4636f4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+    width: 100%;
+}
+

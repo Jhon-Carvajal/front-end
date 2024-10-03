@@ -49,7 +49,7 @@ mat-sidenav {
 
 .des {
     text-align: center;
-    background-color: #381E72;
+    background-color: #471e72;
 }
 
 .enc {
@@ -94,7 +94,7 @@ mat-sidenav {
         min-height: 100vh;
         align-items: center;
     
-        background-color: #121212;
+        background-color: #ebebf3;
         background-position: center;
         background-size: cover;
         background-attachment: scroll;

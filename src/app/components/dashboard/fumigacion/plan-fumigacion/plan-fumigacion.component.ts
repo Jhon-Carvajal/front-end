@@ -8,6 +8,8 @@ import { Fumigacion } from 'src/app/interfaces/fumigacion';
 import { FumigacionService } from 'src/app/services/fumigacion.service';
 import { Nutricion } from 'src/app/interfaces/plan_nutricion';
 import { NutricionService } from 'src/app/services/nutricion.service';
+import { Cosecha } from 'src/app/interfaces/cosecha';
+import { CosechaService } from 'src/app/services/cosecha.service';
 import { SharedDataService } from 'src/app/services/shared.data';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,28 +22,35 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PlanFumigacionComponent implements OnInit {
   
-  
+  //fumigacion
   listFumigacion: Fumigacion[] = [];
-  fincas: Fumigacion[] = [];
-  idFinca: string = '';
   idLote: string = '';
 
   displayedColumns: string[] = ['Tipo fumigacion', 'Fecha aplicacion', 'Costo', 'Observaciones', 'Acciones'];
   dataSource!: MatTableDataSource<Fumigacion>;
   datasource1: any;
+
   formulariof!: FormGroup;
-  
+  //nutricion
   listNutricion: Nutricion[] = [];
   nutricioni: Nutricion[] = [];
 
   displayedColumns1: string[] = ['Tipo Fertilizante', 'Fecha aplicacion', 'Costo', 'Observaciones', 'Acciones'];
+ 
+  //cosecha
+  listcosecha: Cosecha[] = [];
+  cosecha1: Cosecha[] = [];
+  datasource2!: any;
+  formc!: FormGroup;
+  displayedColumns2: string[] = ['Fecha de recoleccion','Produccion','Acciones'];
 
-  selectedFincaId: string | null = null;
+  //seleccion de el lote correspondiente a la información
   SelectedLoteid: string | null = null;
 
   formn!: FormGroup;
   showFormf = false;
   showFormN = false;
+  showFormC = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -64,9 +73,17 @@ export class PlanFumigacionComponent implements OnInit {
     id_usuario: "",
     id_lote:"",
   }
+  //formulario Cosecha
+  modelc: Cosecha = {
+    Fecha_recoleccion: '',
+    Produccion: '',
+    id_usuario: '',
+    id_lote: '',
+  }
   
   constructor(private fumigacionService: FumigacionService,
     private nutricionservice: NutricionService,
+    private cosechaservice: CosechaService,
     private fb: FormBuilder,
     private dataservice: SharedDataService,
     private toastr: ToastrService,
@@ -88,6 +105,8 @@ ngOnInit(): void {
   this.listarf();
   this.cargarNutriciones();
   this.listarN();
+  this.cargarcosechas();
+  this.listarC();
   this.dataservice.currentIdLote.subscribe((idLote) => {
       this.formn = this.fb.group({
         Tipo_n: ['', [Validators.required]],
@@ -97,6 +116,14 @@ ngOnInit(): void {
         id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
         id_lote: idLote,
       });
+      
+      this.formc = this.fb.group({
+        Fecha_recoleccion: ['', [Validators.required]],
+        Produccion: ['', [Validators.required]],
+        id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
+        id_lote: idLote,
+      });    
+    
     });
    }
  
@@ -125,6 +152,20 @@ ngOnInit(): void {
       });
     })
   }
+
+  listarC(): void{
+    const userId = this.userService.usuarioSesionActiva._id;
+    const loteid = this.idLote;
+    this.dataservice.currentIdLote.subscribe((loteid) => {
+      const userId = this.userService.usuarioSesionActiva._id;
+      this.cosechaservice.listarC().subscribe((data: Cosecha[]) => {         
+        const cosechasc = data.filter((cos : Cosecha) => cos.id_usuario === userId && cos.id_lote === loteid);
+       // console.log(cosechasc)
+      this.datasource2 = new MatTableDataSource<Cosecha>(cosechasc);      
+      });
+    })
+  } 
+
   cargarNutriciones() {
     this.datasource1 = new MatTableDataSource(this.listNutricion);
   }
@@ -132,6 +173,11 @@ ngOnInit(): void {
   cargarFumigaciones() {
    this.dataSource = new MatTableDataSource(this.listFumigacion);
   }
+
+  cargarcosechas() {
+    this.datasource2 = new MatTableDataSource(this.listcosecha);
+  }
+
   
   guardarf() {
     this.fumigacionService.Fumigacion(this.formulariof.value).subscribe({
@@ -169,6 +215,24 @@ ngOnInit(): void {
     })
   };
 
+  guardarC() {
+    this.cosechaservice.Cosechas(this.formc.value).subscribe({
+      next: (data: any) => {
+        const id_cosecha = data._id;
+        console.log("Cosecha creada",id_cosecha);
+        this.mensajec();
+        this.formc.clearValidators();
+        this.showFormC = false;
+        this.ngOnInit();
+      },
+      error: err => {
+        this.errorc();
+      },
+      complete() {
+      },
+    })
+  };
+
   eliminarFum(id: string): void {
   this.toastr.warning('Esta seguro que quiere eliminar el plan de fumigacion', 'Confirmar', {
     closeButton: true,
@@ -199,14 +263,37 @@ ngOnInit(): void {
    });
   }
  
+ eliminarC(id: string): void {
+  this.toastr.warning('Esta seguro que quiere eliminar la cosecha', 'Confirmar', {
+    closeButton: true,
+    timeOut: 6000, // tiempo de espera 
+    extendedTimeOut: 2000,
+    positionClass: 'toast-top-center',
+   }).onTap.subscribe(() => {
+    this.cosechaservice.eliminarCosecha(id)
+      .subscribe(data => {
+        this.toastr.success('La cosecha ha sido eliminada', 'con exito');
+        this.ngOnInit();
+      });
+   });
+  }
+
   mensajen() {
     setTimeout(() => {
       this.toastr.success('Nutricion añadida', 'con exito')
     })
   }
-
   errorn() {
     this.toastr.error('No se pudo añadir la Nutricion', 'lo sentimos')
+  }
+
+  mensajec() {
+    setTimeout(() => {
+      this.toastr.success('Cosecha añadida', 'con exito')
+    })
+  }
+  errorc() {
+    this.toastr.error('No se pudo añadir la cosecha', 'lo sentimos')
   } 
 
   mensaje() {
@@ -214,12 +301,10 @@ ngOnInit(): void {
       this.toastr.success('Fumigacion añadida', 'con exito')
     })
   }
-
   error() {
     this.toastr.error('No se pudo añadir la fumigacion', 'lo sentimos')
   } 
   
-
   ngAfterViewInit() {
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
@@ -236,6 +321,9 @@ ngOnInit(): void {
   }
   toggleFormn() {
     this.showFormN = !this.showFormN;
+  }
+  toggleFormc() {
+    this.showFormC = !this.showFormC;
   }
 
   Obtener(id: string): void{

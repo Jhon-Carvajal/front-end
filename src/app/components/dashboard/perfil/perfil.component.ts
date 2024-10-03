@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-perfil',
@@ -6,35 +8,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  selectedFile: File | null = null;
-  previewUrl: string | null = null;
-  defaultImageUrl = 'path/to/default-image.png'; // Replace with your default image path
 
-  onFileSelected(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.selectedFile = target.files?.length ? target.files[0] : null;
-
-    if (this.selectedFile) {
-      // Validate image type to prevent non-image uploads
-      const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!allowedMimeTypes.includes(this.selectedFile.type)) {
-        this.selectedFile = null;
-        alert('formatos validos(JPEG, PNG)');
-        return;
-      }
-
-      // Create and handle image preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        this.previewUrl = reader.result as string;
-      };
-      reader.onerror = (error) => {
-        console.error('Error reading selected file:', error);
-      };
-      reader.readAsDataURL(this.selectedFile);
+  nombre2: string;
+  apellido2: string;
+  correo2: string;
+ 
+  constructor(
+    private userservice1: UserService) { 
+     this.nombre2 = '';
+     this.apellido2 = '';
+     this.correo2 = '';
+  }
+  
+ ngOnInit(): void {
+    this.obtenerDatosUsuario1();
+ }
+  
+  obtenerDatosUsuario1() {
+    const datossesion = this.userservice1.getDatosSesion();
+    
+    if (datossesion) {
+        const usuario: User = JSON.parse(datossesion);
+        
+        if (usuario.nombre && usuario.apellidos && usuario.correo) {
+            this.nombre2 = usuario.nombre;
+            this.apellido2 = usuario.apellidos;
+            this.correo2 = usuario.correo;
+            //console.log("Nombre:", this.correo2);
+        } else {
+            console.error("correo no disponicle");
+        }
     } else {
-      this.previewUrl = this.defaultImageUrl; // Set default image if no file selected
+        console.error("No hay datos de sesión disponibles.");
     }
   }
+  
 }
 

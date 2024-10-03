@@ -15,7 +15,7 @@ body {
   background-color: #fffffffc;
   padding: 20px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ececf2;
 }
 
 .date-range {
@@ -29,10 +29,10 @@ body {
 }
 
 section {
-  background-color: #bdbff0;
+  background-color: #c2c2f34b;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(24, 24, 74, 0.1);
   margin-bottom: 20px;
   flex: 1;
   margin-right: 20px;
@@ -77,7 +77,7 @@ section:last-child {
 
 .botonf {
   margin-top: 20px;
-  width: 100%;
+  width: auto;
 }
 
 .homework-list {

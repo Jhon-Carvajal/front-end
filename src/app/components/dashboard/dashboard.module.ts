@@ -9,9 +9,10 @@ import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FincalComponent } from './fincal/fincal.component';
-import { PlanNutricionComponent } from './nutricion/plan-nutricion/plan-nutricion.component';
 import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumigacion.component';
-import { PlantulaComponent } from './plantula/plantula.component';
+import { IaComponent } from './ia/ia.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,15 +21,16 @@ import { PlantulaComponent } from './plantula/plantula.component';
     InicioComponent,
     NavbarComponent,
     FincalComponent,
-    PlanNutricionComponent,
     PlanFumigacionComponent,
-    PlantulaComponent,
+    IaComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
     MatExpansionModule,
+    FormsModule,
   ]
 })
 export class DashboardModule { }

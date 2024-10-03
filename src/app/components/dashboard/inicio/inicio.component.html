@@ -11,6 +11,8 @@
       los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva.</h2>
   
 -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +24,10 @@
 </head>
 
 <body>
-  <h1 style="color: aliceblue; text-align: center;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
-  <h1 style="color: aliceblue; text-align: center;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
+  <h1 style="color: rgb(0, 0, 0); text-align: center;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
+  <h1 style="color: rgb(0, 0, 0); text-align: center;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
   <div class="container">
-     
+    <p id="datetime"></p>
 
     <main class="main-content">
     <!--carrusel -->
@@ -80,7 +82,7 @@
       
       <section class="schedule">
         <div class="schedule-header">
-          <h2>Hola:</h2>
+          <h1>Hola:</h1>
           <h2>{{nombre1}} {{apellido1}}</h2>
         </div>
         <div class="schedule-entries">
@@ -94,13 +96,16 @@
 
       <section class="overview">
         <div>
-          <canvas id="chart"></canvas>
+          <br><br>
+          <canvas #nitrogenoChart></canvas>
         </div> 
       </section>
 
-      <section class="time">
-        <h2>Info</h2>
-          <p id="datetime"></p>
+      <section >
+        <a href="https://latiendadelcafe.co/blogs/cafe-colombiano/historia-del-cafe-en-colombia"target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0272/2873/3504/files/historia-del-cafe-en-colombia.jpg?v=1634770346"
+            alt="Historia del Café en Colombia" width="80%">
+        </a>
       </section>
 
     </main>
@@ -122,17 +127,22 @@
         </div>
       </section>
       
-      <section class="reco">
-        <h2>Información</h2>
-        <ul>
-          <li> Atención </li>
-          <li> Contacto </li>
-          <li>Historia del café en Colombia</li>
-          <li> </li>
-        </ul>
+      <section class="main-content">
+        <div>
+          <h1>Información</h1>
+          <br>
+          <p> Atención </p>
+          <br>
+          <p> Contacto </p>
+          <br>
+          <li><a href="https://www.cafedecolombia.com/historia-del-cafe-de-colombia/" target="_blank">Historia del café en Colombia</a></li>
+          <br>
+          <li><a href="https://www.cenicafe.org/es/publications/C1.pdf" target="_blank">Variedades de cafe sembaradas en Colombia</a></li>
+        </div>
       </section>
     </main>
   </div>
 </body>
 
 </html>
+

@@ -1,6 +1,6 @@
  <div class="container">
     <mat-toolbar style="background-color: transparent;">
-        <h1 style="color: aliceblue;">CRONOGRAMA DE FUMIGACION</h1>
+        <h1 style="color: rgb(0, 0, 0);">FUMIGACIÓN</h1>
     </mat-toolbar>
     
     <table mat-table [dataSource]="dataSource" matSort>
@@ -17,7 +17,7 @@
 
         <ng-container matColumnDef="Costo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo </th>
-            <td mat-cell *matCellDef="let element"> {{element.Costo_f}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.Costo_f}} $</td>
         </ng-container>
 
         <ng-container matColumnDef="Observaciones">
@@ -99,6 +99,9 @@
     </mat-card>
 </div>
 <br><br><br><br>
+<mat-toolbar style="background-color: transparent;">
+    <h1 style="color: rgb(0, 3, 6);">NUTRICIÓN</h1>
+</mat-toolbar>
 <!--Tabla de nutrición-->
 <table mat-table [dataSource]="datasource1" matSort>
 
@@ -114,7 +117,7 @@
 
     <ng-container matColumnDef="Costo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo </th>
-        <td mat-cell *matCellDef="let element"> {{element.Costo_n}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.Costo_n}} $</td>
     </ng-container>
 
     <ng-container matColumnDef="Observaciones">
@@ -137,15 +140,15 @@
 <mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
 <button (click)="toggleFormn()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR NUTRICION </button>
 <!--Formulario2-->
-<br><br>
-<div *ngIf="showFormN" class="imag">
+
+<div *ngIf="showFormN" class="imag2">
     <mat-card style="margin-top: 10px ; background-color: transparent; ">
 
         <form [formGroup]="formn" (ngSubmit)="guardarN()">
             <mat-grid-list cols="4" rowHeight="70px">
 
                 <mat-grid-tile [colspan]="1" [rowspan]="7">
-                    <img src="https://archivo.lapatria.com/sites/default/files/imagenprincipal/2014/Mayo/cafe_-_fumigacion_-_mm_j02.jpg"
+                    <img src="https://quecafe.info/wp-content/uploads/2019/07/ferticafe.png"
                         class="centrarf">
                 </mat-grid-tile>
 
@@ -186,6 +189,82 @@
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <button mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button color="primary">Cancelar</button>
                     <button type="submit" [disabled]="formn.invalid" mat-raised-button  color="primary">Insertar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </form>
+
+    </mat-card>
+</div>
+<br><br><br><br>
+<!--Tabla de cosechas-->
+<mat-toolbar style="background-color: transparent;">
+    <h1 style="color: rgb(0, 5, 8);">PRODUCCIÓN</h1>
+</mat-toolbar>
+<!--Tabla-->
+<table mat-table [dataSource]="datasource2" matSort>
+
+    <ng-container matColumnDef="Fecha de recoleccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de recoleccion</th>
+        <td mat-cell *matCellDef="let element"> {{element.Fecha_recoleccion| date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Produccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Produccion </th>
+        <td mat-cell *matCellDef="let element"> {{element.Produccion}} kg</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acciones">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <a class="pointer" matTooltip="Eliminar cosecha">
+                <mat-icon class="mat-icon mat-warn" (click)="eliminarC(element._id)"> delete_outline </mat-icon>
+            </a>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
+<button (click)="toggleFormc()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR
+    COSECHA </button>
+<!--Formulario3 cosecha-->
+
+<div *ngIf="showFormC" class="imag1">
+    <mat-card style="margin-top: 10px ; background-color: transparent; ">
+
+        <form [formGroup]="formc" (ngSubmit)="guardarC()">
+            <mat-grid-list cols="4" rowHeight="70px">
+
+                <mat-grid-tile [colspan]="1" [rowspan]="7">
+                    <img src="https://cdn.pixabay.com/photo/2018/05/12/00/32/coffee-3392168_1280.jpg" class="centrarf">
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Fecha_recoleccion</mat-label>
+                        <td mat-cell *matCellDef="let element"> {{element.Fecha_recoleccion}} </td>
+                        <input matInput [matDatepicker]="picker" matInput placeholder="12/05/2023"
+                            formControlName="Fecha_recoleccion">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="anchof">
+                        <mat-label>Produccion</mat-label>
+                        <input matInput placeholder="Inserte cantidad de produccion(kg)" matInput autocomplete="off"
+                            formControlName="Produccion" inputmode="numeric" pattern="[0-9]*">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <button mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button
+                        color="primary">Cancelar</button>
+                    <button type="submit" [disabled]="formc.invalid" mat-raised-button color="primary">Insertar</button>
                 </mat-grid-tile>
             </mat-grid-list>
 

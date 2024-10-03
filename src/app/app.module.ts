@@ -18,8 +18,6 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PerfilComponent } from './components/dashboard/perfil/perfil.component';
-
 
 
 @NgModule({
@@ -27,7 +25,7 @@ import { PerfilComponent } from './components/dashboard/perfil/perfil.component'
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PerfilComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -40,6 +38,7 @@ import { PerfilComponent } from './components/dashboard/perfil/perfil.component'
     ToastrModule.forRoot(),
     NgbModule,
     MatExpansionModule,
+    
   ],
   providers: [
     {

@@ -13,8 +13,6 @@ import { mergeMap, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  Nombre: string = "";
-  Apellido: string = "";
   // VARIABLES PRIVADAS
   private _currentUser = signal<User|null>(null);
   public _authStatus = signal<AuthStatus>( AuthStatus.checking );
@@ -22,7 +20,6 @@ export class UserService {
   // VARIABLES PUBLICAS
   public currentUser = computed( () => this._currentUser() );
   public authStatus = computed( () => this._authStatus() );
-
 
   elUsuario = new BehaviorSubject<User>(new User);
   constructor(private http: HttpClient, private router: Router) {
@@ -63,6 +60,7 @@ export class UserService {
       _id: datosSesion.user_id,
       nombre: datosSesion.nombre,
       apellidos: datosSesion.apellidos,
+      correo: datosSesion.correo,
       token: datosSesion.token,
     };
     localStorage.setItem('sesion', JSON.stringify(data));

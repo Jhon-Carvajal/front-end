@@ -12,31 +12,26 @@
 <body>
     <div class="header">
         <img src="" >
-        <span class="username">Jhon Alirio Carvajal Anaya</span>
+        <span style="color: aliceblue; align-content: center;">      INFORMACIÓN DEL USUARIO        </span>
     </div>
     <div class="container">
         <div class="profile-header">
-            <img src="profile.png" alt="Profile Image" width="80" height="80">
-            <h2>Jhon Alirio Carvajal Anaya</h2>
-            <button>Mensaje</button>
+            <img src="https://cdn.pixabay.com/photo/2020/10/10/13/43/coffee-5643112_1280.jpg" alt="Profile Image" width="80" height="80">
+            <h2>{{nombre2}} {{apellido2}}</h2>
         </div>
         <div class="details">
-            <h3>Detalles de usuario</h3>
-            <p>Dirección de correo: carvajal9630@gmail.com</p>
-            <p>Fecha de Nacimiento: 30 de mayo de 2024</p>
+            
+            <br>
+            <h3>Nombre:  {{nombre2}}</h3>
+            <br>
+            <h3>Apellido:   {{apellido2}}</h3>
+            <br>
+            <h3>Dirección de correo: {{correo2}}</h3>
+            <br>
         </div>
-        <div class="privacy">
-            <h3>Privacidad y Políticas</h3>
-            <p>Resumen de retención de datos</p>
-        </div>
-        <div>
-            <button>Restablecer página a por defecto</button>
-            <button>Personalizar esta página</button>
-        </div>
+        <button routerLink="/dashboard/" class="bontof">Inicio</button>
     </div>
     <div class="footer">
         Proyecto NPK 
     </div>
 </body>
-
-</html>

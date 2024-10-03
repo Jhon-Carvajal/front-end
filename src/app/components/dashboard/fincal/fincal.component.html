@@ -1,6 +1,6 @@
 <div class="container" >
   <mat-toolbar style="background-color: transparent;">
-    <h1 style="color: aliceblue;">FINCAS</h1>
+    <h1 style="color: rgb(0, 3, 5);">FINCAS</h1>
   </mat-toolbar>
 
   <mat-form-field>
@@ -63,8 +63,7 @@
   </div>
   <button (click)="toggleForm()" mat-raised-button color="primary" routerLink="/dashboard/finca">AGREGAR_FINCA</button>
   <!-- formulario para agregar finca nueva -->
-  <div *ngIf="showForm">
-    <br><br><br><br><br>
+  <div *ngIf="showForm" class="imag">
     <mat-card class="formulario" style="margin-top: 10px ; background-color: transparent; ">
     
       <form [formGroup]="form" (ngSubmit)="guardar()">
@@ -124,10 +123,10 @@
     
     </mat-card>
   </div>
-  
+  <br><br>
 <!-- tabla de los lotes pertenecientes a cada finca -->
   <mat-toolbar style="background-color: transparent;" *ngIf="selectedFincaId">
-    <span>LOTES DE LA FINCA</span>
+    <span style="color: rgb(0, 5, 9);">LOTES DE LA FINCA</span>
   </mat-toolbar>
   <!--TABLA DE LOTES-->
   <div class="mat-elevation-z8"  *ngIf="selectedFincaId">
@@ -141,7 +140,7 @@
   
       <ng-container matColumnDef="Area">
         <th mat-header-cell *matHeaderCellDef> Area </th>
-        <td mat-cell *matCellDef="let element"> {{element.Area}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.Area}} m²</td>
       </ng-container>
   
       <ng-container matColumnDef="Fecha_siembra">
@@ -186,8 +185,8 @@
     <button (click)="toggleForml()" mat-raised-button color="primary" routerLink="/dashboard/finca">AGREGAR_LOTE</button>
   </div>
 <!--formulario para agregar un lote a la finca-->
-  <div *ngIf="showForml">
-  <br><br><br>
+  <div *ngIf="showForml" class="imag">
+  
     <mat-card style="margin-top: 10px ; background-color: transparent;">
     
       <form [formGroup]="forml" (ngSubmit)="guardarl()">
