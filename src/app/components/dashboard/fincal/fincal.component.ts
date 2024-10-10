@@ -54,11 +54,14 @@ export class FincalComponent implements OnInit {
     'El Tambo', 'Florencia', 'Guachené', 'Guapí', 'Inzá', 'Jambaló', 'La Sierra', 'La Vega', 'López de Micay',
     'Mercaderes', 'Miranda', 'Morales', 'Padilla', 'Páez', 'Patía', 'Piamonte', 'Piendamó', 'Popayán',
     'Puerto Tejada', 'Puracé', 'Rosas', 'San Sebastián', 'Santander de Quilichao', 'Santa Rosa', 'Silvia',
-                       'Sotará', 'Suárez', 'Sucre', 'Timbío', 'Timbiquí', 'Toribío', 'Totoró', 'Villa Rica']
-  Departamentos: any[] = ['Amazonas','Antioquia','Arauca','Atlántico','Bolívar','Boyacá','Caldas','Caquetá','Casanare',
+    'Sotará', 'Suárez', 'Sucre', 'Timbío', 'Timbiquí', 'Toribío', 'Totoró', 'Villa Rica']
+
+  Departamentos:any[]=['Cauca']
+  /*Departamentos: any[] = ['Amazonas','Antioquia','Arauca','Atlántico','Bolívar','Boyacá','Caldas','Caquetá','Casanare',
                           'Cauca','Cesar','Chocó','Córdoba','Cundinamarca','Guainía','Guaviare','Huila','La Guajira',
                           'Magdalena','Meta','Nariño','Norte de Santander','Putumayo','Quindío','Risaralda',
                           'San Andrés y Providencia','Santander','Sucre','Tolima','Valle del Cauca','Vaupés','Vichada']
+ */
 //Formulario lote y café 
   modeli: Lote = {
     Nombre: '',
@@ -126,8 +129,8 @@ export class FincalComponent implements OnInit {
         const id_finca = data._id;
         //console.log("finca creada",id_finca);
         this.mensaje();
-        this.form.clearValidators();
         this.showForm = false;
+        this.form.reset();
         this.ngOnInit();
       },
       error: err => {
@@ -231,8 +234,8 @@ export class FincalComponent implements OnInit {
         const id_lote = data._id;
      //   console.log("lote creado",id_lote);
         this.mensajel();
-        this.forml.clearValidators;
         this.showForml = false;
+        this.forml.reset();
         this.ngOnInit();
       },
       error: err => {

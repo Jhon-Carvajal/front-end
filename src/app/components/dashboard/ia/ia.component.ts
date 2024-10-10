@@ -15,7 +15,6 @@ import { switchMap } from 'rxjs/operators';
 })
 export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  chart: any;
   @ViewChild('chartCanvas') chartCanvas!: ElementRef;
   @ViewChild('humedadChart') humedadChart!: ElementRef;
   @ViewChild('temperaturaChart') temperaturaChart!: ElementRef;
@@ -24,9 +23,28 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('fosforoChart') fosforoChart!: ElementRef;
   @ViewChild('potasioChart') potasioChart!: ElementRef;
   @ViewChild('bateriaChart') bateriaChart!: ElementRef;
+  @ViewChild('phChart') phChart!: ElementRef;
 
   charts: { [key: string]: any } = {};
   private subscription!: Subscription; 
+  fosforoMensaje: string = '';
+  nitrogenoMensaje: string = '';
+  potasioMensaje: string = '';
+  phMensaje: string = '';
+  conductividadValor: any;
+  temperaturaValor: any;
+  humedadValor: any;
+  bateriaValor: any;
+  // almacenar historial
+  humedadData: number[] = [];
+  temperaturaData: number[] = [];
+  conductividadData: number[] = [];
+  bateriaData: number[] = [];
+  phData: number[] = [];
+  nitrogenoData: number[] = [];
+  fosforoData: number[] = [];
+  potasioData: number[] = [];
+
  
   constructor(  private datos: DispositivoService, 
                 private sharedDataService: SharedDataService,) {
@@ -34,7 +52,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
   
   ngOnInit(): void {
     // actualización 
-    this.subscription = interval(10000) // Cada 60 segundos
+    this.subscription = interval(5000) 
       .pipe(
         switchMap(() => this.datos.datosias()) 
       )
@@ -49,11 +67,20 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
               temperatura: datou.temperatura,
               conductividad: datou.conductividad,
               bateria: datou.bateria,
+              ph:datou.ph,
               nitrogeno: datou.nitrogeno,
               fosforo: datou.fosforo,
               potasio: datou.potasio
             };
-            this.updateCharts(valores); // Actualización de gráficos 
+            this.updateCharts(valores); // Actauizar valores de las graficas
+            this.conductividadValor = valores.conductividad;
+            this.bateriaValor = valores.bateria;
+            this.humedadValor = valores.humedad;
+            this.phMensaje = this.clasificarPh(valores.ph);
+            this.temperaturaValor = valores.temperatura;
+            this.fosforoMensaje = this.clasificarFosforo(valores.fosforo);
+            this.nitrogenoMensaje = this.clasificarNitrogeno(valores.nitrogeno);
+            this.potasioMensaje = this.clasificarPotasio(valores.potasio);
           }
         },
         (error) => {
@@ -61,22 +88,22 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       );
   }
-
+ 
   // Inicio de gráficos
   ngAfterViewInit(): void {
     const valoresIniciales = {
-      humedad: [25],
-      temperatura: [18],
-      conductividad: [0.2],
-      bateria:[100],
-      nitrogeno: [100],
-      fosforo: [20],
-      potasio: [120]
+      humedad: [0],
+      temperatura: [1],
+      conductividad: [0],
+      bateria: [100],
+      ph:[7],
+      nitrogeno: [0],
+      fosforo: [0],
+      potasio: [0],
     };
-
     this.initializeCharts(valoresIniciales);
   }
-
+   
   // Inicializa con valores de mongo
   initializeCharts(valores: any): void {
     this.charts['humedad'] = new Chart(this.humedadChart.nativeElement, {
@@ -85,7 +112,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['%'],
         datasets: [{
           label: 'Humedad',
-          data: valores.humedad,
+          data: this.humedadData,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
         }]
@@ -98,7 +125,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['°C'],
         datasets: [{
           label: 'Temperatura',
-          data: valores.temperatura,
+          data: this.temperaturaData,
           borderColor: 'rgb(255, 99, 132)',
           tension: 0.1
         }]
@@ -111,7 +138,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['S/m'],
         datasets: [{
           label: 'Conductividad',
-          data: valores.conductividad,
+          data: this.conductividadData,
           borderColor: 'rgb(54, 162, 235)',
           tension: 0.1
         }]
@@ -124,8 +151,21 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['%'],
         datasets: [{
           label: 'Bateria',
-          data: valores.bateria,
+          data: this.bateriaData,
           borderColor: 'rgb(255, 0, 0)',
+          tension: 0.1
+        }]
+      }
+     });
+    
+    this.charts['ph'] = new Chart(this.phChart.nativeElement, {
+      type: 'line' as ChartType,
+      data: {
+        labels: [''],
+        datasets: [{
+          label: 'Ph',
+          data: this.phData,
+          borderColor: 'rgb(255, 206, 86)',
           tension: 0.1
         }]
       }
@@ -137,7 +177,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['mg/kg'],
         datasets: [{
           label: 'Nitrógeno',
-          data: valores.nitrogeno,
+          data: this.nitrogenoData,
           borderColor: 'rgb(255, 206, 86)',
           tension: 0.1
         }]
@@ -150,7 +190,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['mg/kg'],
         datasets: [{
           label: 'Fósforo',
-          data: valores.fosforo,
+          data: this.fosforoData,
           borderColor: 'rgb(153, 102, 255)',
           tension: 0.1
         }]
@@ -163,7 +203,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: ['mg/kg'],
         datasets: [{
           label: 'Potasio',
-          data: valores.potasio,
+          data: this.potasioData,
           borderColor: 'rgb(255, 159, 64)',
           tension: 0.1
         }]
@@ -171,26 +211,82 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  // Método para actualizar los gráficos con los nuevos valores
+  clasificarFosforo(valor: number): string {
+  if (valor < 10) {
+    return `El valor de fósforo (${valor} mg/kg) Bajo`;
+  } else if (valor >=10 && valor<=30) {
+    return `El valor de fósforo (${valor} mg/kg) Óptimo`;
+  } else if (valor > 30) {
+    return `El valor de fósforo (${valor} mg/kg) Alto`;
+  } else {
+    return `El valor de fósforo (${valor}) no está en el rango esperado.`;
+  }
+  }
+  
+   clasificarNitrogeno(valor: number): string {
+  if (valor < 2.5) {
+    return `Valor de Nitrogeno (${valor} mg/kg) Bajo`;
+  } else if (valor >=2.5 && valor<=3.5) {
+    return `Valor de Nitrogeno (${valor} mg/kg) Óptimo`;
+  } else if (valor > 3.5) {
+    return `Valor de Nitrogeno (${valor} mg/kg) Alto`;
+  } else {
+    return `Valor de Nitrogeno (${valor}) no está en el rango esperado.`;
+  }
+   }
+  
+   clasificarPotasio(valor: number): string {
+  if (valor < 100) {
+    return `Valor de Potasio (${valor} mg/kg) Deficiente`;
+  } else if (valor >=100 && valor<=200) {
+    return `Valor de Potasio (${valor} mg/kg) Adecuado`;
+  } else if (valor > 200) {
+    return `Valor de Potasio (${valor} mg/kg) Óptimo`;
+  } else {
+    return `Valor de Potasio (${valor}) no está en el rango esperado.`;
+  }
+}
+
+  clasificarPh(valor: number): string {
+  if (valor < 7) {
+    return `Valor de Ph (${valor} ) Suelo Acido`;
+  } else if (valor >=7 && valor<=7.3) {
+    return `Valor de Ph (${valor} ) Neutro`;
+  } else if (valor > 7.3) {
+    return `Valor de Ph (${valor} ) Suelo Alcalino`;
+  } else {
+    return `Valor de Ph (${valor}) no está en el rango esperado.`;
+  }
+  }
+  
   updateCharts(valores: any): void {
-    this.updateChart('humedad', valores.humedad);
-    this.updateChart('temperatura', valores.temperatura);
-    this.updateChart('conductividad', valores.conductividad);
-    this.updateChart('bateria', valores.bateria); 
-    this.updateChart('nitrogeno', valores.nitrogeno);
-    this.updateChart('fosforo', valores.fosforo);
-    this.updateChart('potasio', valores.potasio);
+    this.humedadData.push(valores.humedad);
+    this.temperaturaData.push(valores.temperatura);
+    this.conductividadData.push(valores.conductividad);
+    this.bateriaData.push(valores.bateria);
+    this.phData.push(valores.ph);
+    this.nitrogenoData.push(valores.nitrogeno);
+    this.fosforoData.push(valores.fosforo);
+    this.potasioData.push(valores.potasio);
+
+    this.updateChart('humedad', this.humedadData);
+    this.updateChart('temperatura', this.temperaturaData);
+    this.updateChart('conductividad', this.conductividadData);
+    this.updateChart('bateria', this.bateriaData);
+    this.updateChart('ph', this.phData);
+    this.updateChart('nitrogeno', this.nitrogenoData);
+    this.updateChart('fosforo', this.fosforoData);
+    this.updateChart('potasio', this.potasioData);
   }
 
-  updateChart(key: string, nuevoValor: number): void {
+  updateChart(key: string, data: number[]): void {
     const chart = this.charts[key];
     if (chart) {
-      chart.data.labels.push('');
-      chart.data.datasets[0].data.push(nuevoValor);
+      chart.data.labels.push(''); 
+      chart.data.datasets[0].data = data; 
       chart.update();
     }
   }
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe(); 

@@ -185,8 +185,8 @@ ngOnInit(): void {
         const id_fumigacion = data._id;
         //console.log("fumigacion creada",id_fumigacion);
         this.mensaje();
-        this.formulariof.clearValidators();
         this.showFormf = false;
+        this.formulariof.reset();
         this.ngOnInit();
       },
       error: err => {
@@ -203,8 +203,8 @@ ngOnInit(): void {
         const id_nutricion = data._id;
         console.log("Nutrición creada",id_nutricion);
         this.mensajen();
-        this.formn.clearValidators();
         this.showFormN = false;
+        this.formn.reset();
         this.ngOnInit();
       },
       error: err => {
@@ -221,8 +221,8 @@ ngOnInit(): void {
         const id_cosecha = data._id;
         console.log("Cosecha creada",id_cosecha);
         this.mensajec();
-        this.formc.clearValidators();
         this.showFormC = false;
+        this.formc.reset();
         this.ngOnInit();
       },
       error: err => {
