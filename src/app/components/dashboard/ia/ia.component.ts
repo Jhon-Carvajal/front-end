@@ -52,27 +52,44 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
   
   ngOnInit(): void {
     // actualización 
-    this.subscription = interval(5000) 
-      .pipe(
-        switchMap(() => this.datos.datosias()) 
-      )
+ this.datos.datosias().subscribe(
+      (historicos: any) => {
+        // Recorrer los datos históricos y llenar los arreglos de datos
+        historicos.forEach((dato: any) => {
+          this.humedadData.push(dato.humedad);
+          this.temperaturaData.push(dato.temperatura);
+          this.conductividadData.push(dato.conductividad);
+          this.bateriaData.push(dato.bateria);
+          this.phData.push(dato.ph);
+          this.nitrogenoData.push(dato.nitrogeno);
+          this.fosforoData.push(dato.fosforo);
+          this.potasioData.push(dato.potasio);          
+        });
+
+        this.initializeCharts();
+      },
+      (error) => {
+        console.error('Error al obtener datos históricos:', error);
+      }
+    );
+
+    this.subscription = interval(1000)
+      .pipe(switchMap(() => this.datos.datosias()))
       .subscribe(
         (data: any) => {
-          //console.log('Datos actualizados:', data);
-          //último registro 
-          const datou = data[data.length - 1]; 
+          const datou = data[data.length - 1];
           if (datou) {
             const valores = {
               humedad: datou.humedad,
               temperatura: datou.temperatura,
               conductividad: datou.conductividad,
               bateria: datou.bateria,
-              ph:datou.ph,
+              ph: datou.ph,
               nitrogeno: datou.nitrogeno,
               fosforo: datou.fosforo,
               potasio: datou.potasio
             };
-            this.updateCharts(valores); // Actauizar valores de las graficas
+            this.updateCharts(valores);
             this.conductividadValor = valores.conductividad;
             this.bateriaValor = valores.bateria;
             this.humedadValor = valores.humedad;
@@ -91,21 +108,12 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
  
   // Inicio de gráficos
   ngAfterViewInit(): void {
-    const valoresIniciales = {
-      humedad: [0],
-      temperatura: [1],
-      conductividad: [0],
-      bateria: [100],
-      ph:[7],
-      nitrogeno: [0],
-      fosforo: [0],
-      potasio: [0],
-    };
-    this.initializeCharts(valoresIniciales);
+    if (this.humedadData.length > 0) {
+      this.initializeCharts();
+    }
   }
    
-  // Inicializa con valores de mongo
-  initializeCharts(valores: any): void {
+  initializeCharts(): void {
     this.charts['humedad'] = new Chart(this.humedadChart.nativeElement, {
       type: 'line' as ChartType,
       data: {

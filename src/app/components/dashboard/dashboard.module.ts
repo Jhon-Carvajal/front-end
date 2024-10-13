@@ -13,6 +13,7 @@ import { PlanFumigacionComponent } from './fumigacion/plan-fumigacion/plan-fumig
 import { IaComponent } from './ia/ia.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
+import { MLComponent } from './ml/ml.component'
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     PlanFumigacionComponent,
     IaComponent,
     PerfilComponent,
+    MLComponent,
   ],
   imports: [
     CommonModule,

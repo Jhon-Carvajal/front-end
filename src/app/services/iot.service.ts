@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Dispositivo } from '../interfaces/dispositivo';
+import { Sugerir } from '../interfaces/sugerir';
+import { Respuesta } from '../interfaces/respuesta';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,22 +9,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DispositivoService{
+export class SugerirService{
   
   constructor(private http: HttpClient) { }
-
-  listar(): Observable<Dispositivo[]>{
-    return this.http.get<Dispositivo[]>(`${environment.url_gateway}/dispositivos`)
-  }
-
-  getdispo(id: string): Observable<Dispositivo>{
-    return this.http.get<Dispositivo>(`${environment.url_gateway}/dispositivo/${id}`)
-  }
-  creardis(valores: Dispositivo): Observable<Dispositivo> {
-    return this.http.post<Dispositivo>(`${environment.url_gateway}/dispositivo`, valores );
+  crearsug(valoresPNK: number[][]): Observable<Respuesta> {
+   // console.log(valoresPNK)
+    return this.http.post<Respuesta>(`${environment.url_gateway}/sugerenciam`, valoresPNK );
   }
   
-  eliminardispo(id:string): Observable<Dispositivo>{
-    return this.http.delete<Dispositivo>(`${environment.url_gateway}/dispositivo/${id}`,)
-    }
 }
