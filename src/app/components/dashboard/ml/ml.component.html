@@ -1,17 +1,19 @@
-
-
-<div class="bodyml">
-    <div >
-       
-            <mat-card class="custom-shadow" style="background-color: white;">
-                <mat-card-content>
-                    
-                       
-                </mat-card-content>
-            </mat-card>
-<div *ngIf="sugerencia">
-    <h3>Sugerencia de fertilizante</h3>
-    <p style="color: black;">{{ sugerencia }}</p>
-</div>
+<div class="card">
+    <div class="bg">
+        <div *ngIf="sugerencia">
+            <br>
+            <h1 style="text-align: center;">SUGERENCIA DE FERTILIZANTE</h1>
+            <br>
+            <h2>{{ sugerencia }}</h2>
+            <br>
+            <h2 style="text-align: center;">Fertilizante recomendado:</h2>
+            <div class="container" style="text-align: center; align-items: center;">
+                <img src="https://pdcinternacional.co/wp-content/uploads/2023/04/ARENA-SILICE-CUARZO-10-20-BULTO-50-KG_64_11zon.jpg" alt="Bulto de Abono" class="image">
+                <br>
+                <div class="text">{{referenciaF}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="blob">
     </div>
 </div>

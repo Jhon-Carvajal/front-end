@@ -9,6 +9,9 @@ import { Lote } from 'src/app/interfaces/lote'
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { LoteService } from 'src/app/services/lote.service'
+import { FumigacionService } from 'src/app/services/fumigacion.service';
+import { CosechaService } from 'src/app/services/cosecha.service';
+import { NutricionService } from 'src/app/services/nutricion.service';
 import { SharedDataService } from 'src/app/services/shared.data';
 
 @Component({
@@ -79,6 +82,9 @@ export class FincalComponent implements OnInit {
                private toastr: ToastrService,
                private loteService: LoteService,
                private miServicio: FincaService,
+               private fumigacionser: FumigacionService,
+               private nutricionser: NutricionService,
+               private cosechaser: CosechaService,
                private sharedDataService: SharedDataService,) { 
       this.form = this.fb.group({
       Nombre_finca: ['', [Validators.required]],
@@ -204,25 +210,42 @@ export class FincalComponent implements OnInit {
       this.loteService.listarl().subscribe((data: Lote[]) => {         
       const lotesDelUsuarioYFinca = data.filter((lote: Lote) => lote.id_usuario === userId && lote.id_finca === idFinca);
         //console.log(lotesDelUsuarioYFinca);
-      this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);   
+      this.dataSource1 = new MatTableDataSource<Lote>(lotesDelUsuarioYFinca);  
       });
     })
   }
   
   eliminarLote(id: string): void {
-  this.toastr.warning('Esta seguro que quiere eliminar el lote', 'Confirmar Eliminacion', {
-    closeButton: true,
-    timeOut: 6000, // tiempo de espera 
-    extendedTimeOut: 2000,
-    positionClass: 'toast-top-center',
-   }).onTap.subscribe(() => {
-    this.loteService.eliminarl(id)
-      .subscribe(data => {
-        this.toastr.success('El lote ha sido eliminado', 'con exito');
-        this.ngOnInit();
+
+    this.fumigacionser.listarf().subscribe((fumigaciones) => {
+      const fumigacionesAsignadas = fumigaciones.filter(fumigacion => fumigacion.id_lote === id);
+
+      this.nutricionser.listarN().subscribe((nutriciones) => {
+        const nutricionesAsignadas = nutriciones.filter(nutricion => nutricion.id_lote === id);
+
+        this.cosechaser.listarC().subscribe((cosechas) => {
+          const cosechasAsignadas = cosechas.filter(cosecha => cosecha.id_lote === id);
+          
+          if (fumigacionesAsignadas.length > 0 || nutricionesAsignadas.length > 0 || cosechasAsignadas.length > 0) {
+            this.toastr.error('No se puede eliminar el lote porque tiene asignaciones', 'Error al eliminar');
+          } else {
+            this.toastr.warning('¿Está seguro que quiere eliminar el lote?', 'Confirmar Eliminación', {
+              closeButton: true,
+              timeOut: 6000, 
+              extendedTimeOut: 2000,
+              positionClass: 'toast-top-center',
+            }).onTap.subscribe(() => {
+              this.loteService.eliminarl(id).subscribe(data => {
+                this.toastr.success('El lote ha sido eliminado', 'Con éxito');
+                this.ngOnInit(); 
+              });
+            });
+          }
+        });
       });
-   });
+    });
   }
+
   
   cargarlotes(){
     this.dataSource1 = new MatTableDataSource(this.listlotes);

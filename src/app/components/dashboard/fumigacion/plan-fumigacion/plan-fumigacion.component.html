@@ -38,7 +38,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>   
     <mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
-   <button (click)="toggleFormf()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR PLAN DE FUMIGACION</button>
+   <button class="button" (click)="toggleFormf()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR PLAN DE FUMIGACION</button>
 <!--Fromulario1-->
 <br><br>
 <div *ngIf="showFormf" class="imag">
@@ -89,8 +89,8 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Cancelar</button>
-                    <button type="submit" [disabled]="formulariof.invalid" mat-raised-button color="primary">Insertar</button>
+                    <button class="button" mat-button routerLink="/dashboard" mat-raised-button color="primary">Cancelar</button>
+                    <button class="button" type="submit" [disabled]="formulariof.invalid" mat-raised-button color="primary">Insertar</button>
                 </mat-grid-tile>
             </mat-grid-list>
 
@@ -137,8 +137,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
-<button (click)="toggleFormn()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR NUTRICION </button>
+<br>
+<button class="button" (click)="toggleFormn()" routerLink="/dashboard/plan-fumigacion">AGREGAR NUTRICION </button>
 <!--Formulario2-->
 
 <div *ngIf="showFormN" class="imag2">
@@ -187,8 +187,8 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <button mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button color="primary">Cancelar</button>
-                    <button type="submit" [disabled]="formn.invalid" mat-raised-button  color="primary">Insertar</button>
+                    <button class="button" mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button color="primary">Cancelar</button>
+                    <button class="button" type="submit" [disabled]="formn.invalid" mat-raised-button  color="primary">Insertar</button>
                 </mat-grid-tile>
             </mat-grid-list>
 
@@ -226,9 +226,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
-<button (click)="toggleFormc()" mat-raised-button color="primary" routerLink="/dashboard/plan-fumigacion">AGREGAR
-    COSECHA </button>
+<br>
+<button class="button" (click)="toggleFormc()" routerLink="/dashboard/plan-fumigacion">AGREGAR COSECHA </button>
 <!--Formulario3 cosecha-->
 
 <div *ngIf="showFormC" class="imag1">
@@ -262,9 +261,8 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <button mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button
-                        color="primary">Cancelar</button>
-                    <button type="submit" [disabled]="formc.invalid" mat-raised-button color="primary">Insertar</button>
+                    <button class="button" mat-button routerLink="/dashboard/plan-fumigacion" mat-raised-button color="primary">Cancelar</button>
+                    <button class="button" type="submit" [disabled]="formc.invalid" mat-raised-button color="primary">Insertar</button>
                 </mat-grid-tile>
             </mat-grid-list>
 

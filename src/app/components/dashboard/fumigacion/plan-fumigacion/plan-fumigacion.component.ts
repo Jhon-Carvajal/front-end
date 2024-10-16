@@ -128,40 +128,42 @@ ngOnInit(): void {
    }
  
   listarf(): void{
-    const userId = this.userService.usuarioSesionActiva._id;
-    const loteid = this.idLote;
+    //const userId = this.userService.usuarioSesionActiva._id;
+    //const loteid = this.idLote;
     this.dataservice.currentIdLote.subscribe((loteid) => {
       const userId = this.userService.usuarioSesionActiva._id;
       this.fumigacionService.listarf().subscribe((data: Fumigacion[]) => {         
         const fumigaciones = data.filter((fum: Fumigacion) => fum.id_usuario === userId && fum.id_lote === loteid);
        // console.log(fumigaciones)
-      this.dataSource = new MatTableDataSource<Fumigacion>(fumigaciones);      
+        this.dataSource = new MatTableDataSource<Fumigacion>(fumigaciones);   
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
     })
   } 
 
   listarN(): void{
-    const userId = this.userService.usuarioSesionActiva._id;
-    const loteid = this.idLote;
+   // const userId = this.userService.usuarioSesionActiva._id;
+    //const loteid = this.idLote;
     this.dataservice.currentIdLote.subscribe((loteid) => {
       const userId = this.userService.usuarioSesionActiva._id;
       this.nutricionservice.listarN().subscribe((data: Nutricion[]) => {         
         const nutriciones = data.filter((nut: Nutricion) => nut.id_usuario === userId && nut.id_lote === loteid);
        // console.log(fumigaciones)
-      this.datasource1 = new MatTableDataSource<Nutricion>(nutriciones);      
+        this.datasource1 = new MatTableDataSource<Nutricion>(nutriciones);
       });
     })
   }
 
   listarC(): void{
-    const userId = this.userService.usuarioSesionActiva._id;
-    const loteid = this.idLote;
+    //const userId = this.userService.usuarioSesionActiva._id;
+    //const loteid = this.idLote;
     this.dataservice.currentIdLote.subscribe((loteid) => {
       const userId = this.userService.usuarioSesionActiva._id;
       this.cosechaservice.listarC().subscribe((data: Cosecha[]) => {         
-        const cosechasc = data.filter((cos : Cosecha) => cos.id_usuario === userId && cos.id_lote === loteid);
+        const cosechas = data.filter((cos : Cosecha) => cos.id_usuario === userId && cos.id_lote === loteid);
        // console.log(cosechasc)
-      this.datasource2 = new MatTableDataSource<Cosecha>(cosechasc);      
+      this.datasource2 = new MatTableDataSource<Cosecha>(cosechas);      
       });
     })
   } 
@@ -199,9 +201,9 @@ ngOnInit(): void {
 
   guardarN() {
     this.nutricionservice.Nutricion(this.formn.value).subscribe({
-      next: (data: any) => {
-        const id_nutricion = data._id;
-        console.log("Nutrición creada",id_nutricion);
+      next: (data1: any) => {
+        const id_nutricion = data1._id;
+        //console.log("Nutrición creada",id_nutricion);
         this.mensajen();
         this.showFormN = false;
         this.formn.reset();
@@ -217,9 +219,9 @@ ngOnInit(): void {
 
   guardarC() {
     this.cosechaservice.Cosechas(this.formc.value).subscribe({
-      next: (data: any) => {
-        const id_cosecha = data._id;
-        console.log("Cosecha creada",id_cosecha);
+      next: (data2: any) => {
+        const id_cosecha = data2._id;
+        //console.log("Cosecha creada",id_cosecha);
         this.mensajec();
         this.showFormC = false;
         this.formc.reset();
@@ -256,7 +258,7 @@ ngOnInit(): void {
     positionClass: 'toast-top-center',
    }).onTap.subscribe(() => {
     this.nutricionservice.eliminarNutricion(id)
-      .subscribe(data => {
+      .subscribe(data1 => {
         this.toastr.success('El Plan de nutricion ha sido eliminado', 'con exito');
         this.ngOnInit();
       });
@@ -270,8 +272,8 @@ ngOnInit(): void {
     extendedTimeOut: 2000,
     positionClass: 'toast-top-center',
    }).onTap.subscribe(() => {
-    this.cosechaservice.eliminarCosecha(id)
-      .subscribe(data => {
+    this.cosechaservice.eliminarcos(id)
+      .subscribe(data2 => {
         this.toastr.success('La cosecha ha sido eliminada', 'con exito');
         this.ngOnInit();
       });
@@ -333,5 +335,6 @@ ngOnInit(): void {
     this.idLote = loteid;
     this.SelectedLoteid = id;
     this.listarf();
+    this.listarN();
   }
 }

@@ -182,7 +182,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
   
     </table>
-    <button (click)="toggleForml()" mat-raised-button color="primary" routerLink="/dashboard/finca">AGREGAR_LOTE</button>
+    <br>
+    <button class="button" (click)="toggleForml()" mat-raised-button color="primary" routerLink="/dashboard/finca">AGREGAR_LOTE</button>
   </div>
 <!--formulario para agregar un lote a la finca-->
   <div *ngIf="showForml" class="imag">
@@ -238,8 +239,8 @@
           </mat-grid-tile>
     
           <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <button mat-button routerLink="/dashboard" mat-raised-button color="primary">Cancelar</button>
-            <button type="submit" [disabled]="forml.invalid" mat-raised-button color="primary">Insertar</button>
+            <button class="button" mat-button routerLink="/dashboard" mat-raised-button color="primary">Cancelar</button>
+            <button class="button" type="submit" [disabled]="forml.invalid" mat-raised-button color="primary">Insertar</button>
           </mat-grid-tile>
         </mat-grid-list>
     

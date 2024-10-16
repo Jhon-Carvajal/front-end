@@ -16,18 +16,14 @@ export class CosechaService{
     return this.http.get<Cosecha[]>(`${environment.url_gateway}/cosechas`)
   }
 
-  getcosecha(id: string): Observable<Cosecha>{
-    return this.http.get<Cosecha>(`${environment.url_gateway}/cosecha/${id}`)
+  getcosecha(idc: string): Observable<Cosecha>{
+    return this.http.get<Cosecha>(`${environment.url_gateway}/cosecha/${idc}`)
   }
   Cosechas(infocosecha: Cosecha): Observable<Cosecha> {
     return this.http.post<Cosecha>(`${environment.url_gateway}/cosecha`, infocosecha);
   }
   
-  eliminarCosecha(id:string): Observable<Cosecha>{
-    return this.http.delete<Cosecha>(`${environment.url_gateway}/cosecha/${id}`,)
-  }
-
-  actualizarCosecha(id:string,infocosecha:Cosecha): Observable<Cosecha>{
-    return this.http.put<Cosecha>(`${environment.url_persona}/cosecha/${id}`,infocosecha)
+  eliminarcos(idc: string): Observable<Cosecha>{
+    return this.http.delete<Cosecha>(`${environment.url_gateway}/cosechae/${idc}`,)
   }
 }
