@@ -80,28 +80,70 @@ export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  initializeCharts(valores: any): void {
+ initializeCharts(valores: any): void {
     this.charts['composicion'] = new Chart(this.nitrogenoChart.nativeElement, {
-      type: 'bar' as ChartType,
-      data: {
-        labels: ['Nitrógeno', 'Fósforo', 'Potasio'],
-        datasets: [{
-          label: 'VALOR',
-          data: [
-            valores.nitrogeno[0], 
-            valores.fosforo[0],
-            valores.potasio[0]
-          ],
-          backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56'
-          ],
-          hoverOffset: 4
-        }]
-      },
+        type: 'bar' as ChartType,
+        data: {
+            labels: ['Nitrógeno', 'Fósforo', 'Potasio'],
+            datasets: [{
+                data: [
+                    valores.nitrogeno[0],
+                    valores.fosforo[0],
+                    valores.potasio[0]
+                ],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    align:'center',
+                    text: 'Composición de Nutrientes',
+                    color: '#333333',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                },
+                legend: {
+                    display: false 
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Nutrientes',
+                        color: '#333333',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Valor actual',
+                        color: '#333333',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        }
     });
-  }
+}
 
   updateCharts(valores: any): void {
     const chart = this.charts['composicion'];

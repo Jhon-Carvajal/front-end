@@ -1,5 +1,4 @@
 import { Component, OnInit,OnDestroy,ViewChild,ElementRef, AfterViewInit} from '@angular/core';
-import { FincaService } from 'src/app/services/finca.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { DispositivoService } from 'src/app/services/dispositivo.service';
@@ -51,7 +50,6 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
               }
   
   ngOnInit(): void {
-    // actualización 
  this.datos.datosias().subscribe(
       (historicos: any) => {
         // Recorrer los datos históricos y llenar los arreglos de datos
@@ -73,7 +71,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
 
-    this.subscription = interval(1000)
+    this.subscription = interval(10000)
       .pipe(switchMap(() => this.datos.datosias()))
       .subscribe(
         (data: any) => {
@@ -117,26 +115,38 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.charts['humedad'] = new Chart(this.humedadChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['%'],
+        labels: [''],
         datasets: [{
           label: 'Humedad',
           data: this.humedadData,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'Porcentaje de humedad' } }
+        }
       }
     });
 
     this.charts['temperatura'] = new Chart(this.temperaturaChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['°C'],
+        labels: [''],
         datasets: [{
           label: 'Temperatura',
           data: this.temperaturaData,
           borderColor: 'rgb(255, 99, 132)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'Grados Centigrados (°C)' } }
+        }
       }
     });
 
@@ -150,6 +160,12 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
           borderColor: 'rgb(54, 162, 235)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'Valor de Siemens/metro' } }
+        }
       }
     });
 
@@ -163,6 +179,12 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
           borderColor: 'rgb(255, 0, 0)',
           tension: 0.1
         }]
+       },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'Porcentaje actual de Bateria' } }
+        }
       }
      });
     
@@ -176,94 +198,118 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
           borderColor: 'rgb(255, 206, 86)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'Valor actual pH' } }
+        }
       }
     });
 
     this.charts['nitrogeno'] = new Chart(this.nitrogenoChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['mg/kg'],
+        labels: [''],
         datasets: [{
           label: 'Nitrógeno',
           data: this.nitrogenoData,
           borderColor: 'rgb(255, 206, 86)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'miligramos/kilogramos' } }
+        }
       }
     });
 
     this.charts['fosforo'] = new Chart(this.fosforoChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['mg/kg'],
+        labels: [''],
         datasets: [{
           label: 'Fósforo',
           data: this.fosforoData,
           borderColor: 'rgb(153, 102, 255)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'miligramos/kilogramos' } }
+        }
       }
     });
 
     this.charts['potasio'] = new Chart(this.potasioChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['mg/kg'],
+        labels: [''],
         datasets: [{
           label: 'Potasio',
           data: this.potasioData,
           borderColor: 'rgb(255, 159, 64)',
           tension: 0.1
         }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Tiempo' } },
+          y: { title: { display: true, text: 'miligramos/kilogramos' } }
+        }
       }
     });
   }
 
   clasificarFosforo(valor: number): string {
   if (valor < 10) {
-    return `El valor de fósforo (${valor} mg/kg) Bajo`;
+    return `Fósforo actual (${valor} mg/kg) Bajo`;
   } else if (valor >=10 && valor<=30) {
-    return `El valor de fósforo (${valor} mg/kg) Óptimo`;
+    return `Fósforo actual (${valor} mg/kg) Óptimo`;
   } else if (valor > 30) {
-    return `El valor de fósforo (${valor} mg/kg) Alto`;
+    return `Fósforo actual (${valor} mg/kg) Alto`;
   } else {
-    return `El valor de fósforo (${valor}) no está en el rango esperado.`;
+    return `Fósforo actual (${valor}) no está en el rango esperado.`;
   }
   }
   
    clasificarNitrogeno(valor: number): string {
   if (valor < 2.5) {
-    return `Valor de Nitrogeno (${valor} mg/kg) Bajo`;
+    return `Nitrogeno actual(${valor} mg/kg) Bajo`;
   } else if (valor >=2.5 && valor<=3.5) {
-    return `Valor de Nitrogeno (${valor} mg/kg) Óptimo`;
+    return `Nitrogeno actual(${valor} mg/kg) Óptimo`;
   } else if (valor > 3.5) {
-    return `Valor de Nitrogeno (${valor} mg/kg) Alto`;
+    return `Nitrogeno actual (${valor} mg/kg) Alto`;
   } else {
-    return `Valor de Nitrogeno (${valor}) no está en el rango esperado.`;
+    return `Nitrogeno actual (${valor}) no está en el rango esperado.`;
   }
    }
   
    clasificarPotasio(valor: number): string {
   if (valor < 100) {
-    return `Valor de Potasio (${valor} mg/kg) Deficiente`;
+    return `Potasio actual (${valor} mg/kg) Deficiente`;
   } else if (valor >=100 && valor<=200) {
-    return `Valor de Potasio (${valor} mg/kg) Adecuado`;
+    return `Potasio actual  (${valor} mg/kg) Adecuado`;
   } else if (valor > 200) {
-    return `Valor de Potasio (${valor} mg/kg) Óptimo`;
+    return `Potasio actual  (${valor} mg/kg) Óptimo`;
   } else {
-    return `Valor de Potasio (${valor}) no está en el rango esperado.`;
+    return `Potasio actual (${valor}) no está en el rango esperado.`;
   }
 }
 
   clasificarPh(valor: number): string {
   if (valor < 7) {
-    return `Valor de Ph (${valor} ) Suelo Acido`;
+    return `Ph actual (${valor} ) Suelo Acido`;
   } else if (valor >=7 && valor<=7.3) {
-    return `Valor de Ph (${valor} ) Neutro`;
+    return `Ph actual (${valor} ) Neutro`;
   } else if (valor > 7.3) {
-    return `Valor de Ph (${valor} ) Suelo Alcalino`;
+    return `Ph actual (${valor} ) Suelo Alcalino`;
   } else {
-    return `Valor de Ph (${valor}) no está en el rango esperado.`;
+    return `Ph actual (${valor}) no está en el rango esperado.`;
   }
   }
   

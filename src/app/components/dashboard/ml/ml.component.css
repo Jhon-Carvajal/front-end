@@ -5,28 +5,32 @@
     width: 400px;
     height: 400px;
     margin: 0 auto;
+}
+.main2 {
+  display: flex;
+  align-items: flex-start;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.main2 h2 {
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .image {
-  width: 100%;
+  width: 40%;
   height: auto;
-}
-
-.text {
-  position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(0, 0, 0);
-    font-size: 24px;
-    text-shadow: 1px 1px 2px black;
+  margin-right: 30px;
 }
 
 .card {
   position: relative;
   width: 850px;
-  height: 550px;
+  height: 600px;
   border-radius: 14px;
   z-index: 1111;
   overflow: hidden;
@@ -43,7 +47,7 @@
   top: 5px;
   left: 5px;
   width: 840px;
-  height: 540px;
+  height: 590px;
   z-index: 2;
   background: rgba(255, 255, 255, .95);
   backdrop-filter: blur(24px);
@@ -60,7 +64,7 @@
   width: 550px;
   height: 550px;
   border-radius: 50%;
-  background-color: #0400ff;
+  background-color: #19305C;
   opacity: 1;
   filter: blur(12px);
   animation: blob-bounce 5s infinite ease;

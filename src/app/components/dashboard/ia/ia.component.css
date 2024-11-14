@@ -17,7 +17,7 @@ body {
 }
 
 section {
-    background-color: #c2c2f34b;
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -89,129 +89,37 @@ section:last-child {
     font-size: 1.2em;
 }
 
-.time {
+/*configuracion del button*/
+.button {
+    height: 50px;
+    text-align: center;
     margin-top: 10px;
-    font-size: 1em;
-    color: #000000;
 }
 
-
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-
-    10% {
-        transform: translateX(0);
-    }
-
-    15% {
-        transform: translateX(-100%);
-    }
-
-    30% {
-        transform: translateX(-100%);
-    }
-
-    35% {
-        transform: translateX(-200%);
-    }
-
-    50% {
-        transform: translateX(-200%);
-    }
-
-    55% {
-        transform: translateX(-300%);
-    }
-
-    70% {
-        transform: translateX(-300%);
-    }
-
-    75% {
-        transform: translateX(-400%);
-    }
-
-    90% {
-        transform: translateX(-400%);
-    }
-
-    95% {
-        transform: translateX(-500%);
-    }
-
-    100% {
-        transform: translateX(-500%);
-    }
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: sans-serif;
-}
-
-.wrapper {
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.slider {
-    position: none;
-}
-
-.slides {
-    position: relative;
-    display: flex;
+button {
+    border-radius: .25rem;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #121010;
+    -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+    clip-path: polygon(0 0, 0 0, 100% 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 100%);
+    height: 40px;
+    font-size: 0.7rem;
+    line-height: 14px;
+    letter-spacing: 1.2px;
+    transition: .2s .1s;
+    background-image: linear-gradient(80deg, #f9f2f2, #020eb6);
+    border: 0 solid;
     overflow: hidden;
 }
 
-.slide {
-    width: 100vw;
-    flex-shrink: 0;
-    animation-name: slide;
-    animation-duration: 20s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
+button:hover {
+    cursor: pointer;
+    transition: all .3s ease-in;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
-.slides:hover .slide {
-    animation-play-state: paused;
-}
-
-.slide img {
-    width: auto;
-    vertical-align: top;
-}
-
-.slide a {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-}
-
-.caption {
-    color: white;
-    text-shadow: 1px 1px black;
-    font-size: 8vw;
-    position: absolute;
-    bottom: 8vw;
-    right: 4vw;
-}
-
-.slide:target {
-    animation-name: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-}

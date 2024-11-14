@@ -2,17 +2,27 @@
     <div class="bg">
         <div *ngIf="sugerencia">
             <br>
-            <h1 style="text-align: center;">SUGERENCIA DE FERTILIZANTE</h1>
+            <h1 style="text-align: center; font-weight: bold;">SUGERENCIA DE FERTILIZANTE</h1>
             <br>
-            <h2>{{ sugerencia }}</h2>
-            <br>
+            <h3 style="text-align: justify;">{{ sugerencia }}</h3>
+            <br><br><br>
             <h2 style="text-align: center;">Fertilizante recomendado:</h2>
-            <div class="container" style="text-align: center; align-items: center;">
-                <img src="https://pdcinternacional.co/wp-content/uploads/2023/04/ARENA-SILICE-CUARZO-10-20-BULTO-50-KG_64_11zon.jpg" alt="Bulto de Abono" class="image">
-                <br>
-                <div class="text">{{referenciaF}}</div>
+            <div class="main2">
+                <img src="https://static.wixstatic.com/media/cdfea7_f7eb7912603b49efa4379b00ad4ad73e~mv2.jpg/v1/fill/w_568,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/cdfea7_f7eb7912603b49efa4379b00ad4ad73e~mv2.jpg" 
+                class="image">
+            <div>
+                <br><br><br>
+                <h2 style="text-align: justify;" >{{referenciaF}}</h2>
+                <br><br><br>
+                <section class="overview">
+                    <button routerLink="/dashboard" class="button" style="margin-right: 90px;">REGRESAR</button>
+                    <button routerLink="/dashboard/datossen" class="button">GRAFICAS</button>
+                </section>
             </div>
+            </div>
+           
         </div>
+        
     </div>
     <div class="blob">
     </div>

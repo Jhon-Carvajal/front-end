@@ -1,18 +1,6 @@
-
-  <!--  <h1 class="letra">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS
-      NPK</h1>
-    <h2 class="letra">Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe,
-      como nitrógeno (N), fósforo (P) y potasio (K), conocidos como nutrientes primarios.
-      El monitoreo de estos nutrientes es crucial para el crecimiento y desarrollo saludable de
-      las plantas.
-      El sistema utiliza tecnología para analizar la composición del suelo en el entorno del cultivo
-      y proporciona sugerencias sobre qué tipo de fertilizante se aplicaria para
-      optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de
-      los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva.</h2>
-  
+  <!-- 
+      style="background-color: #83A6CE;"
 -->
-      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,131 +11,73 @@
   <link rel="stylesheet" href="inicio.component.css">
 </head>
 
-<body>
-  <h1 style="color: rgb(0, 0, 0); text-align: center;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
-  <h1 style="color: rgb(0, 0, 0); text-align: center;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
-  <div class="container">
-    <p id="datetime"></p>
+<section>
+  <div class="header">
 
-    <main class="main-content">
-    <!--carrusel -->
-      <section class="schedule" style="background-color: transparent;"> 
-        <div class="wrapper">
-          <div class="slider" id="slider">
-            <ul class="slides">
-
-              <li class="slide" id="slide1">
-                <a>
-                  <img
-                    src="https://www.bancolombia.com/wcm/connect/bacde2b5-81fe-4a13-9c26-dbdb2992fa4f/paso-a-paso-morfologiaCafe-1.jpg?MOD=AJPERES"
-                    alt="photo 1">
-                </a>
-              </li>
-              <li class="slide" id="slide2">
-                <a>
-                  <img
-                    src="https://www.bancolombia.com/wcm/connect/c1080e3e-7188-4e0f-adfb-bb1046683a93/paso-a-paso-morfologiaCafe-2.jpg?MOD=AJPERES"
-                    alt="photo 2">
-                </a>
-              </li>
-              <li class="slide" id="slide3">
-                <a>
-                  <img
-                    src="https://www.bancolombia.com/wcm/connect/9a24c124-8aea-411d-8d9c-2cee1559e983/paso-a-paso-morfologiaCafe-3.jpg?MOD=AJPERES"
-                    alt="photo 3">
-                </a>
-              </li>
-              <li class="slide" id="slide4">
-                <a>
-                  <img
-                    src="https://www.bancolombia.com/wcm/connect/3a5b1465-7d68-44ea-bcce-a0b23abd8135/paso-a-paso-morfologiaCafe-4.jpg?MOD=AJPERES"
-                    alt="photo 4">
-                </a>
-              </li>
-              <li class="slide" id="slide5">
-                <a href="#slide5">
-                  <img
-                    src="https://www.bancolombia.com/wcm/connect/06104dab-c725-45cd-b008-03c7c9cc3b42/paso-a-paso-morfologiaCafe-5.jpg?MOD=AJPERES"
-                    alt="photo 5">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-    </main>
-<!--anexo nombre -->
-    <main class="main-content">
-      
-      <section class="schedule">
-        <div class="schedule-header">
-          <h1>Hola:</h1>
-          <h2 style="text-align: center;">{{nombre1}} {{apellido1}}</h2>
-        </div>
-        <div class="schedule-entries">
-          <div class="schedule-entry">
-          
-            <p>Espero que tu dia sea Maravilloso</p>
-          </div>
-        </div>
-        <br>
-        <br><br>
-        <button routerLink="/dashboard/finca" class="button">Continuar</button>
-      </section>
-
-      <section class="overview">
-        <div>
-          <br><br>
-          <canvas #nitrogenoChart></canvas>
-          <br>
-          <br>
-        </div> 
-        <button routerLink="/dashboard/sugerenciad" class="button">Sugerencia</button>
-      </section>
-
-      <section >
-        <a href="https://latiendadelcafe.co/blogs/cafe-colombiano/historia-del-cafe-en-colombia"target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0272/2873/3504/files/historia-del-cafe-en-colombia.jpg?v=1634770346"
-            alt="Historia del Café en Colombia" width="80%">
-        </a>
-      </section>
-
-    </main>
-
-    <main class="main-content">
-      <section class="reco">
-        <div>
-          <h2>Páginas de adquisición de fertilizantes</h2>
-          <ul>
-            <li><a href="https://www.acepalma.com" target="_blank">Acepalma</a></li>
-            <li><a href="https://disanlatinoamerica.com/es/" target="_blank">Disan</a> </li>
-            <li><a href="https://www.ciamsa.com/es/" target="_blank">C.I De Azucares y Mieles-CIAMSA</a></li>
-            <li><a href="https://nitrofert.com.co" target="_blank">Nitrofert</a></li>
-            <li><a href="https://www.monomeros.com.co" target="_blank">Monómeros Colombo Venezolanos</a></li>
-            <li><a href="https://nutriciondeplantas.com.co" target="_blank">Nutrición de Plantas</a></li>
-            <li><a href="https://www.yara.com.co" target="_blank">Yara Colombia</a></li>
-            <li></li>
-          </ul>
-        </div>
-      </section>
-      
-      <section class="main-content">
-        <div>
-          <h1>Información</h1>
-          <br>
-          <p> Atención </p>
-          <br>
-          <p> Contacto </p>
-          <br>
-          <li><a href="https://www.cafedecolombia.com/historia-del-cafe-de-colombia/" target="_blank">Historia del café en Colombia</a></li>
-          <br>
-          <li><a href="https://www.cenicafe.org/es/publications/C1.pdf" target="_blank">Variedades de cafe sembaradas en Colombia</a></li>
-        </div>
-      </section>
-    </main>
+    <h1 style="text-align: center;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
+    <h1 style="text-align: center;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
+    <p  style="text-align: center;" id="datetime"></p>
+    <br>
+    <div class="linea"></div> 
   </div>
-</body>
+<br><br><br>
+  <div class="main">
+    
+    <img
+      src="https://cdn-gx-aria-media.osp.opera.software/images/7529d54e-a155-11ef-ab93-b3b5a7f1b2c5/1731457497046/sample_0.jpg"
+      style="width: 200px; margin-right: 40px;">
+    <h2 style="text-align: justify;">
+      Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe,
+      como nitrógeno (N), fósforo (P) y potasio (K), conocidos como nutrientes primarios.
+      El monitoreo de estos nutrientes es crucial para el crecimiento y desarrollo saludable de
+      las plantas.
+      El sistema utiliza tecnología para analizar la composición del suelo en el entorno del cultivo
+      y proporciona la sugerencia correspondiente sobre qué tipo de fertilizante se aplicaria para
+      optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de
+      los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva de nutrientes.
+    </h2>
+  </div>
+  <br><br><br>
+  <div class="linea2"></div>
+  <br><br>
+  <div class="main2">
+    <section style="margin-right: 40px;">
+      <canvas #nitrogenoChart style="width: 300px;height: 250px;"></canvas>
+    </section>
+    <h2 style="text-align: justify;">Con base en el monitoreo de los nutrientes primarios en el suelo, 
+      el sistema genera recomendaciones de aplicación de nutrientes para el cultivo, basadas en los resultados de los componentes.
+      <br><br>
+      <section class="overview">
+        <button routerLink="/dashboard/sugerenciad" class="button" style="margin-right: 110px;">Ver Sugerencia</button>
+        <button routerLink="/dashboard/datossen" class="button">Ver Graficas</button>
+      </section>
+    </h2>
+  </div>
+ 
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="logo">
+        <img src="https://cdn.pixabay.com/photo/2020/03/06/03/52/coffee-4905964_1280.jpg">
+      </div>
+      <div class="contact-info" style="text-align: justify;">
+        <p>links de adquisición de fertilizantes</p>
+        <a href="https://www.acepalma.com" target="_blank">Acepalma</a><br>
+        <a href="https://disanlatinoamerica.com/es/" target="_blank">Disan</a><br>
+        <a href="https://www.ciamsa.com/es/" target="_blank">C.I De Azucares y Mieles-CIAMSA</a><br>
+        <a href="https://nitrofert.com.co" target="_blank">Nitrofert</a><br>
+        <a href="https://www.monomeros.com.co" target="_blank">Monómeros Colombo Venezolanos</a><br>
+        <a href="https://nutriciondeplantas.com.co" target="_blank">Nutrición de Plantas</a><br>
+        <a href="https://www.yara.com.co" target="_blank">Yara Colombia</a><br>
+      </div>
+      <div class="contact-info">
+        <div style="text-align: justify;">
+          <p>Links de interes</p>
+          <a href="https://www.cafedecolombia.com/historia-del-cafe-de-colombia/" target="_blank">Historia del café en Colombia</a><br>
+          <a href="https://www.cenicafe.org/es/publications/C1.pdf">Variedades de café en Colombia</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
+ </section>
 </html>
-

@@ -1,9 +1,8 @@
 
-<!DOCTYPE html>
-<html lang="en">
+<div >
 
-<body>
-    <h1 style="color: rgb(0, 0, 0); text-align: center;">MONITORIZACIÓN DE VARIABLES</h1>
+<body >
+    <h1 style="color: rgb(0, 0, 0); text-align: center; font-weight: bold;">MONITORIZACIÓN DE VARIABLES</h1>
     <h3 style="color: rgb(0, 0, 0);text-align: center;">Estos valores son orientativos y 
         pueden variar dependiendo de la variedad de café y las condiciones específicas de la región.</h3>
     <div class="container">
@@ -12,10 +11,10 @@
                 <div>
                     <canvas #nitrogenoChart></canvas>
                     <br>
-                    <p>{{ nitrogenoMensaje }}</p>
-                    <h3>El nitrógeno es un nutriente esencial para el crecimiento de las plantas ademas es un componente fundamental de la clorofila,
+                    <p style="font-weight: bold;">{{ nitrogenoMensaje }}</p>
+                    <h5 style="text-align: justify;">El nitrógeno es un nutriente esencial para el crecimiento de las plantas ademas es un componente fundamental de la clorofila,
                     que les permite llevar a cabo la fotosíntesis. Sin un nivel adecuado de nitrógeno, las plantas
-                    de café pueden volverse amarillas y afectar su crecimiento.</h3>
+                    de café pueden volverse amarillas y afectar su crecimiento.</h5>
                 </div>
             </section>
           
@@ -23,23 +22,23 @@
                 <div>
                     <canvas #fosforoChart></canvas>
                     <br>
-                    <p>{{ fosforoMensaje }}</p>
-                    <h3>El fósforo es vital para el desarrollo de las raíces y es fundamental en la fotosíntesis y en el proceso de respiración
+                    <p style="font-weight: bold;">{{ fosforoMensaje }}</p>
+                    <h5 style="text-align: justify;">El fósforo es vital para el desarrollo de las raíces y es fundamental en la fotosíntesis y en el proceso de respiración
                     de la planta. Un nivel adecuado de fósforo garantiza un buen desarrollo radicular, lo que ayuda en la absorción de
-                    nutrientes del suelo.</h3>
+                    nutrientes del suelo.</h5>
                 </div>
             </section>
         </main>
-        <br><br>
+
         <main class="main-content">
             <section class="overview">
                 <div>
                     <canvas #potasioChart></canvas>
                     <br>
-                    <p>{{ potasioMensaje }}</p>
-                    <h3>El potasio es esencial para la regulación del equilibrio hídrico dentro de la planta y ayuda a mejorar la resistencia a
+                    <p style="font-weight: bold;">{{ potasioMensaje }}</p>
+                    <h5 style="text-align: justify;">El potasio es esencial para la regulación del equilibrio hídrico dentro de la planta y ayuda a mejorar la resistencia a
                     enfermedades. Se encarga de activar varias enzimas y es clave en la síntesis de proteínas y en la producción de frutos.
-                    mejora la calidad del café, incluyendo su sabor y nivel de azúcares.</h3>
+                    mejora la calidad del café, incluyendo su sabor y nivel de azúcares.</h5>
                 </div>
             </section>
             
@@ -47,21 +46,21 @@
                 <div>
                     <canvas #humedadChart></canvas>
                     <br>
-                    <p>Valor actual de la humedad es: {{ humedadValor }}%</p>
-                    <h3>La humedad del suelo es crucial para el crecimiento del café, ya que el agua es necesaria para la fotosíntesis y el
-                    transporte de nutrientes.</h3>
+                    <p style="font-weight: bold;">Humedad actual: {{ humedadValor }}%</p>
+                    <h5 style="text-align: justify;">La humedad del suelo es crucial para el crecimiento del café, ya que el agua es necesaria para la fotosíntesis y el
+                    transporte de nutrientes.</h5>
                 </div>
             </section>
         </main>
-        <br><br>
+
         <main class="main-content">
             <section class="overview">
                 <div>
                     <canvas #temperaturaChart></canvas>
                     <br>
-                    <p>Valor actual de la Temperatura es: {{ temperaturaValor }}°C</p>
-                    <h3>La temperatura del suelo afecta las reacciones químicas y biológicas que ocurren en él, incluidas las relacionadas con
-                    el crecimiento de las raíces y la actividad de los organismos,lo que resulta en un suelo más fértil</h3>
+                    <p style="font-weight: bold;">Temperatura actual {{ temperaturaValor }}°C</p>
+                    <h5 style="text-align: justify;">La temperatura del suelo afecta las reacciones químicas y biológicas que ocurren en él, incluidas las relacionadas con
+                    el crecimiento de las raíces y la actividad de los organismos,lo que resulta en un suelo más fértil</h5>
                 </div>
             </section>
             
@@ -69,9 +68,9 @@
                 <div>
                     <canvas #conductividadChart></canvas>
                     <br>
-                    <p>Valor actual de la Conductividad es: {{ conductividadValor }}S/m</p>
-                    <h3>La conductividad eléctrica del suelo es una medida de la salinidad. Un nivel muy alto de sal puede ser perjudicial para
-                    las plantas al interferir con la absorción de agua y nutrientes, además de causar toxicidad.</h3>
+                    <p style="font-weight: bold;">Conductividad actual: {{ conductividadValor }}S/m</p>
+                    <h5 style="text-align: justify;">La conductividad eléctrica del suelo es una medida de la salinidad. Un nivel muy alto de sal puede ser perjudicial para
+                    las plantas al interferir con la absorción de agua y nutrientes, además de causar toxicidad.</h5>
                 </div>
             </section>
         </main>
@@ -82,9 +81,9 @@
                 <div>
                     <canvas #phChart></canvas>
                     <br>
-                    <p>{{ phMensaje }}</p>
-                    <h3>El pH influye en la disponibilidad de los nutrientes en el suelo. Un pH ligeramente ácido es ideal para el café, ya que
-                    permite una mejor disponibilidad de nitrógeno, fósforo, potasio y otros micronutrientes esenciales.</h3>
+                    <p style="font-weight: bold;">{{ phMensaje }}</p>
+                    <h5 style="text-align: justify;">El pH influye en la disponibilidad de los nutrientes en el suelo. Un pH ligeramente ácido es ideal para el café, ya que
+                    permite una mejor disponibilidad de nitrógeno, fósforo, potasio y otros micronutrientes esenciales.</h5>
                 </div>
             </section>
 
@@ -92,11 +91,15 @@
                 <div>
                     <canvas #bateriaChart></canvas>
                     <br>
-                    <p>Porcentaje de Bateria: {{ bateriaValor }}%</p>
+                    <p style="font-weight: bold;">Porcentaje de Bateria: {{ bateriaValor }}%</p>
                 </div>
             </section>
         </main>
+        <section class="overview" style="background-color: #19305C;">
+            <button routerLink="/dashboard" class="button" style="margin-right: 950px;">REGRESAR</button>
+            <button routerLink="/dashboard/sugerenciad" class="button">VER SUGERENCIA</button>
+        </section>
     </div>
 </body>
 
-</html>
+</div>
