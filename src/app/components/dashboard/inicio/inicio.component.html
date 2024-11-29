@@ -10,12 +10,12 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="inicio.component.css">
 </head>
-
+<!---->
 <section>
   <div class="header">
 
-    <h1 style="text-align: center;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
-    <h1 style="text-align: center;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
+    <h1 style="text-align: center; font-weight: bold;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
+    <h1 style="text-align: center; font-weight: bold;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
     <p  style="text-align: center;" id="datetime"></p>
     <br>
     <div class="linea"></div> 
@@ -24,17 +24,15 @@
   <div class="main">
     
     <img
-      src="https://cdn-gx-aria-media.osp.opera.software/images/7529d54e-a155-11ef-ab93-b3b5a7f1b2c5/1731457497046/sample_0.jpg"
+      src="https://img.freepik.com/foto-gratis/cosecha-cafe-adulto-naturaleza_23-2151711499.jpg"
       style="width: 200px; margin-right: 40px;">
     <h2 style="text-align: justify;">
-      Este sistema se centra en la gestión de nutrientes esenciales para las plantas de cafe,
-      como nitrógeno (N), fósforo (P) y potasio (K), conocidos como nutrientes primarios.
-      El monitoreo de estos nutrientes es crucial para el crecimiento y desarrollo saludable de
-      las plantas.
-      El sistema utiliza tecnología para analizar la composición del suelo en el entorno del cultivo
-      y proporciona la sugerencia correspondiente sobre qué tipo de fertilizante se aplicaria para
-      optimizar las condiciones para el cultivo. Esto podria mejorar la eficiencia del uso de
-      los fertilizantes,reducir costos y minimizar impactos ambientales al evitar la aplicación excesiva de nutrientes.
+      Esta plataforma se enfoca en la gestión de nutrientes esenciales para las plantas de café, como nitrógeno (N), fósforo
+      (P) y potasio (K), conocidos como nutrientes primarios. El monitoreo de estos elementos es fundamental para garantizar
+      el crecimiento y desarrollo sostenible de las plantas. Utilizando tecnología avanzada, el sistema analiza la composición
+      del suelo en el entorno del cultivo y sugiere el fertilizante más adecuado entre 27 opciones, para optimizar las condiciones del cultivo.
+      Esto no solo mejora la eficiencia en el uso de fertilizantes, sino que también reduce costos y minimiza el impacto
+      ambiental al evitar la aplicación excesiva de nutrientes.
     </h2>
   </div>
   <br><br><br>
@@ -44,40 +42,111 @@
     <section style="margin-right: 40px;">
       <canvas #nitrogenoChart style="width: 300px;height: 250px;"></canvas>
     </section>
-    <h2 style="text-align: justify;">Con base en el monitoreo de los nutrientes primarios en el suelo, 
-      el sistema genera recomendaciones de aplicación de nutrientes para el cultivo, basadas en los resultados de los componentes.
+    <h2 style="text-align: justify;">Basándose en el monitoreo de los nutrientes primarios del suelo, el sistema genera recomendaciones específicas para la
+    aplicación de nutrientes en el cultivo, adaptadas a los resultados obtenidos en el análisis de los componentes.
       <br><br>
       <section class="overview">
         <button routerLink="/dashboard/sugerenciad" class="button" style="margin-right: 110px;">Ver Sugerencia</button>
-        <button routerLink="/dashboard/datossen" class="button">Ver Graficas</button>
+        <button routerLink="/dashboard/datossen" class="button">Ver Gráficas</button>
       </section>
     </h2>
   </div>
- 
+
+  <br>
+  <div class="linea"></div>
+  <br>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Logos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  
+  <body class="main">
+    <div class="container mt-5" >
+      <div id="logoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#logoCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#logoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <!-- Carrusel -->
+        <div class="carousel-inner">
+          <!-- Carrusel 1-->
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col text-center">
+                <a href="https://uniagro.co" target="_blank">
+                  <img src="https://uniagro.co/wp-content/uploads/2017/03/logo-uniagro-home.png" alt="Logo 1">
+                </a>
+              </div>
+              <div class="col text-center">
+                <a href="https://disanlatinoamerica.com" target="_blank">
+                  <img src="https://disanlatinoamerica.com/wp-content/uploads/2022/02/disanquimicos.png" alt="Logo 2">
+                </a>
+              </div>
+              <div class="col text-center">
+                <a href="https://ciamsa.com" target="_blank">
+                  <img src="https://cloud.corferias.co/extranet/servicio/stand_virtual/archivos/Logo(3235).png"
+                    alt="Logo 3">
+                </a>
+              </div>
+            </div>
+          </div>
+       <!--Carrusel2-->
+          <div class="carousel-item">
+            <div class="row justify-content-center" style="align-items: center;">
+              <div class="col text-center">
+                <a href="https://nitrofert.com.co" target="_blank">
+                  <img src="https://nitrofert.com.co/wp-content/uploads/2022/09/NITROFERT.png" alt="Logo 4">
+                </a>
+              </div>
+              <div class="col text-center">
+                <a href="https://nutriciondeplantas.com.co" target="_blank">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyT8ZAO9oNhx1ka0HfgOFhvYO-13FrrVZb_A&s"
+                    alt="Logo 5">
+                </a>
+              </div>
+              <div class="col text-center">
+                <a href="https://www.yara.com.co" target="_blank">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkDtmlkIHKV9tiuVXMXKJa6sqbX3jmpnobmw&s"
+                    alt="Logo 6">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+
   <footer class="footer">
     <div class="footer-content">
       <div class="logo">
         <img src="https://cdn.pixabay.com/photo/2020/03/06/03/52/coffee-4905964_1280.jpg">
       </div>
       <div class="contact-info" style="text-align: justify;">
-        <p>links de adquisición de fertilizantes</p>
+        <p>Links de adquisición de fertilizantes</p>
         <a href="https://www.acepalma.com" target="_blank">Acepalma</a><br>
         <a href="https://disanlatinoamerica.com/es/" target="_blank">Disan</a><br>
         <a href="https://www.ciamsa.com/es/" target="_blank">C.I De Azucares y Mieles-CIAMSA</a><br>
         <a href="https://nitrofert.com.co" target="_blank">Nitrofert</a><br>
-        <a href="https://www.monomeros.com.co" target="_blank">Monómeros Colombo Venezolanos</a><br>
+        <a href="https://uniagro.co" target="_blank">Uniagro</a><br>
         <a href="https://nutriciondeplantas.com.co" target="_blank">Nutrición de Plantas</a><br>
         <a href="https://www.yara.com.co" target="_blank">Yara Colombia</a><br>
       </div>
       <div class="contact-info">
         <div style="text-align: justify;">
-          <p>Links de interes</p>
+          <p>Links de interés</p>
           <a href="https://www.cafedecolombia.com/historia-del-cafe-de-colombia/" target="_blank">Historia del café en Colombia</a><br>
           <a href="https://www.cenicafe.org/es/publications/C1.pdf">Variedades de café en Colombia</a>
         </div>
       </div>
     </div>
   </footer>
-
  </section>
 </html>

@@ -17,7 +17,7 @@ export class PerfilComponent {
     private userservice1: UserService) { 
      this.nombre2 = '';
      this.apellido2 = '';
-     this.correo2 = '';
+    this.correo2 = '';
   }
   
  ngOnInit(): void {
@@ -30,13 +30,14 @@ export class PerfilComponent {
     if (datossesion) {
         const usuario: User = JSON.parse(datossesion);
         
-        if (usuario.nombre && usuario.apellidos && usuario.correo) {
+        if (usuario.nombre && usuario.apellidos && usuario.correo ) {
             this.nombre2 = usuario.nombre;
             this.apellido2 = usuario.apellidos;
             this.correo2 = usuario.correo;
-            //console.log("Nombre:", this.correo2);
+            
+           // console.log("c:", this.rol2 );
         } else {
-            console.error("correo no disponicle");
+            console.error("correo no disponible");
         }
     } else {
         console.error("No hay datos de sesión disponibles.");

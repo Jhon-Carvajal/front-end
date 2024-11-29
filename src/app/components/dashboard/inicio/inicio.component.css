@@ -14,17 +14,19 @@
 .main {
   grid-area: main;
   display: flex;
-    align-items: center;
-    
-    margin: 0 auto;
-    padding: 20px;
+  align-items: center;
+
+  margin: 0 auto;
+  padding: 20px;
 }
+
 .main h2 {
   text-align: justify;
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
 }
+
 .main2 {
   display: flex;
   align-items: flex-start;
@@ -32,6 +34,7 @@
   margin: 0 auto;
   padding: 20px;
 }
+
 .main2 h2 {
   text-align: justify;
   font-size: 16px;
@@ -42,6 +45,7 @@
 .footer {
   grid-area: footer;
 }
+
 .linea {
   text-align: center;
   height: 3px;
@@ -49,6 +53,7 @@
   background: linear-gradient(to right, transparent, white 40%, #19305C 60%, transparent);
   margin: 0 10px;
 }
+
 .linea2 {
   text-align: center;
   height: 3px;
@@ -56,6 +61,7 @@
   background: linear-gradient(to right, transparent, #19305C 40%, white 60%, transparent);
   margin: 0 10px;
 }
+
 /*configuracion del button*/
 .button {
   height: 50px;
@@ -134,3 +140,8 @@ button:hover {
   text-align: center;
 }
 
+.carousel-item img {
+  max-width: 150px;
+  max-height: 100px;
+  object-fit: contain;
+}

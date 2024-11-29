@@ -34,7 +34,7 @@ export class MLComponent implements OnInit, OnDestroy {
     "No es necesario aplicar fertilizantes en este momento. Los niveles de nitrógeno, fósforo y potasio son óptimos, lo que indica que el suelo está bien equilibrado.",
     "El potasio está en niveles altos, pero los otros nutrientes podrían necesitar ajuste. Usa un fertilizante que no contenga potasio para evitar una sobredosis de este nutriente, que podría inhibir el crecimiento de las plantas.",
     "El nitrógeno está en niveles adecuados, pero el potasio es bajo. Aplica un fertilizante que contenga solo potasio para fortalecer la planta sin afectar la producción excesiva de hojas debido al nitrógeno.",
-    "Evita el uso de fertilizantes con nitrógeno, ya que los niveles actuales son adecuados. En su lugar, enfócate en otros nutrientes como fósforo y potasio para equilibrar el suelo.",
+    "Evita el uso de fertilizantes con nitrógeno, ya que los niveles actuales son adecuados. En su lugar, prioriza nutrientes como fósforo y potasio para equilibrar el suelo de manera óptima.",
     "El suelo tiene suficiente nitrógeno y potasio, pero puede necesitar otros nutrientes. Aplica un fertilizante sin estos dos elementos para evitar saturar el suelo y mantener un equilibrio adecuado.",
     "El fósforo es adecuado, pero el nitrógeno y potasio están bajos. Usa un fertilizante sin fósforo para mejorar el desarrollo foliar y la resistencia sin alterar los niveles de fósforo.",
     "El fósforo está en niveles adecuados, pero el nitrógeno es bajo. Aplica un fertilizante que solo aumente el nitrógeno para asegurar un crecimiento foliar vigoroso sin afectar los niveles ya correctos de fósforo.",
@@ -114,7 +114,6 @@ export class MLComponent implements OnInit, OnDestroy {
         const primeraSugerencia = response.sugerencias[0];
         if (primeraSugerencia) {
           sugerenciaNumero = Number(primeraSugerencia);
-         // console.log("Sugerencia alternativa recibida (sugerencias):", sugerenciaNumero);
         }
       } else {
         console.warn('No se encontró ninguna sugerencia válida en la respuesta.');
@@ -124,7 +123,6 @@ export class MLComponent implements OnInit, OnDestroy {
       if (sugerenciaNumero !== null && sugerenciaNumero >= 0 && sugerenciaNumero < this.sugerencias.length) {
         this.sugerencia = this.sugerencias[sugerenciaNumero];
         this.referenciaF = this.referencia[sugerenciaNumero];
-       // console.log('Sugerencia final asignada:', this.sugerencia);
       } else {
         console.warn('Número de sugerencia fuera de rango o inválido.');
       }

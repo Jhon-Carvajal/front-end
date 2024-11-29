@@ -3,13 +3,14 @@ export class User {
     nombre: string;
     apellidos: string;
     correo? : string;
-    contrasena?: string;
+    contrasena? : string;
     token?: string;
 
-    constructor(nombre: string = "", apellidos: string = "", correo:string = "", contrasena:string = "") {
+    constructor(nombre: string = "", apellidos: string = "", correo:string = "", contrasena:string = "",) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.contrasena = contrasena;
     }
+    
 }

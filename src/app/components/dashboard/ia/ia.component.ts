@@ -1,5 +1,4 @@
 import { Component, OnInit,OnDestroy,ViewChild,ElementRef, AfterViewInit} from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { DispositivoService } from 'src/app/services/dispositivo.service';
 import { SharedDataService } from 'src/app/services/shared.data';
@@ -49,7 +48,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
                 private sharedDataService: SharedDataService,) {
               }
   
-  ngOnInit(): void {
+ngOnInit(): void {
  this.datos.datosias().subscribe(
       (historicos: any) => {
         // Recorrer los datos históricos y llenar los arreglos de datos
@@ -61,7 +60,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
           this.phData.push(dato.ph);
           this.nitrogenoData.push(dato.nitrogeno);
           this.fosforoData.push(dato.fosforo);
-          this.potasioData.push(dato.potasio);          
+          this.potasioData.push(dato.potasio);   
         });
 
         this.initializeCharts();
@@ -71,7 +70,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
 
-    this.subscription = interval(10000)
+    this.subscription = interval(20000)
       .pipe(switchMap(() => this.datos.datosias()))
       .subscribe(
         (data: any) => {
@@ -96,6 +95,11 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
             this.fosforoMensaje = this.clasificarFosforo(valores.fosforo);
             this.nitrogenoMensaje = this.clasificarNitrogeno(valores.nitrogeno);
             this.potasioMensaje = this.clasificarPotasio(valores.potasio);
+            this.potasioMensaje = this.clasificarHumedad(valores.potasio);
+           // this.potasioMensaje = this.clasificarConductividad(valores.potasio);
+            //this.potasioMensaje = this.clasificar(valores.potasio);
+            
+
           }
         },
         (error) => {
@@ -111,25 +115,25 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
    
-  initializeCharts(): void {
-    this.charts['humedad'] = new Chart(this.humedadChart.nativeElement, {
-      type: 'line' as ChartType,
-      data: {
-        labels: [''],
-        datasets: [{
-          label: 'Humedad',
-          data: this.humedadData,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }]
-      },
-      options: {
-        scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
-          y: { title: { display: true, text: 'Porcentaje de humedad' } }
-        }
-      }
-    });
+initializeCharts(): void {
+  this.charts['humedad'] = new Chart(this.humedadChart.nativeElement, {
+  type: 'line' as ChartType,
+  data: {
+    labels:[''],
+    datasets: [{
+      label: 'Humedad',
+      data: this.humedadData,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1,
+    }]
+  },
+  options: {
+    scales: {
+      x: { title: { display: true, text: 'Tiempo (s)' } },
+      y: { title: { display: true, text: 'Porcentaje de humedad (%)' } }
+    }
+  }
+});
 
     this.charts['temperatura'] = new Chart(this.temperaturaChart.nativeElement, {
       type: 'line' as ChartType,
@@ -144,8 +148,8 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
-          y: { title: { display: true, text: 'Grados Centigrados (°C)' } }
+          x: { title: { display: true, text: 'Tiempo (s)' } },
+          y: { title: { display: true, text: 'Grados Celcius (°C)' } }
         }
       }
     });
@@ -153,9 +157,9 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.charts['conductividad'] = new Chart(this.conductividadChart.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: ['S/m'],
+        labels: ['dS/m'],
         datasets: [{
-          label: 'Conductividad',
+          label: 'Conductividad eléctrica',
           data: this.conductividadData,
           borderColor: 'rgb(54, 162, 235)',
           tension: 0.1
@@ -163,8 +167,8 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
-          y: { title: { display: true, text: 'Valor de Siemens/metro' } }
+          x: { title: { display: true, text: 'Tiempo (s)' } },
+          y: { title: { display: true, text: 'Valor de decisiemens/metro (dS/m)' } }
         }
       }
     });
@@ -174,7 +178,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       data: {
         labels: ['%'],
         datasets: [{
-          label: 'Bateria',
+          label: 'Batería',
           data: this.bateriaData,
           borderColor: 'rgb(255, 0, 0)',
           tension: 0.1
@@ -182,8 +186,8 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
        },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
-          y: { title: { display: true, text: 'Porcentaje actual de Bateria' } }
+          x: { title: { display: true, text: 'Tiempo (s)' } },
+          y: { title: { display: true, text: 'Porcentaje actual de batería (%)' } }
         }
       }
      });
@@ -193,7 +197,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       data: {
         labels: [''],
         datasets: [{
-          label: 'Ph',
+          label: 'pH',
           data: this.phData,
           borderColor: 'rgb(255, 206, 86)',
           tension: 0.1
@@ -201,8 +205,8 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
-          y: { title: { display: true, text: 'Valor actual pH' } }
+          x: { title: { display: true, text: 'Tiempo (s)' } },
+          y: { title: { display: true, text: 'Escala numérica (pH)' } }
         }
       }
     });
@@ -220,7 +224,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
+          x: { title: { display: true, text: 'Tiempo (s)' } },
           y: { title: { display: true, text: 'miligramos/kilogramos' } }
         }
       }
@@ -239,7 +243,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
+          x: { title: { display: true, text: 'Tiempo (s)' } },
           y: { title: { display: true, text: 'miligramos/kilogramos' } }
         }
       }
@@ -258,7 +262,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       options: {
         scales: {
-          x: { title: { display: true, text: 'Tiempo' } },
+          x: { title: { display: true, text: 'Tiempo (s)' } },
           y: { title: { display: true, text: 'miligramos/kilogramos' } }
         }
       }
@@ -267,80 +271,104 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   clasificarFosforo(valor: number): string {
   if (valor < 10) {
-    return `Fósforo actual (${valor} mg/kg) Bajo`;
+    return `Fósforo actual: ${valor} mg/kg (Nivel bajo)`;
   } else if (valor >=10 && valor<=30) {
-    return `Fósforo actual (${valor} mg/kg) Óptimo`;
+    return `Fósforo actual: ${valor} mg/kg (Nivel adecuado)`;
   } else if (valor > 30) {
-    return `Fósforo actual (${valor} mg/kg) Alto`;
+    return `Fósforo actual: ${valor} mg/kg (Nivel alto)`;
   } else {
-    return `Fósforo actual (${valor}) no está en el rango esperado.`;
+    return ``;
   }
   }
   
-   clasificarNitrogeno(valor: number): string {
-  if (valor < 2.5) {
-    return `Nitrogeno actual(${valor} mg/kg) Bajo`;
-  } else if (valor >=2.5 && valor<=3.5) {
-    return `Nitrogeno actual(${valor} mg/kg) Óptimo`;
-  } else if (valor > 3.5) {
-    return `Nitrogeno actual (${valor} mg/kg) Alto`;
-  } else {
-    return `Nitrogeno actual (${valor}) no está en el rango esperado.`;
+  clasificarNitrogeno(valor: number): string {
+    if (valor < 2.5) {
+      return `Nitrógeno actual: ${valor} mg/kg (Nivel bajo)`;
+    } else if (valor >= 2.5 && valor <= 3.5) {
+      return `Nitrógeno actual: ${valor} mg/kg (Nivel adecuado)`;
+    } else if (valor > 3.5) {
+      return `Nitrógeno actual:$ {valor} mg/kg) (Nivel alto)`;
+    } else {
+      return ``;
+    }
   }
-   }
   
    clasificarPotasio(valor: number): string {
   if (valor < 100) {
-    return `Potasio actual (${valor} mg/kg) Deficiente`;
+    return `Potasio actual: ${valor} mg/kg (Nivel bajo)`;
   } else if (valor >=100 && valor<=200) {
-    return `Potasio actual  (${valor} mg/kg) Adecuado`;
+    return `Potasio actual: ${valor} mg/kg (Nivel adecuado)`;
   } else if (valor > 200) {
-    return `Potasio actual  (${valor} mg/kg) Óptimo`;
+    return `Potasio actual: ${valor} mg/kg (Nivel alto)`;
   } else {
-    return `Potasio actual (${valor}) no está en el rango esperado.`;
+    return ``;
   }
 }
 
   clasificarPh(valor: number): string {
   if (valor < 7) {
-    return `Ph actual (${valor} ) Suelo Acido`;
+    return `pH actual: (${valor}: (Suelo ácido)`;
   } else if (valor >=7 && valor<=7.3) {
-    return `Ph actual (${valor} ) Neutro`;
+    return `pH actual: (${valor} (Suelo neutro)`;
   } else if (valor > 7.3) {
-    return `Ph actual (${valor} ) Suelo Alcalino`;
+    return `pH actual: ${valor} (Suelo alcalino)`;
   } else {
-    return `Ph actual (${valor}) no está en el rango esperado.`;
+    return ``;
   }
   }
-  
+  //agregar mensaje en cada variable
+ clasificarHumedad(valor: number): string {
+  if (valor < 7) {
+    return `humedad actual: (${valor}: ( ácido)`;
+  } else if (valor >=7 && valor<=7.3) {
+    return `humedad actual: (${valor} (Suelo neutro)`;
+  } else if (valor > 7.3) {
+    return `humedad actual: ${valor} (Suelo alcalino)`;
+  } else {
+    return ``;
+  }
+  }
+
   updateCharts(valores: any): void {
-    this.humedadData.push(valores.humedad);
-    this.temperaturaData.push(valores.temperatura);
-    this.conductividadData.push(valores.conductividad);
-    this.bateriaData.push(valores.bateria);
-    this.phData.push(valores.ph);
-    this.nitrogenoData.push(valores.nitrogeno);
-    this.fosforoData.push(valores.fosforo);
-    this.potasioData.push(valores.potasio);
+  // Agregar los nuevos valores a los datos históricos
+  this.humedadData.push(valores.humedad);
+  this.temperaturaData.push(valores.temperatura);
+  this.conductividadData.push(valores.conductividad);
+  this.bateriaData.push(valores.bateria);
+  this.phData.push(valores.ph);
+  this.nitrogenoData.push(valores.nitrogeno);
+  this.fosforoData.push(valores.fosforo);
+  this.potasioData.push(valores.potasio);
 
-    this.updateChart('humedad', this.humedadData);
-    this.updateChart('temperatura', this.temperaturaData);
-    this.updateChart('conductividad', this.conductividadData);
-    this.updateChart('bateria', this.bateriaData);
-    this.updateChart('ph', this.phData);
-    this.updateChart('nitrogeno', this.nitrogenoData);
-    this.updateChart('fosforo', this.fosforoData);
-    this.updateChart('potasio', this.potasioData);
-  }
+  // Limitar a los últimos 10 valores
+  this.humedadData = this.humedadData.slice(-10);
+  this.temperaturaData = this.temperaturaData.slice(-10);
+  this.conductividadData = this.conductividadData.slice(-10);
+  this.bateriaData = this.bateriaData.slice(-10);
+  this.phData = this.phData.slice(-10);
+  this.nitrogenoData = this.nitrogenoData.slice(-10);
+  this.fosforoData = this.fosforoData.slice(-10);
+  this.potasioData = this.potasioData.slice(-10);
 
-  updateChart(key: string, data: number[]): void {
-    const chart = this.charts[key];
-    if (chart) {
-      chart.data.labels.push(''); 
-      chart.data.datasets[0].data = data; 
-      chart.update();
-    }
+  // Actualizar cada gráfico
+  this.updateChart('humedad', this.humedadData);
+  this.updateChart('temperatura', this.temperaturaData);
+  this.updateChart('conductividad', this.conductividadData);
+  this.updateChart('bateria', this.bateriaData);
+  this.updateChart('ph', this.phData);
+  this.updateChart('nitrogeno', this.nitrogenoData);
+  this.updateChart('fosforo', this.fosforoData);
+  this.updateChart('potasio', this.potasioData);
+}
+
+  updateChart(chartKey: string, data: number[]): void {
+  if (this.charts[chartKey]) {
+    this.charts[chartKey].data.datasets[0].data = data; 
+    this.charts[chartKey].data.labels = Array.from({ length: data.length }, (_, i) => `${i * 20}s`);
+    this.charts[chartKey].update(); 
   }
+}
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe(); 

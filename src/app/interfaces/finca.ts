@@ -1,7 +1,8 @@
 export interface Finca {
-    Nombre_finca:string;
-    Departamento:string;
-    Municipio:string;
-    Descripcion: string;
-    id_usuario: string;
+    _id: string;
+    nombre:string;
+    apellidos:string;
+    correo: string;
+    contrasena: string;
+    rol: string;
   }

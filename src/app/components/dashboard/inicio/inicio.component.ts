@@ -33,7 +33,7 @@ export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.updateDateTime();
     this.obtenerDatosUsuario();
-    this.subscription = interval(5000) 
+    this.subscription = interval(1000) 
       .pipe(
         switchMap(() => this.datos.datosias())
       )
@@ -184,7 +184,7 @@ export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     if (this.subscription) {
-      this.subscription.unsubscribe(); // Detenemos la suscripción para evitar fugas de memoria
+      this.subscription.unsubscribe(); 
     }
   }
 }

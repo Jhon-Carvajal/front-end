@@ -3,8 +3,8 @@
 
 <body >
     <h1 style="color: rgb(0, 0, 0); text-align: center; font-weight: bold;">MONITORIZACIÓN DE VARIABLES</h1>
-    <h3 style="color: rgb(0, 0, 0);text-align: center;">Estos valores son orientativos y 
-        pueden variar dependiendo de la variedad de café y las condiciones específicas de la región.</h3>
+    <h3 style="color: rgb(0, 0, 0);text-align: center;">Estos valores son aproximados y pueden cambiar 
+        según el tipo de café y las condiciones específicas de la región.</h3>
     <div class="container">
         <main class="main-content">
             <section class="overview">
@@ -12,9 +12,9 @@
                     <canvas #nitrogenoChart></canvas>
                     <br>
                     <p style="font-weight: bold;">{{ nitrogenoMensaje }}</p>
-                    <h5 style="text-align: justify;">El nitrógeno es un nutriente esencial para el crecimiento de las plantas ademas es un componente fundamental de la clorofila,
-                    que les permite llevar a cabo la fotosíntesis. Sin un nivel adecuado de nitrógeno, las plantas
-                    de café pueden volverse amarillas y afectar su crecimiento.</h5>
+                    <h5 style="text-align: justify;">El nitrógeno es un nutriente clave para el desarrollo de las plantas, ya que forma parte esencial de la clorofila, el
+                    compuesto que les permite realizar la fotosíntesis. Una deficiencia de nitrógeno puede hacer que las plantas de café
+                    adquieran un tono amarillo, afectando su crecimiento y productividad.</h5>
                 </div>
             </section>
           
@@ -23,9 +23,9 @@
                     <canvas #fosforoChart></canvas>
                     <br>
                     <p style="font-weight: bold;">{{ fosforoMensaje }}</p>
-                    <h5 style="text-align: justify;">El fósforo es vital para el desarrollo de las raíces y es fundamental en la fotosíntesis y en el proceso de respiración
-                    de la planta. Un nivel adecuado de fósforo garantiza un buen desarrollo radicular, lo que ayuda en la absorción de
-                    nutrientes del suelo.</h5>
+                    <h5 style="text-align: justify;">El fósforo es un nutriente esencial para el desarrollo de las raíces y desempeña un papel importante en la fotosíntesis y
+                    la respiración de las plantas. Mantener niveles adecuados de fósforo favorece un sistema radicular fuerte, mejorando la
+                    absorción de nutrientes del suelo.</h5>
                 </div>
             </section>
         </main>
@@ -36,9 +36,9 @@
                     <canvas #potasioChart></canvas>
                     <br>
                     <p style="font-weight: bold;">{{ potasioMensaje }}</p>
-                    <h5 style="text-align: justify;">El potasio es esencial para la regulación del equilibrio hídrico dentro de la planta y ayuda a mejorar la resistencia a
-                    enfermedades. Se encarga de activar varias enzimas y es clave en la síntesis de proteínas y en la producción de frutos.
-                    mejora la calidad del café, incluyendo su sabor y nivel de azúcares.</h5>
+                    <h5 style="text-align: justify;">El potasio es un nutriente vital que regula el equilibrio hídrico en las plantas y fortalece su resistencia a
+                    enfermedades. Además, activa diversas enzimas, favorece la síntesis de proteínas y contribuye a la producción de frutos.
+                    En el caso del café, mejora su calidad, realzando el sabor y aumentando los niveles de azúcares.</h5>
                 </div>
             </section>
             
@@ -47,8 +47,9 @@
                     <canvas #humedadChart></canvas>
                     <br>
                     <p style="font-weight: bold;">Humedad actual: {{ humedadValor }}%</p>
-                    <h5 style="text-align: justify;">La humedad del suelo es crucial para el crecimiento del café, ya que el agua es necesaria para la fotosíntesis y el
-                    transporte de nutrientes.</h5>
+                    <h5 style="text-align: justify;">La humedad en el suelo contribuye con el desarrollo óptimo de las plantas, ya que influye en procesos
+                    como la fotosíntesis, la respiración y la transpiración. Mantener la humedad en rangos adecuados (entre 65% y 80%) ayuda a prevenir el
+                    estrés hídrico y a mejorar la calidad y productividad del cultivo.</h5>
                 </div>
             </section>
         </main>
@@ -58,9 +59,10 @@
                 <div>
                     <canvas #temperaturaChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Temperatura actual {{ temperaturaValor }}°C</p>
-                    <h5 style="text-align: justify;">La temperatura del suelo afecta las reacciones químicas y biológicas que ocurren en él, incluidas las relacionadas con
-                    el crecimiento de las raíces y la actividad de los organismos,lo que resulta en un suelo más fértil</h5>
+                    <p style="font-weight: bold;">Temperatura actual: {{ temperaturaValor }}°C</p>
+                    <h5 style="text-align: justify;">La temperatura adecuada del suelo para el cultivo del café es de 18 °C a 25 °C. Este rango favorece la fotosíntesis,
+                    el crecimiento de las raíces y la absorción de nutrientes, asegurando un desarrollo saludable y una buena calidad del
+                    grano.</h5>
                 </div>
             </section>
             
@@ -68,9 +70,11 @@
                 <div>
                     <canvas #conductividadChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Conductividad actual: {{ conductividadValor }}S/m</p>
-                    <h5 style="text-align: justify;">La conductividad eléctrica del suelo es una medida de la salinidad. Un nivel muy alto de sal puede ser perjudicial para
-                    las plantas al interferir con la absorción de agua y nutrientes, además de causar toxicidad.</h5>
+                    <p style="font-weight: bold;">Conductividad eléctrica actual: {{ conductividadValor }}dS/m</p>
+                    <h5 style="text-align: justify;">La conductividad eléctrica del suelo mide su salinidad. Para el cultivo de café, un rango adecuado de conductividad
+                    eléctrica se encuentra entre 0.3 y 1.0 dS/m. Niveles por debajo de 0.3 dS/m pueden indicar deficiencias de
+                    nutrientes, mientras que valores superiores a 1.0 dS/m indican alta salinidad, lo que puede interferir con la
+                    absorción de agua y nutrientes, y causar toxicidad, afectando el crecimiento y la productividad de las plantas.</h5>
                 </div>
             </section>
         </main>
@@ -82,8 +86,9 @@
                     <canvas #phChart></canvas>
                     <br>
                     <p style="font-weight: bold;">{{ phMensaje }}</p>
-                    <h5 style="text-align: justify;">El pH influye en la disponibilidad de los nutrientes en el suelo. Un pH ligeramente ácido es ideal para el café, ya que
-                    permite una mejor disponibilidad de nitrógeno, fósforo, potasio y otros micronutrientes esenciales.</h5>
+                    <h5 style="text-align: justify;">El pH del suelo, idealmente entre 6.0 y 6.5 para el café, afecta la disponibilidad de nutrientes esenciales. Un pH
+                    ligeramente ácido facilita la absorción de nutrientes, mientras que valores fuera de este rango pueden limitar su
+                    disponibilidad y afectar el crecimiento de las plantas.</h5>
                 </div>
             </section>
 
@@ -91,7 +96,7 @@
                 <div>
                     <canvas #bateriaChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Porcentaje de Bateria: {{ bateriaValor }}%</p>
+                    <p style="font-weight: bold;">Porcentaje de batería del módulo IoT: {{ bateriaValor }}%</p>
                 </div>
             </section>
         </main>

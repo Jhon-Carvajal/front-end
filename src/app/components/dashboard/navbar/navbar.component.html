@@ -9,11 +9,11 @@
 
         <span class="example-spacer">
             <div class="schedule-header">
-                <h2 class="icon" style="text-align: center;">{{nombre1}}  {{apellido1}}</h2>
+                <h2 class="icon" style="text-align: center;">Usuario: {{nombre1}}  {{apellido1}}</h2>
             </div>
         </span>
      
-        <button (click)="onLogout()" mat-button routerLink="/logout" matTooltip="Cerrar Sesion" style="color: white;" >
+        <button (click)="onLogout()" mat-button routerLink="/logout" matTooltip="Cerrar Sesión" style="color: white;" >
         <mat-icon class="icon">logout</mat-icon>Salir</button>
 
     </mat-toolbar>
@@ -39,13 +39,24 @@
 
                 <a mat-list-item class="pointer1" matTooltip="Ver Sugerencia" >
                     <button mat-button routerLink="/dashboard/sugerenciad" class="enc" style="color: white;">
-                        <mat-icon class="icon" matTooltip="ver fincas">cloud</mat-icon>Sugerencia</button>
+                        <mat-icon class="icon" matTooltip="Ver Sugerencia">cloud</mat-icon>Sugerencia</button>
                 </a>
-                <br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br><br><br>
+                <br>
+<!--
+                <a mat-list-item class="pointer1" matTooltip="Ver perfil">
+                    <button mat-button routerLink="/dashboard/perfil" class="enc" style="color: white;">
+                        <mat-icon class="icon" matTooltip="ver perfil">cloud</mat-icon>Perfil</button>
+                </a>
+                <br> -->
+                <a mat-list-item class="pointer1" matTooltip="Ver Usuarios">
+                    <button mat-button routerLink="/dashboard/finca" class="enc" style="color: white;">
+                        <mat-icon class="icon" >perm_identity</mat-icon>Gestión de usuarios</button>
+                </a>
+                <br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
                 <a mat-list-item class="pointer1" matTooltip="Salir">
                     <button (click)="onLogout()" mat-button routerLink="/logout" class="enc" style="color: white;">
-                    <mat-icon class="icon" matTooltip="Salir">exit_to_app</mat-icon>Cerrar Sesion</button>
+                    <mat-icon class="icon" matTooltip="Salir">exit_to_app</mat-icon>Cerrar Sesión</button>
                 </a>
 
             </mat-nav-list>
