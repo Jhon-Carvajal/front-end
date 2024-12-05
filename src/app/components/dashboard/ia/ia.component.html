@@ -46,7 +46,7 @@
                 <div>
                     <canvas #humedadChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Humedad actual: {{ humedadValor }}%</p>
+                    <p style="font-weight: bold;">{{ humedadValor }}</p>
                     <h5 style="text-align: justify;">La humedad en el suelo contribuye con el desarrollo óptimo de las plantas, ya que influye en procesos
                     como la fotosíntesis, la respiración y la transpiración. Mantener la humedad en rangos adecuados (entre 65% y 80%) ayuda a prevenir el
                     estrés hídrico y a mejorar la calidad y productividad del cultivo.</h5>
@@ -59,7 +59,7 @@
                 <div>
                     <canvas #temperaturaChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Temperatura actual: {{ temperaturaValor }}°C</p>
+                    <p style="font-weight: bold;">{{ temperaturaValor }}</p>
                     <h5 style="text-align: justify;">La temperatura adecuada del suelo para el cultivo del café es de 18 °C a 25 °C. Este rango favorece la fotosíntesis,
                     el crecimiento de las raíces y la absorción de nutrientes, asegurando un desarrollo saludable y una buena calidad del
                     grano.</h5>
@@ -70,7 +70,7 @@
                 <div>
                     <canvas #conductividadChart></canvas>
                     <br>
-                    <p style="font-weight: bold;">Conductividad eléctrica actual: {{ conductividadValor }}dS/m</p>
+                    <p style="font-weight: bold;">{{ conductividadValor }}</p>
                     <h5 style="text-align: justify;">La conductividad eléctrica del suelo mide su salinidad. Para el cultivo de café, un rango adecuado de conductividad
                     eléctrica se encuentra entre 0.3 y 1.0 dS/m. Niveles por debajo de 0.3 dS/m pueden indicar deficiencias de
                     nutrientes, mientras que valores superiores a 1.0 dS/m indican alta salinidad, lo que puede interferir con la

@@ -29,6 +29,7 @@ export class IaComponent implements OnInit, OnDestroy, AfterViewInit {
   nitrogenoMensaje: string = '';
   potasioMensaje: string = '';
   phMensaje: string = '';
+
   conductividadValor: any;
   temperaturaValor: any;
   humedadValor: any;
@@ -70,7 +71,7 @@ ngOnInit(): void {
       }
     );
 
-    this.subscription = interval(20000)
+    this.subscription = interval(5000)
       .pipe(switchMap(() => this.datos.datosias()))
       .subscribe(
         (data: any) => {
@@ -87,19 +88,14 @@ ngOnInit(): void {
               potasio: datou.potasio
             };
             this.updateCharts(valores);
-            this.conductividadValor = valores.conductividad;
             this.bateriaValor = valores.bateria;
-            this.humedadValor = valores.humedad;
             this.phMensaje = this.clasificarPh(valores.ph);
-            this.temperaturaValor = valores.temperatura;
             this.fosforoMensaje = this.clasificarFosforo(valores.fosforo);
             this.nitrogenoMensaje = this.clasificarNitrogeno(valores.nitrogeno);
             this.potasioMensaje = this.clasificarPotasio(valores.potasio);
-            this.potasioMensaje = this.clasificarHumedad(valores.potasio);
-           // this.potasioMensaje = this.clasificarConductividad(valores.potasio);
-            //this.potasioMensaje = this.clasificar(valores.potasio);
-            
-
+            this.humedadValor = this.clasificarHumedad(valores.humedad);
+            this.temperaturaValor = this.clasificarTemperatura(valores.temperatura);
+            this.conductividadValor = this.clasificarConductividad(valores.conductividad);
           }
         },
         (error) => {
@@ -316,14 +312,36 @@ initializeCharts(): void {
     return ``;
   }
   }
-  //agregar mensaje en cada variable
+
  clasificarHumedad(valor: number): string {
-  if (valor < 7) {
-    return `humedad actual: (${valor}: ( ácido)`;
-  } else if (valor >=7 && valor<=7.3) {
-    return `humedad actual: (${valor} (Suelo neutro)`;
-  } else if (valor > 7.3) {
-    return `humedad actual: ${valor} (Suelo alcalino)`;
+  if (valor < 65) {
+    return `Humedad actual: ${valor} % (humedad baja)`;
+  } else if (valor >=65 && valor<=80) {
+    return `Humedad actual: ${valor} % (humedad adecuada)`;
+  } else if (valor > 80) {
+    return `Humedad actual: ${valor} % (humedad alta)`;
+  } else {
+    return ``;
+  }
+ }
+ clasificarTemperatura(valor: number): string {
+  if (valor < 18) {
+    return `Temperatura actual: ${valor} °C ( temperatura baja)`;
+  } else if (valor >=18 && valor<=25) {
+    return `Temperatura actual: ${valor} °C (temperatura adecuada)`;
+  } else if (valor > 25) {
+    return `Temperatura actual: ${valor} °C (temperatura alta)`;
+  } else {
+    return ``;
+  }
+ }
+  clasificarConductividad(valor: number): string {
+  if (valor < 0.3) {
+    return `Conductividad eléctrica actual: ${valor} dS/m ( condutividad baja)`;
+  } else if (valor >=0.3 && valor<=1) {
+    return `Conductividad eléctrica actual: ${valor} dS/m (conductividad adecuada)`;
+  } else if (valor > 1) {
+    return `Conductividad eléctrica actual: ${valor} dS/m (conductividad alta)`;
   } else {
     return ``;
   }

@@ -10,34 +10,39 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="inicio.component.css">
 </head>
-<!---->
-<section>
-  <div class="header">
 
-    <h1 style="text-align: center; font-weight: bold;">BIENVENIDO AL SISTEMA DE SUGERENCIA DE FERTILIZANTE</h1>
-    <h1 style="text-align: center; font-weight: bold;">MEDIANTE EL MONITOREO DE NUTRIENTES PRIMARIOS NPK</h1>
-    <p  style="text-align: center;" id="datetime"></p>
-    <br>
-    <div class="linea"></div> 
+<section>
+  <div class="header" style="background-color: #2c3e50; padding: 50px 0; text-align: center; color: white;">
+    <h1 style="font-weight: bold; font-size: 3em; letter-spacing: 2px;">¡Bienvenido al futuro del cultivo de Café!</h1>
+    <h2 style="font-weight: normal; font-size: 1.5em;">Optimiza tus plantas con sugerencias personalizadas</h2>
+    <h5 style="font-weight: normal; font-size: 1.1em;">Monitorea en tiempo real los nutrientes escenciales del suelo (NPK)</h5>
+    <p id="datetime" style="font-size: 1.2em; margin-top: 10px;"></p>
+    <div class="linea" style="width: 60%; height: 2px; background-color: #f39c12; margin: 30px auto;"></div>
   </div>
-<br><br><br>
+<br><br>
   <div class="main">
-    
-    <img
-      src="https://img.freepik.com/foto-gratis/cosecha-cafe-adulto-naturaleza_23-2151711499.jpg"
-      style="width: 200px; margin-right: 40px;">
-    <h2 style="text-align: justify;">
-      Esta plataforma se enfoca en la gestión de nutrientes esenciales para las plantas de café, como nitrógeno (N), fósforo
-      (P) y potasio (K), conocidos como nutrientes primarios. El monitoreo de estos elementos es fundamental para garantizar
-      el crecimiento y desarrollo sostenible de las plantas. Utilizando tecnología avanzada, el sistema analiza la composición
-      del suelo en el entorno del cultivo y sugiere el fertilizante más adecuado entre 27 opciones, para optimizar las condiciones del cultivo.
-      Esto no solo mejora la eficiencia en el uso de fertilizantes, sino que también reduce costos y minimiza el impacto
-      ambiental al evitar la aplicación excesiva de nutrientes.
-    </h2>
+    <div>
+      <div class="image-container">
+      <img src="https://img.freepik.com/foto-gratis/cosecha-cafe-adulto-naturaleza_23-2151711499.jpg">
+      </div>
+      <h3 style="font-size: 1.5em; color: #34495e; margin-top: 30px; font-weight: bold;margin-left: 180px;margin-right: 100px;">¿Por qué elegir esta plataforma?
+      </h3>
+      <div style="margin-left: 200px;margin-right: 200px;">
+      <h2>
+        Esta plataforma se enfoca en la gestión de nutrientes esenciales para las plantas de café, como nitrógeno (N),
+        fósforo (P) y potasio (K), conocidos como nutrientes primarios. El monitoreo constante de estos elementos es clave
+        para garantizar el crecimiento y desarrollo óptimo de las plantas.
+        Usando tecnología avanzada, el sistema analiza la composición del suelo y selecciona el fertilizante más adecuado
+        de entre 27 opciones para optimizar las condiciones del cultivo. Esto no solo mejora la eficiencia en el uso de
+        fertilizantes, sino que también reduce costos y minimiza el impacto ambiental, evitando la sobreaplicación de
+        nutrientes.
+      </h2>
+      </div>
+    </div>
   </div>
-  <br><br><br>
-  <div class="linea2"></div>
   <br><br>
+  <div class="linea2"></div>
+  <br><br><br>
   <div class="main2">
     <section style="margin-right: 40px;">
       <canvas #nitrogenoChart style="width: 300px;height: 250px;"></canvas>
@@ -54,7 +59,7 @@
 
   <br>
   <div class="linea"></div>
-  <br>
+  <br><br>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
