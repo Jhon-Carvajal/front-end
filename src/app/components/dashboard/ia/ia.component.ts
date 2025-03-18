@@ -315,33 +315,33 @@ initializeCharts(): void {
 
  clasificarHumedad(valor: number): string {
   if (valor < 65) {
-    return `Humedad actual: ${valor} % (humedad baja)`;
+    return `Humedad actual: ${valor} % (Humedad baja)`;
   } else if (valor >=65 && valor<=80) {
-    return `Humedad actual: ${valor} % (humedad adecuada)`;
+    return `Humedad actual: ${valor} % (Humedad adecuada)`;
   } else if (valor > 80) {
-    return `Humedad actual: ${valor} % (humedad alta)`;
+    return `Humedad actual: ${valor} % (Humedad alta)`;
   } else {
     return ``;
   }
  }
  clasificarTemperatura(valor: number): string {
   if (valor < 18) {
-    return `Temperatura actual: ${valor} °C ( temperatura baja)`;
+    return `Temperatura actual: ${valor} °C (Temperatura baja)`;
   } else if (valor >=18 && valor<=25) {
-    return `Temperatura actual: ${valor} °C (temperatura adecuada)`;
+    return `Temperatura actual: ${valor} °C (Temperatura adecuada)`;
   } else if (valor > 25) {
-    return `Temperatura actual: ${valor} °C (temperatura alta)`;
+    return `Temperatura actual: ${valor} °C (Temperatura alta)`;
   } else {
     return ``;
   }
  }
   clasificarConductividad(valor: number): string {
   if (valor < 0.3) {
-    return `Conductividad eléctrica actual: ${valor} dS/m ( condutividad baja)`;
+    return `Conductividad eléctrica actual: ${valor} dS/m (Condutividad baja)`;
   } else if (valor >=0.3 && valor<=1) {
-    return `Conductividad eléctrica actual: ${valor} dS/m (conductividad adecuada)`;
+    return `Conductividad eléctrica actual: ${valor} dS/m (Conductividad adecuada)`;
   } else if (valor > 1) {
-    return `Conductividad eléctrica actual: ${valor} dS/m (conductividad alta)`;
+    return `Conductividad eléctrica actual: ${valor} dS/m (Conductividad alta)`;
   } else {
     return ``;
   }

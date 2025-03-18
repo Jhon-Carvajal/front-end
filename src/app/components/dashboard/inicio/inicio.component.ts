@@ -106,7 +106,7 @@ export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
                 title: {
                     display: true,
                     align:'center',
-                    text: 'Composición de Nutrientes',
+                    text: 'Composición de nutrientes',
                     color: '#333333',
                     font: {
                         size: 16,
